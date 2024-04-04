@@ -209,27 +209,27 @@ class PhotoService implements ModelViewConnector {
 
     public function authoriseCreate(): bool
     {
-        return auth()->user()->hasPermissionTo('Photo Testimonial: Create');
+        return auth()->user()->hasPermissionTo('Photo: Create');
     }
 
     public function authoriseStore(): bool
     {
-        return auth()->user()->hasPermissionTo('Photo Testimonial: Create');
+        return auth()->user()->hasPermissionTo('Photo: Create');
     }
 
     public function authoriseEdit($id): bool
     {
-        return auth()->user()->hasPermissionTo('Photo Testimonial: Edit');
+        return auth()->user()->hasPermissionTo('Photo: Edit');
     }
 
     public function authoriseUpdate($item): bool
     {
-        return auth()->user()->hasPermissionTo('Photo Testimonial: Edit');
+        return auth()->user()->hasPermissionTo('Photo: Edit');
     }
 
     public function authoriseDestroy($item): bool
     {
-        return auth()->user()->hasPermissionTo('Photo Testimonial: Delete');
+        return auth()->user()->hasPermissionTo('Photo: Delete');
     }
 
     public function getStoreValidationRules(): array
