@@ -34,12 +34,14 @@ class WebPageController extends SmartController
     public function home()
     {
         App::setlocale('en');
+        return $this->buildResponse('pagetemplates.page-home');
         return $this->show('en','home');
     }
 
     public function homeAr()
     {
         App::setlocale('ar');
+        return $this->buildResponse('pagetemplates.page-home');
         return $this->show('en','home');
     }
 

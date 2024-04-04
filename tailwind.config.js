@@ -12,11 +12,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Arial', ...defaultTheme.fontFamily.sans],
-                gothic:['Didact Gothic','sans-serif'],
-                gothic1:['Century Gothic','sans-serif'],
-                franklin:['Franklin Gothic','sans-serif'],
-                questrial:['Questrial','sans-serif'],
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                helvetica: ['HelveticaNeueItalic','sans-serif']
             },
             width: {
                 '30': '7.5rem',
@@ -147,14 +144,10 @@ export default {
                 '9/10': '90vh',
             },
             colors:{
-                'gray':'#D9D9D9',
-                'pink':'#e964a0',
-                'blue':'#2962A6',
-                'lightgray':'#eeeeee',
-                'darkpink':'#872850',
-                'darkgray':'#676868',
-                'yellow':'#FBBC04',
-                'gray-600':'#353535',
+                'beige':'#F7EEE9',
+                'darkorange':'#A2735F',
+                'customOrange':'#8F7143',
+                'darkbeige':'#d7ab92 ',
             }
         },
     },
