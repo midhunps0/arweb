@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="text-base">
-        <x-main-menu-component />
+        <x-header-component />
         <div class="w-full px-2 md:px-16 lg:px-24">
             <x-page-title title="{{$instance->current_translation->data['name']}}" />
             <div class="flex flex-row justify-end p-4">
