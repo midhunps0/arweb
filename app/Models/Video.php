@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 
-class VideoTestimonial extends Model
+class Video extends Model
 {
     use HasFactory, HasTranslations;
 

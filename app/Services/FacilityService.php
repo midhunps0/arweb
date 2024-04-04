@@ -1,9 +1,10 @@
 <?php
 namespace App\Services;
 
-use App\Models\Doctor;
+use App\Models\Facility;
 use App\Models\MetatagsList;
 use App\Models\Translation;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -16,20 +17,21 @@ use Modules\Ynotz\EasyAdmin\RenderDataFormats\EditPageData;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Modules\Ynotz\EasyAdmin\Services\ColumnLayout;
 use Modules\Ynotz\EasyAdmin\Services\RowLayout;
-use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
-class DoctorService implements ModelViewConnector {
+class FacilityService implements ModelViewConnector {
     use IsModelViewConnector;
     private $indexTable;
 
     public function __construct()
     {
-        $this->modelClass = Doctor::class;
+        $this->modelClass = Facility::class;
         $this->indexTable = new IndexTable();
         $this->selectionEnabled = false;
 
-        // $this->idKey = 'id';
+        $this->idKey = 'slug';
         // $this->selects = '*';
         // $this->selIdsKey = 'id';
         // $this->searchesMap = [];
@@ -42,62 +44,63 @@ class DoctorService implements ModelViewConnector {
         // $this->defaultSearchColumn = 'name';
         // $this->defaultSearchMode = 'startswith';
         // $this->relations = [];
+        // $this->selectionEnabled = false;
         $this->exportsEnabled = false;
         // $this->downloadFileName = 'results';
     }
 
-    // public function getShowPageData($slug): ShowPageData
-    // {
-    //     $item = Doctor::with(['translations'])
-    //         ->wherehas('translations', function ($q) use ($slug) {
-    //             $q->where('locale', App::currentLocale())
-    //             ->where('slug', $slug);
-    //         })
-    //         ->get()->first();
-    //     if($item == null) {
-    //         throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
-    //     }
-    //     return new ShowPageData(
-    //         Str::ucfirst($this->getModelShortName()),
-    //         $item
-    //     );
-    // }
+    public function getShowPageData($slug): ShowPageData
+    {
+        $item = Facility::with(['translations'])
+            ->wherehas('translations', function ($q) use ($slug) {
+                $q->where('locale', App::currentLocale())
+                ->where('slug', $slug);
+            })
+            ->get()->first();
+        if($item == null && App::currentLocale() != config('app_settings.default_locale')) {
+            $item = Facility::with(['translations'])
+            ->wherehas('translations', function ($q) use ($slug) {
+                $q->where('locale', config('app_settings.default_locale'))
+                ->where('slug', $slug);
+            })
+            ->get()->first();
+        }
+        if($item == null) {
+            throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
+        }
+        return new ShowPageData(
+            Str::ucfirst($this->getModelShortName()),
+            $item,
+            []
+        );
+    }
 
     protected function relations()
     {
-        return [];
-        // // Example:
-        // return [
-        //     'author' => [
-        //         'search_column' => 'id',
-        //         'filter_column' => 'id',
-        //         'sort_column' => 'id',
-        //     ],
-        //     'reviewScore' => [
-        //         'search_column' => 'score',
-        //         'filter_column' => 'id',
-        //         'sort_column' => 'id',
-        //     ],
-        // ];
+        return [
+            // 'author' => [
+            //     'search_column' => 'id',
+            //     'filter_column' => 'id',
+            //     'sort_column' => 'id',
+            // ],
+            // 'reviewScore' => [
+            //     'search_column' => 'score',
+            //     'filter_column' => 'id',
+            //     'sort_column' => 'id',
+            // ],
+        ];
     }
     protected function getPageTitle(): string
     {
-        return "Doctors";
+        return "Facilities";
     }
 
     protected function getIndexHeaders(): array
     {
         return $this->indexTable->addHeaderColumn(
-            title: 'Name',
-            // sort: ['key' => 'name'],
-        )
-        ->addHeaderColumn(
-            title: 'Designation',
-        )
-        ->addHeaderColumn(
-            title: 'Department',
-        )
-        ->addHeaderColumn(
+            title: 'Title',
+            // sort: ['key' => 'title'],
+        )->addHeaderColumn(
             title: 'Actions'
         )->getHeaderRow();
     }
@@ -105,15 +108,20 @@ class DoctorService implements ModelViewConnector {
     protected function getIndexColumns(): array
     {
         return $this->indexTable->addColumn(
-            fields: ['default_name'],
-        )->addColumn(
-            fields: ['default_designation'],
-        )->addColumn(
-            fields: ['default_department'],
+            fields: ['defaultTitle'],
         )->addActionColumn(
+            viewRoute: $this->getViewRoute(),
             editRoute: $this->getEditRoute(),
             deleteRoute: $this->getDestroyRoute(),
+            viewRouteUniqueKey: 'current_translation.slug',
+            viewRouteSlug: 'slug',
+            component: 'index-actions'
         )->getRow();
+    }
+
+    public function getViewRoute()
+    {
+        return 'facilities.guest.show';
     }
 
     public function getAdvanceSearchFields(): array
@@ -161,12 +169,12 @@ class DoctorService implements ModelViewConnector {
     public function getCreatePageData(): CreatePageData
     {
         return new CreatePageData(
-            title: 'Create Doctor',
+            title: 'Create Facility',
             form: FormHelper::makeForm(
-                title: 'Create Doctor',
-                id: 'form_doctors_create',
-                action_route: 'doctors.store',
-                success_redirect_route: 'doctors.index',
+                title: 'Create Facility',
+                id: 'form_facilities_create',
+                action_route: 'facilities.store',
+                success_redirect_route: 'facilities.index',
                 items: $this->getCreateFormElements(),
                 layout: $this->buildCreateFormLayout(),
                 label_position: 'top'
@@ -177,13 +185,13 @@ class DoctorService implements ModelViewConnector {
     public function getEditPageData($id): EditPageData
     {
         return new EditPageData(
-            title: 'Edit Doctor',
+            title: 'Edit Facility',
             form: FormHelper::makeEditForm(
-                title: 'Edit Doctor',
-                id: 'form_doctors_create',
-                action_route: 'doctors.update',
+                title: 'Edit Facility',
+                id: 'form_facilities_create',
+                action_route: 'facilities.update',
                 action_route_params: ['id' => $id],
-                success_redirect_route: 'doctors.index',
+                success_redirect_route: 'facilities.index',
                 items: $this->getEditFormElements(),
                 label_position: 'top'
             ),
@@ -242,35 +250,39 @@ class DoctorService implements ModelViewConnector {
 
     public function authoriseCreate(): bool
     {
-        return auth()->user()->hasPermissionTo('Doctor: Create');
+        return auth()->user()->hasPermissionTo('Facility: Create');
     }
 
     public function authoriseStore(): bool
     {
-        return auth()->user()->hasPermissionTo('Doctor: Create');
+        return auth()->user()->hasPermissionTo('Facility: Create');
     }
 
     public function authoriseEdit($id): bool
     {
-        return auth()->user()->hasPermissionTo('Doctor: Edit');
+        return auth()->user()->hasPermissionTo('Facility: Edit');
     }
 
     public function authoriseUpdate($item): bool
     {
-        return auth()->user()->hasPermissionTo('Doctor: Edit');
+        return auth()->user()->hasPermissionTo('Facility: Edit');
     }
 
     public function authoriseDestroy($item): bool
     {
-        return auth()->user()->hasPermissionTo('Doctor: Delete');
+        return auth()->user()->hasPermissionTo('Facility: Delete');
     }
 
     public function getStoreValidationRules(): array
     {
         return [
             'locale' => ['required', 'string'],
-            'slug' => ['required', 'string'],
-            'photo' => ['required', 'string'],
+            'slug' => [
+                'required',
+                Rule::unique('translations', 'slug')
+                ->where(fn ($query) => $query->where('translatable_type', Facility::class))
+                ->where('locale', App::currentLocale())
+            ],
             'data' => ['required', 'array'],
         ];
     }
@@ -279,8 +291,16 @@ class DoctorService implements ModelViewConnector {
     {
         return [
             'locale' => ['required', 'string'],
-            'slug' => ['required', 'string'],
-            'photo' => ['required', 'string'],
+            'slug' => [
+                'required',
+                Rule::unique('translations', 'slug')
+                ->where(static function ($query) use ($id) {
+                        return $query->where('translatable_type', Facility::class)
+                        ->where('locale', App::currentLocale())
+                        ->whereNotIn('translatable_id', [$id]);
+                    }
+                )
+            ],
             'data' => ['required', 'array'],
         ];
     }
@@ -331,28 +351,29 @@ class DoctorService implements ModelViewConnector {
     {
         try {
             DB::beginTransaction();
-            $wp = Doctor::create();
-            $wp->addMediaFromEAInput('photo', $data['photo']);
-
+            $wp = Facility::create();
+            $coverImage = $data['data']['cover_image'];
+            unset($data['data']['cover_image']);
             $translation = Translation::create(
                 [
                     'translatable_id' => $wp->id,
-                    'translatable_type' => Doctor::class,
+                    'translatable_type' => Facility::class,
                     'locale' => $data['locale'],
-                    // 'slug' => $data['slug'],
+                    'slug' => $data['slug'],
                     'data' => $data['data'],
                     'created_by' => auth()->user()->id,
                 ]
             );
+            $translation->addMediaFromEAInput('cover_image', $coverImage);
 
-            // MetatagsList::create([
-            //     'translation_id' => $translation->id,
-            //     'title' => $data['data']['metatags']['title'],
-            //     'description' => $data['data']['metatags']['description'],
-            //     'og_title' => $data['data']['metatags']['title'],
-            //     'og_description' => $data['data']['metatags']['description'],
-            //     'og_type' => $data['data']['metatags']['og_type'],
-            // ]);
+            MetatagsList::create([
+                'translation_id' => $translation->id,
+                'title' => $data['data']['metatags']['title'],
+                'description' => $data['data']['metatags']['description'],
+                'og_title' => $data['data']['metatags']['og_title'],
+                'og_description' => $data['data']['metatags']['og_description'],
+                'og_type' => $data['data']['metatags']['og_type'],
+            ]);
 
             DB::commit();
             return $wp->refresh();
@@ -365,24 +386,24 @@ class DoctorService implements ModelViewConnector {
 
     public function update($id, array $data)
     {
-        info('inside Doctor update');
+        info('inside facility update');
         try {
             DB::beginTransaction();
             info('data');
             info($data['data']);
+            $coverImage = $data['data']['cover_image'];
+            unset($data['data']['cover_image']);
             /**
-             * @var Doctor
+             * @var Facility
              */
-            $wp = Doctor::find($id);
-
-            $wp->syncMedia('photo', $data['photo']);
+            $wp = Facility::find($id);
             /**
              * @var Translation
              */
             $translation = $wp->getTranslation($data['locale']);
             if ($translation != null) {
                 $translation->data = $data['data'];
-                // $translation->slug = $data['slug'];
+                $translation->slug = $data['slug'];
                 $translation->last_updated_by = auth()->user()->id;
                 $translation->save();
             } else {
@@ -392,14 +413,29 @@ class DoctorService implements ModelViewConnector {
                 $translation = Translation::create(
                     [
                         'translatable_id' => $wp->id,
-                        'translatable_type' => Doctor::class,
+                        'translatable_type' => Facility::class,
                         'locale' => $data['locale'],
-                        // 'slug' => $data['slug'],
+                        'slug' => $data['slug'],
                         'data' => $data['data'],
                         'created_by' => auth()->user()->id,
                     ]
                 );
             }
+
+            $translation->syncMedia('cover_image', $coverImage);
+
+            $metatags = MetatagsList::where('translation_id', $translation->id)->get()->first();
+            if ($metatags == null) {
+                $metatags = new MetatagsList();
+                $metatags->translation_id = $translation->id;
+            }
+            $metatags->title = $data['data']['metatags']['title'];
+            $metatags->description = $data['data']['metatags']['description'];
+            $metatags->og_title = $data['data']['metatags']['og_title'];
+            $metatags->og_description = $data['data']['metatags']['og_description'];
+            $metatags->og_type = $data['data']['metatags']['og_type'];
+            $metatags->save();
+
             DB::commit();
             return $wp->refresh();
         } catch (\Throwable $e) {

@@ -12,6 +12,8 @@ class SystemPermissionsSeeder extends Seeder
         'System Settings',
         'App Settings',
         'Article',
+        'Department',
+        'Facility',
         'Doctor',
         'Hilight Feature',
         'Metatags',

@@ -14,7 +14,7 @@ use Modules\Ynotz\MediaManager\Traits\OwnsMedia;
 
 class Doctor extends Model implements MediaOwner
 {
-    use HasFactory, HasTranslations, HasTranslatedPages, OwnsMedia;
+    use HasFactory, HasTranslations, OwnsMedia;
 
     protected $guarded = [];
 

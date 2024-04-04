@@ -1,9 +1,12 @@
 <?php
 namespace App\Services;
 
+use App\Models\Department;
+use App\Models\MetatagsList;
 use App\Models\Translation;
-use App\Models\VideoTestimonial;
+use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\IndexTable;
@@ -11,20 +14,24 @@ use Modules\Ynotz\EasyAdmin\Traits\IsModelViewConnector;
 use Modules\Ynotz\EasyAdmin\Contracts\ModelViewConnector;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\CreatePageData;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\EditPageData;
+use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Modules\Ynotz\EasyAdmin\Services\ColumnLayout;
 use Modules\Ynotz\EasyAdmin\Services\RowLayout;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
-class VideoTestimonialService implements ModelViewConnector {
+class DepartmentService implements ModelViewConnector {
     use IsModelViewConnector;
     private $indexTable;
 
     public function __construct()
     {
-        $this->modelClass = VideoTestimonial::class;
+        $this->modelClass = Department::class;
         $this->indexTable = new IndexTable();
         $this->selectionEnabled = false;
 
-        // $this->idKey = 'id';
+        $this->idKey = 'slug';
         // $this->selects = '*';
         // $this->selIdsKey = 'id';
         // $this->searchesMap = [];
@@ -37,39 +44,62 @@ class VideoTestimonialService implements ModelViewConnector {
         // $this->defaultSearchColumn = 'name';
         // $this->defaultSearchMode = 'startswith';
         // $this->relations = [];
+        // $this->selectionEnabled = false;
         $this->exportsEnabled = false;
         // $this->downloadFileName = 'results';
     }
 
+    public function getShowPageData($slug): ShowPageData
+    {
+        $item = Department::with(['translations'])
+            ->wherehas('translations', function ($q) use ($slug) {
+                $q->where('locale', App::currentLocale())
+                ->where('slug', $slug);
+            })
+            ->get()->first();
+        if($item == null && App::currentLocale() != config('app_settings.default_locale')) {
+            $item = Department::with(['translations'])
+            ->wherehas('translations', function ($q) use ($slug) {
+                $q->where('locale', config('app_settings.default_locale'))
+                ->where('slug', $slug);
+            })
+            ->get()->first();
+        }
+        if($item == null) {
+            throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
+        }
+        return new ShowPageData(
+            Str::ucfirst($this->getModelShortName()),
+            $item,
+            []
+        );
+    }
+
     protected function relations()
     {
-        return [];
-        // // Example:
-        // return [
-        //     'author' => [
-        //         'search_column' => 'id',
-        //         'filter_column' => 'id',
-        //         'sort_column' => 'id',
-        //     ],
-        //     'reviewScore' => [
-        //         'search_column' => 'score',
-        //         'filter_column' => 'id',
-        //         'sort_column' => 'id',
-        //     ],
-        // ];
+        return [
+            // 'author' => [
+            //     'search_column' => 'id',
+            //     'filter_column' => 'id',
+            //     'sort_column' => 'id',
+            // ],
+            // 'reviewScore' => [
+            //     'search_column' => 'score',
+            //     'filter_column' => 'id',
+            //     'sort_column' => 'id',
+            // ],
+        ];
     }
     protected function getPageTitle(): string
     {
-        return "Video Testimonials";
+        return "Departments";
     }
 
     protected function getIndexHeaders(): array
     {
         return $this->indexTable->addHeaderColumn(
-            title: 'Reviewer',
+            title: 'Title',
             // sort: ['key' => 'title'],
-        )->addHeaderColumn(
-            title: 'Story',
         )->addHeaderColumn(
             title: 'Actions'
         )->getHeaderRow();
@@ -78,13 +108,20 @@ class VideoTestimonialService implements ModelViewConnector {
     protected function getIndexColumns(): array
     {
         return $this->indexTable->addColumn(
-            fields: ['default_name'],
-        )->addColumn(
-            fields: ['summary'],
+            fields: ['defaultTitle'],
         )->addActionColumn(
+            viewRoute: $this->getViewRoute(),
             editRoute: $this->getEditRoute(),
             deleteRoute: $this->getDestroyRoute(),
+            viewRouteUniqueKey: 'current_translation.slug',
+            viewRouteSlug: 'slug',
+            component: 'index-actions'
         )->getRow();
+    }
+
+    public function getViewRoute()
+    {
+        return 'departments.guest.show';
     }
 
     public function getAdvanceSearchFields(): array
@@ -132,12 +169,12 @@ class VideoTestimonialService implements ModelViewConnector {
     public function getCreatePageData(): CreatePageData
     {
         return new CreatePageData(
-            title: 'Create VideoTestimonial',
+            title: 'Create Department',
             form: FormHelper::makeForm(
-                title: 'Create VideoTestimonial',
-                id: 'form_videotestimonials_create',
-                action_route: 'videotestimonials.store',
-                success_redirect_route: 'videotestimonials.index',
+                title: 'Create Department',
+                id: 'form_departments_create',
+                action_route: 'departments.store',
+                success_redirect_route: 'departments.index',
                 items: $this->getCreateFormElements(),
                 layout: $this->buildCreateFormLayout(),
                 label_position: 'top'
@@ -148,13 +185,13 @@ class VideoTestimonialService implements ModelViewConnector {
     public function getEditPageData($id): EditPageData
     {
         return new EditPageData(
-            title: 'Edit VideoTestimonial',
+            title: 'Edit Department',
             form: FormHelper::makeEditForm(
-                title: 'Edit VideoTestimonial',
-                id: 'form_videotestimonials_create',
-                action_route: 'videotestimonials.update',
+                title: 'Edit Department',
+                id: 'form_departments_create',
+                action_route: 'departments.update',
                 action_route_params: ['id' => $id],
-                success_redirect_route: 'videotestimonials.index',
+                success_redirect_route: 'departments.index',
                 items: $this->getEditFormElements(),
                 label_position: 'top'
             ),
@@ -213,35 +250,40 @@ class VideoTestimonialService implements ModelViewConnector {
 
     public function authoriseCreate(): bool
     {
-        return auth()->user()->hasPermissionTo('Video Testimonial: Create');
+        return auth()->user()->hasPermissionTo('Department: Create');
     }
 
     public function authoriseStore(): bool
     {
-        return auth()->user()->hasPermissionTo('Video Testimonial: Create');
+        return auth()->user()->hasPermissionTo('Department: Create');
     }
 
     public function authoriseEdit($id): bool
     {
-        return auth()->user()->hasPermissionTo('Video Testimonial: Edit');
+        return auth()->user()->hasPermissionTo('Department: Edit');
     }
 
     public function authoriseUpdate($item): bool
     {
-        return auth()->user()->hasPermissionTo('Video Testimonial: Edit');
+        return auth()->user()->hasPermissionTo('Department: Edit');
     }
 
     public function authoriseDestroy($item): bool
     {
-        return auth()->user()->hasPermissionTo('Video Testimonial: Delete');
+        return auth()->user()->hasPermissionTo('Department: Delete');
     }
 
     public function getStoreValidationRules(): array
     {
         return [
             'locale' => ['required', 'string'],
+            'slug' => [
+                'required',
+                Rule::unique('translations', 'slug')
+                ->where(fn ($query) => $query->where('translatable_type', Department::class))
+                ->where('locale', App::currentLocale())
+            ],
             'data' => ['required', 'array'],
-            'link' => ['required', 'string'],
         ];
     }
 
@@ -249,8 +291,17 @@ class VideoTestimonialService implements ModelViewConnector {
     {
         return [
             'locale' => ['required', 'string'],
+            'slug' => [
+                'required',
+                Rule::unique('translations', 'slug')
+                ->where(static function ($query) use ($id) {
+                        return $query->where('translatable_type', Department::class)
+                        ->where('locale', App::currentLocale())
+                        ->whereNotIn('translatable_id', [$id]);
+                    }
+                )
+            ],
             'data' => ['required', 'array'],
-            'link' => ['required', 'string'],
         ];
     }
 
@@ -300,23 +351,32 @@ class VideoTestimonialService implements ModelViewConnector {
     {
         try {
             DB::beginTransaction();
-            $testimonial = VideoTestimonial::create(
-                [
-                    'link' => $data['link']
-                ]
-            );
+            $wp = Department::create();
+            $coverImage = $data['data']['cover_image'];
+            unset($data['data']['cover_image']);
             $translation = Translation::create(
                 [
-                    'translatable_id' => $testimonial->id,
-                    'translatable_type' => VideoTestimonial::class,
+                    'translatable_id' => $wp->id,
+                    'translatable_type' => Department::class,
                     'locale' => $data['locale'],
+                    'slug' => $data['slug'],
                     'data' => $data['data'],
                     'created_by' => auth()->user()->id,
                 ]
             );
+            $translation->addMediaFromEAInput('cover_image', $coverImage);
+
+            MetatagsList::create([
+                'translation_id' => $translation->id,
+                'title' => $data['data']['metatags']['title'],
+                'description' => $data['data']['metatags']['description'],
+                'og_title' => $data['data']['metatags']['og_title'],
+                'og_description' => $data['data']['metatags']['og_description'],
+                'og_type' => $data['data']['metatags']['og_type'],
+            ]);
 
             DB::commit();
-            return $testimonial->refresh();
+            return $wp->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());
@@ -326,22 +386,24 @@ class VideoTestimonialService implements ModelViewConnector {
 
     public function update($id, array $data)
     {
+        info('inside department update');
         try {
             DB::beginTransaction();
-            info('data --');
+            info('data');
             info($data['data']);
+            $coverImage = $data['data']['cover_image'];
+            unset($data['data']['cover_image']);
             /**
-             * @var VideoTestimonial
+             * @var Department
              */
-            $testimonial = VideoTestimonial::find($id);
-            $testimonial->link = $data['link'];
-            $testimonial->save();
+            $wp = Department::find($id);
             /**
              * @var Translation
              */
-            $translation = $testimonial->getTranslation($data['locale']);
+            $translation = $wp->getTranslation($data['locale']);
             if ($translation != null) {
                 $translation->data = $data['data'];
+                $translation->slug = $data['slug'];
                 $translation->last_updated_by = auth()->user()->id;
                 $translation->save();
             } else {
@@ -350,17 +412,32 @@ class VideoTestimonialService implements ModelViewConnector {
                  */
                 $translation = Translation::create(
                     [
-                        'translatable_id' => $testimonial->id,
-                        'translatable_type' => VideoTestimonial::class,
+                        'translatable_id' => $wp->id,
+                        'translatable_type' => Department::class,
                         'locale' => $data['locale'],
+                        'slug' => $data['slug'],
                         'data' => $data['data'],
                         'created_by' => auth()->user()->id,
                     ]
                 );
             }
 
+            $translation->syncMedia('cover_image', $coverImage);
+
+            $metatags = $translation->metatagsList;
+            if ($metatags == null) {
+                $metatags = new MetatagsList();
+                $metatags->translation_id = $translation->id;
+            }
+            $metatags->title = $data['data']['metatags']['title'];
+            $metatags->description = $data['data']['metatags']['description'];
+            $metatags->og_title = $data['data']['metatags']['og_title'];
+            $metatags->og_description = $data['data']['metatags']['og_description'];
+            $metatags->og_type = $data['data']['metatags']['og_type'];
+            $metatags->save();
+
             DB::commit();
-            return $testimonial->refresh();
+            return $wp->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());

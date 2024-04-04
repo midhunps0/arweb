@@ -27,20 +27,36 @@ class SidebarService implements SidebarServiceInterface
             ],
             [
                 'type' => 'menu_item',
-                'title' => 'Reviews',
-                'route' => 'reviews.index',
+                'title' => 'Departments',
+                'route' => 'departments.index',
                 'route_params' => [],
                 'icon' => 'easyadmin::icons.plus',
-                'show' => $user->hasPermissionTo('Review: Edit')
+                'show' => $user->hasPermissionTo('Department: Edit')
             ],
             [
                 'type' => 'menu_item',
-                'title' => 'Video Testimonials',
-                'route' => 'videotestimonials.index',
+                'title' => 'Facilities',
+                'route' => 'facilities.index',
                 'route_params' => [],
                 'icon' => 'easyadmin::icons.plus',
-                'show' => $user->hasPermissionTo('Video Testimonial: Edit')
+                'show' => $user->hasPermissionTo('Facility: Edit')
             ],
+            // [
+            //     'type' => 'menu_item',
+            //     'title' => 'Reviews',
+            //     'route' => 'reviews.index',
+            //     'route_params' => [],
+            //     'icon' => 'easyadmin::icons.plus',
+            //     'show' => $user->hasPermissionTo('Review: Edit')
+            // ],
+            // [
+            //     'type' => 'menu_item',
+            //     'title' => 'Videos',
+            //     'route' => 'videos.index',
+            //     'route_params' => [],
+            //     'icon' => 'easyadmin::icons.plus',
+            //     'show' => $user->hasPermissionTo('Video Testimonial: Edit')
+            // ],
             [
                 'type' => 'menu_item',
                 'title' => 'Doctors',
@@ -49,22 +65,22 @@ class SidebarService implements SidebarServiceInterface
                 'icon' => 'easyadmin::icons.plus',
                 'show' => $user->hasPermissionTo('Doctor: Edit')
             ],
-            [
-                'type' => 'menu_item',
-                'title' => 'News And Achievements',
-                'route' => 'news.index',
-                'route_params' => [],
-                'icon' => 'easyadmin::icons.plus',
-                'show' => $user->hasPermissionTo('News: Edit')
-            ],
-            [
-                'type' => 'menu_item',
-                'title' => 'Hilight Features',
-                'route' => 'hilightfeatures.index',
-                'route_params' => [],
-                'icon' => 'easyadmin::icons.plus',
-                'show' => $user->hasPermissionTo('Hilight Feature: Edit')
-            ],
+            // [
+            //     'type' => 'menu_item',
+            //     'title' => 'News And Achievements',
+            //     'route' => 'news.index',
+            //     'route_params' => [],
+            //     'icon' => 'easyadmin::icons.plus',
+            //     'show' => $user->hasPermissionTo('News: Edit')
+            // ],
+            // [
+            //     'type' => 'menu_item',
+            //     'title' => 'Hilight Features',
+            //     'route' => 'hilightfeatures.index',
+            //     'route_params' => [],
+            //     'icon' => 'easyadmin::icons.plus',
+            //     'show' => $user->hasPermissionTo('Hilight Feature: Edit')
+            // ],
             [
                 'type' => 'menu_section',
                 'title' => 'Settings',

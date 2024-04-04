@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Department;
 use App\Models\Doctor;
+use App\Models\Facility;
 use App\Models\HilightFeature;
 use App\Models\News;
 use App\Models\PageTemplate;
@@ -42,6 +44,12 @@ class PageTemplateController extends SmartController
         if ($request->input('article_id') != null) {
             $template = PageTemplate::where('template_file', config('app_settings.article_translation_component'))->get()->first();
         }
+        if ($request->input('department_id') != null) {
+            $template = PageTemplate::where('template_file', config('app_settings.department_translation_component'))->get()->first();
+        }
+        if ($request->input('facility_id') != null) {
+            $template = PageTemplate::where('template_file', config('app_settings.facility_translation_component'))->get()->first();
+        }
         else if ($request->input('webpage_id') != null) {
             $template = PageTemplate::find($request->template_id);
         }
@@ -70,6 +78,14 @@ class PageTemplateController extends SmartController
             case 'edit':
                 if ($request->input('article_id') != null) {
                     $data['instance'] = Article::find($request->article_id);
+                    $data['formComponent'] = "pageformtemplates.{$template->template_file}.edit";
+                }
+                if ($request->input('department_id') != null) {
+                    $data['instance'] = Department::find($request->department_id);
+                    $data['formComponent'] = "pageformtemplates.{$template->template_file}.edit";
+                }
+                if ($request->input('facility_id') != null) {
+                    $data['instance'] = Facility::find($request->facility_id);
                     $data['formComponent'] = "pageformtemplates.{$template->template_file}.edit";
                 }
                 else if ($request->input('review_id') != null) {

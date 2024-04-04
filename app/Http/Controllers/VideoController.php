@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\PageTemplate;
-use App\Models\VideoTestimonial;
-use App\Services\VideoTestimonialService;
+use App\Models\Video;
+use App\Services\VideoService;
 use Illuminate\Http\Request;
 use Modules\Ynotz\EasyAdmin\Traits\HasMVConnector;
 use Modules\Ynotz\SmartPages\Http\Controllers\SmartController;
 
-class VideoTestimonialController extends SmartController
+class VideoController extends SmartController
 {
     use HasMVConnector;
 
-    public function __construct(Request $request, VideoTestimonialService $service)
+    public function __construct(Request $request, VideoService $service)
     {
         parent::__construct($request);
         $this->connectorService = $service;
@@ -43,15 +43,15 @@ class VideoTestimonialController extends SmartController
 
     public function edit($id)
     {
-        $vtestimonial = VideoTestimonial::find($id);
+        $vtestimonial = Video::find($id);
 
         $template = PageTemplate::where('template_file', config('app_settings.vtestimonial_translation_component'))
             ->get()->first();
         return $this->buildResponse(
             'admin.vtestimonials.edit',
             [
-                'videotestimonial' => $vtestimonial,
-                'videotestimonialId' => $vtestimonial->id,
+                'video' => $vtestimonial,
+                'videoId' => $vtestimonial->id,
                 'templateId' => $template->id
             ]
         );

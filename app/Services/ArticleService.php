@@ -370,8 +370,8 @@ class ArticleService implements ModelViewConnector {
                 'translation_id' => $translation->id,
                 'title' => $data['data']['metatags']['title'],
                 'description' => $data['data']['metatags']['description'],
-                'og_title' => $data['data']['metatags']['title'],
-                'og_description' => $data['data']['metatags']['description'],
+                'og_title' => $data['data']['metatags']['og_title'],
+                'og_description' => $data['data']['metatags']['og_description'],
                 'og_type' => $data['data']['metatags']['og_type'],
             ]);
 
@@ -423,6 +423,19 @@ class ArticleService implements ModelViewConnector {
             }
 
             $translation->syncMedia('cover_image', $coverImage);
+
+            $metatags = $translation->metatagsList;
+            if ($metatags == null) {
+                $metatags = new MetatagsList();
+                $metatags->translation_id = $translation->id;
+            }
+            $metatags->title = $data['data']['metatags']['title'];
+            $metatags->description = $data['data']['metatags']['description'];
+            $metatags->og_title = $data['data']['metatags']['og_title'];
+            $metatags->og_description = $data['data']['metatags']['og_description'];
+            $metatags->og_type = $data['data']['metatags']['og_type'];
+            $metatags->save();
+
             DB::commit();
             return $wp->refresh();
         } catch (\Throwable $e) {

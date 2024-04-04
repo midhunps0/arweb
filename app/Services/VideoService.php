@@ -1,11 +1,9 @@
 <?php
 namespace App\Services;
 
-use App\Models\Doctor;
-use App\Models\MetatagsList;
 use App\Models\Translation;
+use App\Models\Video;
 use Exception;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\IndexTable;
@@ -13,19 +11,16 @@ use Modules\Ynotz\EasyAdmin\Traits\IsModelViewConnector;
 use Modules\Ynotz\EasyAdmin\Contracts\ModelViewConnector;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\CreatePageData;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\EditPageData;
-use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Modules\Ynotz\EasyAdmin\Services\ColumnLayout;
 use Modules\Ynotz\EasyAdmin\Services\RowLayout;
-use Symfony\Component\Routing\Exception\ResourceNotFoundException;
-use Illuminate\Support\Str;
 
-class DoctorService implements ModelViewConnector {
+class VideoService implements ModelViewConnector {
     use IsModelViewConnector;
     private $indexTable;
 
     public function __construct()
     {
-        $this->modelClass = Doctor::class;
+        $this->modelClass = Video::class;
         $this->indexTable = new IndexTable();
         $this->selectionEnabled = false;
 
@@ -46,23 +41,6 @@ class DoctorService implements ModelViewConnector {
         // $this->downloadFileName = 'results';
     }
 
-    // public function getShowPageData($slug): ShowPageData
-    // {
-    //     $item = Doctor::with(['translations'])
-    //         ->wherehas('translations', function ($q) use ($slug) {
-    //             $q->where('locale', App::currentLocale())
-    //             ->where('slug', $slug);
-    //         })
-    //         ->get()->first();
-    //     if($item == null) {
-    //         throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
-    //     }
-    //     return new ShowPageData(
-    //         Str::ucfirst($this->getModelShortName()),
-    //         $item
-    //     );
-    // }
-
     protected function relations()
     {
         return [];
@@ -82,22 +60,17 @@ class DoctorService implements ModelViewConnector {
     }
     protected function getPageTitle(): string
     {
-        return "Doctors";
+        return "Video Testimonials";
     }
 
     protected function getIndexHeaders(): array
     {
         return $this->indexTable->addHeaderColumn(
-            title: 'Name',
-            // sort: ['key' => 'name'],
-        )
-        ->addHeaderColumn(
-            title: 'Designation',
-        )
-        ->addHeaderColumn(
-            title: 'Department',
-        )
-        ->addHeaderColumn(
+            title: 'Reviewer',
+            // sort: ['key' => 'title'],
+        )->addHeaderColumn(
+            title: 'Story',
+        )->addHeaderColumn(
             title: 'Actions'
         )->getHeaderRow();
     }
@@ -107,9 +80,7 @@ class DoctorService implements ModelViewConnector {
         return $this->indexTable->addColumn(
             fields: ['default_name'],
         )->addColumn(
-            fields: ['default_designation'],
-        )->addColumn(
-            fields: ['default_department'],
+            fields: ['summary'],
         )->addActionColumn(
             editRoute: $this->getEditRoute(),
             deleteRoute: $this->getDestroyRoute(),
@@ -161,12 +132,12 @@ class DoctorService implements ModelViewConnector {
     public function getCreatePageData(): CreatePageData
     {
         return new CreatePageData(
-            title: 'Create Doctor',
+            title: 'Create Video',
             form: FormHelper::makeForm(
-                title: 'Create Doctor',
-                id: 'form_doctors_create',
-                action_route: 'doctors.store',
-                success_redirect_route: 'doctors.index',
+                title: 'Create Video',
+                id: 'form_videos_create',
+                action_route: 'videos.store',
+                success_redirect_route: 'videos.index',
                 items: $this->getCreateFormElements(),
                 layout: $this->buildCreateFormLayout(),
                 label_position: 'top'
@@ -177,13 +148,13 @@ class DoctorService implements ModelViewConnector {
     public function getEditPageData($id): EditPageData
     {
         return new EditPageData(
-            title: 'Edit Doctor',
+            title: 'Edit Video',
             form: FormHelper::makeEditForm(
-                title: 'Edit Doctor',
-                id: 'form_doctors_create',
-                action_route: 'doctors.update',
+                title: 'Edit Video',
+                id: 'form_videos_create',
+                action_route: 'videos.update',
                 action_route_params: ['id' => $id],
-                success_redirect_route: 'doctors.index',
+                success_redirect_route: 'videos.index',
                 items: $this->getEditFormElements(),
                 label_position: 'top'
             ),
@@ -242,36 +213,36 @@ class DoctorService implements ModelViewConnector {
 
     public function authoriseCreate(): bool
     {
-        return auth()->user()->hasPermissionTo('Doctor: Create');
+        return auth()->user()->hasPermissionTo('Video Testimonial: Create');
     }
 
     public function authoriseStore(): bool
     {
-        return auth()->user()->hasPermissionTo('Doctor: Create');
+        return auth()->user()->hasPermissionTo('Video Testimonial: Create');
     }
 
     public function authoriseEdit($id): bool
     {
-        return auth()->user()->hasPermissionTo('Doctor: Edit');
+        return auth()->user()->hasPermissionTo('Video Testimonial: Edit');
     }
 
     public function authoriseUpdate($item): bool
     {
-        return auth()->user()->hasPermissionTo('Doctor: Edit');
+        return auth()->user()->hasPermissionTo('Video Testimonial: Edit');
     }
 
     public function authoriseDestroy($item): bool
     {
-        return auth()->user()->hasPermissionTo('Doctor: Delete');
+        return auth()->user()->hasPermissionTo('Video Testimonial: Delete');
     }
 
     public function getStoreValidationRules(): array
     {
         return [
             'locale' => ['required', 'string'],
-            'slug' => ['required', 'string'],
-            'photo' => ['required', 'string'],
             'data' => ['required', 'array'],
+            'link' => ['required', 'string'],
+            'is_audio_only' => ['required', 'boolean'],
         ];
     }
 
@@ -279,9 +250,9 @@ class DoctorService implements ModelViewConnector {
     {
         return [
             'locale' => ['required', 'string'],
-            'slug' => ['required', 'string'],
-            'photo' => ['required', 'string'],
             'data' => ['required', 'array'],
+            'link' => ['required', 'string'],
+            'is_audio_only' => ['required', 'boolean'],
         ];
     }
 
@@ -331,31 +302,23 @@ class DoctorService implements ModelViewConnector {
     {
         try {
             DB::beginTransaction();
-            $wp = Doctor::create();
-            $wp->addMediaFromEAInput('photo', $data['photo']);
-
+            $testimonial = Video::create(
+                [
+                    'link' => $data['link']
+                ]
+            );
             $translation = Translation::create(
                 [
-                    'translatable_id' => $wp->id,
-                    'translatable_type' => Doctor::class,
+                    'translatable_id' => $testimonial->id,
+                    'translatable_type' => Video::class,
                     'locale' => $data['locale'],
-                    // 'slug' => $data['slug'],
                     'data' => $data['data'],
                     'created_by' => auth()->user()->id,
                 ]
             );
 
-            // MetatagsList::create([
-            //     'translation_id' => $translation->id,
-            //     'title' => $data['data']['metatags']['title'],
-            //     'description' => $data['data']['metatags']['description'],
-            //     'og_title' => $data['data']['metatags']['title'],
-            //     'og_description' => $data['data']['metatags']['description'],
-            //     'og_type' => $data['data']['metatags']['og_type'],
-            // ]);
-
             DB::commit();
-            return $wp->refresh();
+            return $testimonial->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());
@@ -365,24 +328,22 @@ class DoctorService implements ModelViewConnector {
 
     public function update($id, array $data)
     {
-        info('inside Doctor update');
         try {
             DB::beginTransaction();
-            info('data');
+            info('data --');
             info($data['data']);
             /**
-             * @var Doctor
+             * @var Video
              */
-            $wp = Doctor::find($id);
-
-            $wp->syncMedia('photo', $data['photo']);
+            $testimonial = Video::find($id);
+            $testimonial->link = $data['link'];
+            $testimonial->save();
             /**
              * @var Translation
              */
-            $translation = $wp->getTranslation($data['locale']);
+            $translation = $testimonial->getTranslation($data['locale']);
             if ($translation != null) {
                 $translation->data = $data['data'];
-                // $translation->slug = $data['slug'];
                 $translation->last_updated_by = auth()->user()->id;
                 $translation->save();
             } else {
@@ -391,17 +352,17 @@ class DoctorService implements ModelViewConnector {
                  */
                 $translation = Translation::create(
                     [
-                        'translatable_id' => $wp->id,
-                        'translatable_type' => Doctor::class,
+                        'translatable_id' => $testimonial->id,
+                        'translatable_type' => Video::class,
                         'locale' => $data['locale'],
-                        // 'slug' => $data['slug'],
                         'data' => $data['data'],
                         'created_by' => auth()->user()->id,
                     ]
                 );
             }
+
             DB::commit();
-            return $wp->refresh();
+            return $testimonial->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());

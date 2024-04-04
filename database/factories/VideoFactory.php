@@ -5,14 +5,14 @@ namespace Database\Factories;
 use App\Models\Review;
 use App\Models\Translation;
 use App\Models\User;
-use App\Models\VideoTestimonial;
+use App\Models\Video;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\App;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\VideoTestimonial>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Video>
  */
-class VideoTestimonialFactory extends Factory
+class VideoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class VideoTestimonialFactory extends Factory
     public function definition(): array
     {
         return [
-            'link' => 'https://www.youtube.com/watch?v=0Pgrr23voYs'
+            'link' => 'https://www.youtube.com/embed/0Pgrr23voYs?si=dmuqw6ciDtbV0km3'
         ];
     }
 
@@ -32,7 +32,7 @@ class VideoTestimonialFactory extends Factory
             Translation::create(
                 [
                     'translatable_id' => $vt->id,
-                    'translatable_type' => VideoTestimonial::class,
+                    'translatable_type' => Video::class,
                     'locale' =>  App::getLocale(),
                     'data' => [
                         'reviewer' =>  $this->faker->name(),

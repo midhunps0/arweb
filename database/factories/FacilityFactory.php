@@ -3,16 +3,16 @@
 namespace Database\Factories;
 
 use App\Models\Translation;
-use App\Models\Article;
+use App\Models\Facility;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Article>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Facility>
  */
-class ArticleFactory extends Factory
+class FacilityFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -32,7 +32,7 @@ class ArticleFactory extends Factory
             Translation::create(
                 [
                     'translatable_id' => $wpage->id,
-                    'translatable_type' => Article::class,
+                    'translatable_type' => Facility::class,
                     'locale' =>  App::getLocale(),
                     'slug' =>  $slug,
                     'data' => [

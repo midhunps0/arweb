@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\IconsController;
 use App\Http\Controllers\LayoutBuilderController;
 use App\Http\Controllers\PageTemplateController;
@@ -57,8 +59,10 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function (
     RouteHelper::getEasyRoutes('PageTemplate');
     RouteHelper::getEasyRoutes('WebPage');
     RouteHelper::getEasyRoutes('Article');
+    RouteHelper::getEasyRoutes('Department');
+    RouteHelper::getEasyRoutes('Facility');
     RouteHelper::getEasyRoutes('Review');
-    RouteHelper::getEasyRoutes('VideoTestimonial');
+    RouteHelper::getEasyRoutes('Video');
     RouteHelper::getEasyRoutes('Doctor');
     RouteHelper::getEasyRoutes('News');
     RouteHelper::getEasyRoutes('HilightFeature');
@@ -79,16 +83,19 @@ require __DIR__.'/auth.php';
 Route::group(['middleware' => ['ynotz.translation']], function () {
     Route::get('/our-blogs', [WebPageController::class, 'blog'])->name('blog');
     Route::get('/our-doctors', [WebPageController::class, 'doctors'])->name('doctors');
-    Route::get('/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials');
+    // Route::get('/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials');
     Route::get('/patient-testimonials', [WebPageController::class, 'patientReviews'])->name('patientreviews');
     Route::get('/{locale}/news', [WebPageController::class, 'news'])->name('news.loc');
     Route::get('/{locale}/our-blogs', [WebPageController::class, 'blog'])->name('blog.loc');
     Route::get('/{locale}/our-doctors', [WebPageController::class, 'doctors'])->name('doctors.loc');
-    Route::get('/{locale}/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials.loc');
+    // Route::get('/{locale}/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials.loc');
     Route::get('/{locale}/patient-testimonials', [WebPageController::class, 'patientReviews'])->name('patientreviews.loc');
     Route::get('/{slug}', [WebPageController::class, 'quickShow'])->name('webpages.view');
     // Route::get('/articles/{slug}', [ArticleController::class, 'quickShow'])->name('articles.view');
     Route::get('/{locale}/pages/{slug}', [WebPageController::class, 'show'])->name('webpages.guest.show');
+    Route::get('/{locale}/articles/{slug}', [ArticleController::class, 'show'])->name('articles.guest.show');
+    Route::get('/{locale}/departments/{slug}', [DepartmentController::class, 'show'])->name('departments.guest.show');
+    Route::get('/{locale}/facilities/{slug}', [FacilityController::class, 'show'])->name('facilities.guest.show');
     Route::get('/{locale}/articles/{slug}', [ArticleController::class, 'show'])->name('articles.guest.show');
     Route::get('/{locale}/doctors/{slug}', [DoctorController::class, 'show'])->name('doctors.guest.show');
 });

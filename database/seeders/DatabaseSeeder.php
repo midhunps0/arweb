@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PageTemplatesSeeder::class);
         $this->call(WebPagesSeeder::class);
         $this->call(ArticleSeeder::class);
+        $this->call(DepartmentSeeder::class);
+        $this->call(FacilitySeeder::class);
         $this->call(ReviewSeeder::class);
         $this->call(VideoTestimonialSeeder::class);
         $this->call(DoctorSeeder::class);

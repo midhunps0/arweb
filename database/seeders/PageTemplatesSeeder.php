@@ -10,6 +10,8 @@ class PageTemplatesSeeder extends Seeder
 {
     private $templates = [
         'article',
+        'department',
+        'facility',
         'review',
         'vtestimonial',
         'doctor',
