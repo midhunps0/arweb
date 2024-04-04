@@ -2,17 +2,16 @@
 
 namespace Database\Factories;
 
-use App\Models\Review;
+use App\Models\Photo;
 use App\Models\Translation;
 use App\Models\User;
-use App\Models\Video;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\App;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Video>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Photo>
  */
-class VideoFactory extends Factory
+class PhotoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -22,8 +21,7 @@ class VideoFactory extends Factory
     public function definition(): array
     {
         return [
-            'link' => 'https://www.youtube.com/embed/0Pgrr23voYs?si=dmuqw6ciDtbV0km3',
-            'is_audio_only' => false
+            //
         ];
     }
 
@@ -33,10 +31,10 @@ class VideoFactory extends Factory
             Translation::create(
                 [
                     'translatable_id' => $vt->id,
-                    'translatable_type' => Video::class,
+                    'translatable_type' => Photo::class,
                     'locale' =>  App::getLocale(),
                     'data' => [
-                        'title' => 'This is the start a good title',
+                        'title' => 'This is a good title',
                     ],
                     'created_by' => User::all()->random()->id,
                 ]

@@ -9,8 +9,9 @@ use App\Models\Facility;
 use App\Models\HilightFeature;
 use App\Models\News;
 use App\Models\PageTemplate;
+use App\Models\Photo;
 use App\Models\Review;
-use App\Models\VideoTestimonial;
+use App\Models\Video;
 use App\Models\WebPage;
 use App\Services\PageTemplateService;
 use Illuminate\Http\Request;
@@ -56,8 +57,11 @@ class PageTemplateController extends SmartController
         else if ($request->input('review_id') != null) {
             $template = PageTemplate::where('template_file', config('app_settings.review_translation_component'))->get()->first();
         }
-        else if ($request->input('videotestimonial_id') != null) {
-            $template = PageTemplate::where('template_file', config('app_settings.vtestimonial_translation_component'))->get()->first();
+        else if ($request->input('video_id') != null) {
+            $template = PageTemplate::where('template_file', config('app_settings.video_translation_component'))->get()->first();
+        }
+        else if ($request->input('photo_id') != null) {
+            $template = PageTemplate::where('template_file', config('app_settings.photo_translation_component'))->get()->first();
         }
         else if ($request->input('doctor_id') != null) {
             $template = PageTemplate::where('template_file', config('app_settings.doctor_translation_component'))->get()->first();
@@ -92,8 +96,12 @@ class PageTemplateController extends SmartController
                     $data['instance'] = Review::find($request->review_id);
                     $data['formComponent'] = "pageformtemplates.{$template->template_file}.edit";
                 }
-                else if ($request->input('videotestimonial_id') != null) {
-                    $data['instance'] = VideoTestimonial::find($request->videotestimonial_id);
+                else if ($request->input('video_id') != null) {
+                    $data['instance'] = Video::find($request->video_id);
+                    $data['formComponent'] = "pageformtemplates.{$template->template_file}.edit";
+                }
+                else if ($request->input('photo_id') != null) {
+                    $data['instance'] = Photo::find($request->photo_id);
                     $data['formComponent'] = "pageformtemplates.{$template->template_file}.edit";
                 }
                 else if ($request->input('webpage_id') != null) {

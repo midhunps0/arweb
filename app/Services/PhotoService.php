@@ -2,7 +2,7 @@
 namespace App\Services;
 
 use App\Models\Translation;
-use App\Models\Video;
+use App\Models\Photo;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
@@ -14,13 +14,13 @@ use Modules\Ynotz\EasyAdmin\RenderDataFormats\EditPageData;
 use Modules\Ynotz\EasyAdmin\Services\ColumnLayout;
 use Modules\Ynotz\EasyAdmin\Services\RowLayout;
 
-class VideoService implements ModelViewConnector {
+class PhotoService implements ModelViewConnector {
     use IsModelViewConnector;
     private $indexTable;
 
     public function __construct()
     {
-        $this->modelClass = Video::class;
+        $this->modelClass = Photo::class;
         $this->indexTable = new IndexTable();
         $this->selectionEnabled = false;
 
@@ -60,7 +60,7 @@ class VideoService implements ModelViewConnector {
     }
     protected function getPageTitle(): string
     {
-        return "Videos";
+        return "Photos";
     }
 
     protected function getIndexHeaders(): array
@@ -128,12 +128,12 @@ class VideoService implements ModelViewConnector {
     public function getCreatePageData(): CreatePageData
     {
         return new CreatePageData(
-            title: 'Create Video',
+            title: 'Create Photo',
             form: FormHelper::makeForm(
-                title: 'Create Video',
-                id: 'form_videos_create',
-                action_route: 'videos.store',
-                success_redirect_route: 'videos.index',
+                title: 'Create Photo',
+                id: 'form_photos_create',
+                action_route: 'photos.store',
+                success_redirect_route: 'photos.index',
                 items: $this->getCreateFormElements(),
                 layout: $this->buildCreateFormLayout(),
                 label_position: 'top'
@@ -144,13 +144,13 @@ class VideoService implements ModelViewConnector {
     public function getEditPageData($id): EditPageData
     {
         return new EditPageData(
-            title: 'Edit Video',
+            title: 'Edit Photo',
             form: FormHelper::makeEditForm(
-                title: 'Edit Video',
-                id: 'form_videos_create',
-                action_route: 'videos.update',
+                title: 'Edit Photo',
+                id: 'form_photos_create',
+                action_route: 'photos.update',
                 action_route_params: ['id' => $id],
-                success_redirect_route: 'videos.index',
+                success_redirect_route: 'photos.index',
                 items: $this->getEditFormElements(),
                 label_position: 'top'
             ),
@@ -209,27 +209,27 @@ class VideoService implements ModelViewConnector {
 
     public function authoriseCreate(): bool
     {
-        return auth()->user()->hasPermissionTo('Video Testimonial: Create');
+        return auth()->user()->hasPermissionTo('Photo Testimonial: Create');
     }
 
     public function authoriseStore(): bool
     {
-        return auth()->user()->hasPermissionTo('Video Testimonial: Create');
+        return auth()->user()->hasPermissionTo('Photo Testimonial: Create');
     }
 
     public function authoriseEdit($id): bool
     {
-        return auth()->user()->hasPermissionTo('Video Testimonial: Edit');
+        return auth()->user()->hasPermissionTo('Photo Testimonial: Edit');
     }
 
     public function authoriseUpdate($item): bool
     {
-        return auth()->user()->hasPermissionTo('Video Testimonial: Edit');
+        return auth()->user()->hasPermissionTo('Photo Testimonial: Edit');
     }
 
     public function authoriseDestroy($item): bool
     {
-        return auth()->user()->hasPermissionTo('Video Testimonial: Delete');
+        return auth()->user()->hasPermissionTo('Photo Testimonial: Delete');
     }
 
     public function getStoreValidationRules(): array
@@ -237,8 +237,7 @@ class VideoService implements ModelViewConnector {
         return [
             'locale' => ['required', 'string'],
             'data' => ['required', 'array'],
-            'link' => ['required', 'string'],
-            'is_audio_only' => ['required', 'boolean'],
+            'image' => ['required', 'string'],
         ];
     }
 
@@ -247,8 +246,7 @@ class VideoService implements ModelViewConnector {
         return [
             'locale' => ['required', 'string'],
             'data' => ['required', 'array'],
-            'link' => ['required', 'string'],
-            'is_audio_only' => ['required', 'boolean'],
+            'image' => ['required', 'string'],
         ];
     }
 
@@ -298,16 +296,17 @@ class VideoService implements ModelViewConnector {
     {
         try {
             DB::beginTransaction();
-            $testimonial = Video::create(
-                [
-                    'link' => $data['link'],
-                    'is_audio_only' => $data['is_audio_only']
-                ]
+            /**
+             * @var Photo
+             */
+            $photo = Photo::create(
+                []
             );
+            $photo->addMediaFromEAInput('image', $data['image']);
             $translation = Translation::create(
                 [
-                    'translatable_id' => $testimonial->id,
-                    'translatable_type' => Video::class,
+                    'translatable_id' => $photo->id,
+                    'translatable_type' => Photo::class,
                     'locale' => $data['locale'],
                     'data' => $data['data'],
                     'created_by' => auth()->user()->id,
@@ -315,7 +314,7 @@ class VideoService implements ModelViewConnector {
             );
 
             DB::commit();
-            return $testimonial->refresh();
+            return $photo->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());
@@ -330,16 +329,14 @@ class VideoService implements ModelViewConnector {
             info('data --');
             info($data['data']);
             /**
-             * @var Video
+             * @var Photo
              */
-            $testimonial = Video::find($id);
-            $testimonial->link = $data['link'];
-            $testimonial->is_audio_only = $data['is_audio_only'];
-            $testimonial->save();
+            $photo = Photo::find($id);
+            $photo->syncMedia('image', $data['image']);
             /**
              * @var Translation
              */
-            $translation = $testimonial->getTranslation($data['locale']);
+            $translation = $photo->getTranslation($data['locale']);
             if ($translation != null) {
                 $translation->data = $data['data'];
                 $translation->last_updated_by = auth()->user()->id;
@@ -350,8 +347,8 @@ class VideoService implements ModelViewConnector {
                  */
                 $translation = Translation::create(
                     [
-                        'translatable_id' => $testimonial->id,
-                        'translatable_type' => Video::class,
+                        'translatable_id' => $photo->id,
+                        'translatable_type' => Photo::class,
                         'locale' => $data['locale'],
                         'data' => $data['data'],
                         'created_by' => auth()->user()->id,
@@ -360,7 +357,7 @@ class VideoService implements ModelViewConnector {
             }
 
             DB::commit();
-            return $testimonial->refresh();
+            return $photo->refresh();
         } catch (\Throwable $e) {
             DB::rollBack();
             info($e->__toString());

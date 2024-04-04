@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\PageTemplate;
-use App\Models\Video;
-use App\Services\VideoService;
+use App\Models\Photo;
+use App\Services\PhotoService;
 use Illuminate\Http\Request;
 use Modules\Ynotz\EasyAdmin\Traits\HasMVConnector;
 use Modules\Ynotz\SmartPages\Http\Controllers\SmartController;
 
-class VideoController extends SmartController
+class PhotoController extends SmartController
 {
     use HasMVConnector;
 
-    public function __construct(Request $request, VideoService $service)
+    public function __construct(Request $request, PhotoService $service)
     {
         parent::__construct($request);
         $this->connectorService = $service;
@@ -30,11 +30,11 @@ class VideoController extends SmartController
 
     public function create()
     {
-        $template = PageTemplate::where('template_file', config('app_settings.video_translation_component'))
+        $template = PageTemplate::where('template_file', config('app_settings.photo_translation_component'))
             ->get()->first();
             // dd($template);
         return $this->buildResponse(
-            'admin.videos.create',
+            'admin.photos.create',
             [
                 'templateId' => $template->id
             ]
@@ -43,15 +43,15 @@ class VideoController extends SmartController
 
     public function edit($id)
     {
-        $video = Video::find($id);
+        $photo = Photo::find($id);
 
-        $template = PageTemplate::where('template_file', config('app_settings.video_translation_component'))
+        $template = PageTemplate::where('template_file', config('app_settings.photo_translation_component'))
             ->get()->first();
         return $this->buildResponse(
-            'admin.videos.edit',
+            'admin.photos.edit',
             [
-                'video' => $video,
-                'videoId' => $video->id,
+                'photo' => $photo,
+                'photoId' => $photo->id,
                 'templateId' => $template->id
             ]
         );

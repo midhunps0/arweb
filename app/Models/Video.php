@@ -20,22 +20,22 @@ class Video extends Model
         'current_translation',
     ];
 
-    public function defaultName(): Attribute
-    {
-        return Attribute::make(
-            get: function() {
-                return ($this->translations()->where('locale', App::getLocale())->get()->first()->data)['reviewer'] ?? '';
-            }
-        );
-    }
+    // public function defaultName(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: function() {
+    //             return ($this->translations()->where('locale', App::getLocale())->get()->first()->data)['reviewer'] ?? '';
+    //         }
+    //     );
+    // }
 
-    public function summary(): Attribute
-    {
-        return Attribute::make(
-            get: function() {
-                $story = ($this->translations()->where('locale', App::getLocale())->get()->first()->data)['story'];
-                return ($story != null ? Str::substr($story, 0, 100) : '');
-            }
-        );
-    }
+    // public function summary(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: function() {
+    //             $story = ($this->translations()->where('locale', App::getLocale())->get()->first()->data)['story'];
+    //             return ($story != null ? Str::substr($story, 0, 100) : '');
+    //         }
+    //     );
+    // }
 }

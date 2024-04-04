@@ -63,6 +63,7 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'manage'], function (
     RouteHelper::getEasyRoutes('Facility');
     RouteHelper::getEasyRoutes('Review');
     RouteHelper::getEasyRoutes('Video');
+    RouteHelper::getEasyRoutes('Photo');
     RouteHelper::getEasyRoutes('Doctor');
     RouteHelper::getEasyRoutes('News');
     RouteHelper::getEasyRoutes('HilightFeature');
@@ -85,7 +86,7 @@ Route::group(['middleware' => ['ynotz.translation']], function () {
     Route::get('/our-doctors', [WebPageController::class, 'doctors'])->name('doctors');
     // Route::get('/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials');
     Route::get('/patient-testimonials', [WebPageController::class, 'patientReviews'])->name('patientreviews');
-    Route::get('/{locale}/news', [WebPageController::class, 'news'])->name('news.loc');
+    // Route::get('/{locale}/news', [WebPageController::class, 'news'])->name('news.loc');
     Route::get('/{locale}/our-blogs', [WebPageController::class, 'blog'])->name('blog.loc');
     Route::get('/{locale}/our-doctors', [WebPageController::class, 'doctors'])->name('doctors.loc');
     // Route::get('/{locale}/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials.loc');

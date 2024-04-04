@@ -21,10 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ArticleSeeder::class);
         $this->call(DepartmentSeeder::class);
         $this->call(FacilitySeeder::class);
-        $this->call(ReviewSeeder::class);
-        $this->call(VideoTestimonialSeeder::class);
+        $this->call(VideoSeeder::class);
+        $this->call(PhotoSeeder::class);
         $this->call(DoctorSeeder::class);
-        $this->call(NewsSeeder::class);
-        $this->call(HilightFeatureSeeder::class);
     }
 }

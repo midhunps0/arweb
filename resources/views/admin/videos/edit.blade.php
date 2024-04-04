@@ -1,9 +1,10 @@
 <x-easyadmin::partials.adminpanel>
     <div>
-        <h3 class="text-xl font-bold px-1 pb-3"><span>Create Video Testimonials</span>&nbsp;</h3>
+        <h3 class="text-xl font-bold px-1 pb-3"><span>Edit Video Testimonials</span>&nbsp;</h3>
         <div class="px-1">
             <div x-data="{
                     templateId: '',
+                    videoId: '',
                     allTemplates: [],
                     form: '',
                     fetchForm() {
@@ -12,7 +13,8 @@
                             {
                                 params: {
                                     'template_id': this.templateId,
-                                    'form_type': 'create'
+                                    'video_id': this.videoId,
+                                    'form_type': 'edit'
                                 }
                             }
                         ).then((r) => {
@@ -24,7 +26,7 @@
                     saveTranslation(form) {
                         let fd = new FormData(form);
                         axios.post(
-                            '{{route('videotestimonials.store')}}',
+                            '{{route('videos.update', ['id' => $videoId])}}',
                             fd,
                             {
                                 headers: {
@@ -33,9 +35,13 @@
                             }
                         ).then((r) => {
                             if (r.data.success) {
+                                $dispatch('showtoast', {
+                                    mode: 'success',
+                                    message: 'Page updated.'
+                                });
                                 $dispatch('linkaction', {
-                                    route: 'videotestimonials.index',
-                                    link: '{{route('videotestimonials.index')}}',
+                                    route: 'videos.index',
+                                    link: '{{route('videos.index')}}',
                                     fresh: true
                                 });
                             }
@@ -55,14 +61,15 @@
                     }
                 }"
                 x-init="
-                    templateId = {{Js::from($templateId)}};
                     $nextTick(() => {
+                        videoId = {{Js::from($videoId)}};
+                        templateId = {{Js::from($templateId)}};
                         fetchForm();
                     });
                 ">
                 {{-- <form class="mb-8" @submit.prevent.stop="" action="#">
                     <label class="label">Choose a page template</label>
-                    <select x-model="templateId" class="select select-bordered w-full max-w-xs">
+                    <select x-model="templateId" class="select select-bordered w-full max-w-xs" disabled>
                         <option value="" disabled>Select</option>
                         <template x-for="t in allTemplates">
                         <option :value="t.id" x-text="t.name"></option>
