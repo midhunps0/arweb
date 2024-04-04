@@ -1,6 +1,6 @@
 <x-easyadmin::partials.adminpanel>
     <div>
-        <h3 class="text-xl font-bold px-1 pb-3"><span>Create Article</span>&nbsp;</h3>
+        <h3 class="text-xl font-bold px-1 pb-3"><span>Create Department</span>&nbsp;</h3>
         <div class="px-1">
             <div x-data="{
                     templateId: '',
@@ -24,7 +24,7 @@
                     saveTranslation(form) {
                         let fd = new FormData(form);
                         axios.post(
-                            '{{route('articles.store')}}',
+                            '{{route('departments.store')}}',
                             fd,
                             {
                                 headers: {
@@ -34,8 +34,8 @@
                         ).then((r) => {
                             if (r.data.success) {
                                 $dispatch('linkaction', {
-                                    route: 'articles.index',
-                                    link: '{{route('articles.index')}}',
+                                    route: 'departments.index',
+                                    link: '{{route('departments.index')}}',
                                     fresh: true
                                 });
                             }

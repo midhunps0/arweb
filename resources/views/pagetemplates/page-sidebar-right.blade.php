@@ -1,6 +1,6 @@
 <x-guest-layout>
     <div class="text-base">
-        <x-main-menu-component />
+        {{-- <x-main-menu-component /> --}}
         <div class="w-full px-2 md:px-16 lg:px-24">
             <x-page-title title="{{$instance->current_translation->data['title']}}" />
             <div class="flex flex-row">
@@ -27,6 +27,6 @@
                 </div>
             </div>
         </div>
-        <x-footer/>
+        {{-- <x-footer/> --}}
     </div>
 </x-guest-layout>
