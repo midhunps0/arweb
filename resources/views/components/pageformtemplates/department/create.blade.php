@@ -19,7 +19,8 @@
         'authorised' => true,
         'label' => 'Cover Image',
         'validations' => ['size' => '100 kb'],
-        'width' => 'full'
+        'width' => 'full',
+        'properties' => ['required' => true]
     ]"/>
 <x-pageformtemplates.metatags />
 

@@ -1,6 +1,6 @@
 <div class="flex flex-row justify-between  items-center bg-white shadow-sm relative px-2">
     <img src="/images/speciality.png" class="h-16 bg-gray-300 bg-opacity-10 p-3 rounded-3xl " alt="craft_logo">
-    
+
     <div x-data="{open:!open}" class="w-1/6 flex justify-end p-2 lg:hidden overflow-y-scroll">
         <button @click="open = !open">
         <x-easyadmin::display.icon icon="icons.menu-bar" height="h-5" width="w-5"/>
@@ -10,12 +10,12 @@
         <x-easyadmin::display.icon icon="icons.close-button" height="h-5" width="w-5"/>
         </button>
             <ul class="flex flex-col text-center gap-y-4 mt-8 mb-8">
-                <div class="flex flex-row justify-center gap-2">
+                {{-- <div class="flex flex-row justify-center gap-2">
                     <li><button @click="direction = 'ltr'" class="text-sm sm:text-base text-gray-700 hover:text-pink-400 cursor-pointer " :class="{' text-pink-700':direction === 'ltr'}">English</button></li>
                     <span class="inline-block">|</span>
                     <li><button  @click="direction = 'rtl'" class="text-sm sm:text-base text-gray-700  hover:text-pink-400 cursor-pointer"  :class="{' text-pink-700':direction ==='rtl'}">Arabic</button></li>
-                </div>
-                
+                </div> --}}
+
                 <li><a class="text-gray-700   text-sm sm:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">Home</a></li>
                 <li><a class="text-gray-700   text-sm sm:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">About</a></li>
                 <li  x-data="{open : false}" class="flex flex-col  justify-center ">
@@ -23,7 +23,7 @@
                        <p>Departments</p>
                        <x-easyadmin::display.icon icon="icons.chevron_down" height="h-5" width="w-5"/>
                     </button>
-                    
+
                     <div x-show="open" class="w-60 h-fit bg-white flex flex-col mx-auto border border-darkorange rounded-lg " x-on:click.outside="open = false">
                     <ul class=" p-6 flex flex-col gap-2 ltr:text-left rtl:text-right   ">
                         <li><a class="text-gray-700 sm:text-base  text-sm transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer   ">Emergency Medicine And Critical Care</a></li>
@@ -39,8 +39,8 @@
                         <li><a class="text-gray-700 sm:text-base  text-sm transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer   ">Craniofacial Surgery</a></li>
                     </ul>
                     </div>
-                
-                    
+
+
 
                 </li>
                 <li x-data="{open : false}" class="flex flex-col  justify-center ">
@@ -59,8 +59,8 @@
                         <li><a class="text-gray-700   text-sm sm:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">SICU</a></li>
                         <li><a class="text-gray-700   text-sm sm:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">MICU</a></li>
                         <li><a class="text-gray-700   text-sm sm:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">CCU</a></li>
-                        <li><a class="text-gray-700   text-sm sm:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">Other Facilities</a></li> 
-                    </ul> 
+                        <li><a class="text-gray-700   text-sm sm:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">Other Facilities</a></li>
+                    </ul>
                     </div>
                 </li>
                 <li><a class="text-gray-700   text-sm sm:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer">Doctors</a></li>
@@ -87,7 +87,7 @@
             <li><button @click="direction = 'ltr'" class="lg:text-sm xl:text-base ltr:font-semibold text-gray-700  hover:text-pink-400 ltr:text-pink-700 cursor-pointer">English</li>
             <span class="inline-block">|</span>
             <li><button @click="direction = 'rtl'" class="lg:text-sm xl:text-base rtl:font-semibold text-gray-700  hover:text-pink-400 rtl:text-pink-700 cursor-pointer ">Arabic</li>
-            
+
             <li><a class="text-gray-700  lg:text-sm xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">About</a></li>
             <li x-data="{open : false}"  @mouseleave="open = false" >
                 <button @mouseover="open = true" class="text-gray-700   lg:text-sm xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer flex flex-row items-center">
@@ -146,7 +146,7 @@
             </li>
             <li><a class="text-gray-700   lg:text-sm xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">Career</a></li>
             <li><a class="text-gray-700   lg:text-sm xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">Contact</a></li>
-            <li><a class="bg-darkorange hover:bg-black  text-white rounded-full font-helvetica lg:text-sm xl:text-base  py-3 px-4 shadow-2xl cursor-pointer">Schedule an appointment</a></li> 
+            <li><a class="bg-darkorange hover:bg-black  text-white rounded-full font-helvetica lg:text-sm xl:text-base  py-3 px-4 shadow-2xl cursor-pointer">Schedule an appointment</a></li>
         </ul>
 
     </div>

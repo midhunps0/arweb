@@ -158,4 +158,5 @@ class WebPageController extends SmartController
             ]
         );
     }
+
 }
