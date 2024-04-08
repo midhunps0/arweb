@@ -8,20 +8,20 @@
             <span class="fill-current text-white flex items-center ">   
                 <x-easyadmin::display.icon icon="icons.phone-icon" height="h-3.5" width="w-3.5"/>
             </span>
-            <p class="text-white text-sm">0484 4527 234 (24/7 General Enquiry)</p>   
+            <p class="text-white text-sm lg:text-base">0484 4527 234 <span class="italic">({{__('footer.24/7_general_enquiry')}})</span></p>   
         </div>
         <div class="flex flex-row items-center gap-x-1 ">
          <span class="fill-current text-white flex items-center">   
             <x-easyadmin::display.icon icon="icons.envelope-icon" height="h-4" width="w-4"/>
         </span>
-        <p class="text-white text-sm underline underline-offset-2">info@armedcentre.com</p>   
+        <p class="text-white text-sm lg:text-base underline underline-offset-2">info@armedcentre.com</p>   
         </div>
 
         <div class="flex flex-row items-start gap-x-1 ">
          <span class="fill-current text-white flex items-start">   
             <x-easyadmin::display.icon icon="icons.location-icon" height="h-4" width="w-4"/>
         </span>
-        <p class="text-white text-sm ">AR Super Specialty Hospital, Craft Campus,<br>Chandapura ,Kondungallur -680664</p>
+        <p class="text-white text-sm lg:text-base ">{!!__('footer.ar_address_kodungallur')!!}</p>
            
         </div>
         <div class="flex flex-row items-center gap-x-2 ">
@@ -35,46 +35,126 @@
     
     </div>
     <div class="lg:w-2/3 ltr:ml-16 rtl:mr-16 lg:ml-0 ltr:text-left rtl:text-right pt-16 flex flex-col lg:flex-row justify-end gap-x-2  ">
-        <div class="lg:w-1/4 mb-8 flex flex-col gap-2">
-            <p class="text-lg font-medium text-white mb-4">Departments</p>
-            <p class="text-sm text-white underline underline-offset-2 font-thin">Emergency Medicine <br> And Critical Care</p>
-            <p class="text-sm text-white underline underline-offset-2 font-thin">Orthopaedics And Trauma Surgery</p>
-            <p class="text-sm text-white underline underline-offset-2 font-thin">Physiotherapy</p>
-            <p class="text-sm text-white underline underline-offset-2 font-thin">Neurology</p>
-            <p class="text-sm text-white underline underline-offset-2 font-thin">Cardiology</p>
-            <p class="text-sm text-white underline underline-offset-2 font-thin">Urology</p>
-            <p class="text-sm text-white underline underline-offset-2 font-thin">ENT</p>
-            <p class="text-sm text-white underline underline-offset-2 font-thin">Dermatology & Cosmetology</p>
-            <p class="text-sm text-white underline underline-offset-2 font-thin">Pediatrics & Pediatric<br> Surgery</p>
-            <p class="text-sm text-white underline underline-offset-2 font-thin">Clinical psychology</p>
-            <p class="text-sm text-white underline underline-offset-2 font-thin">Craniofacial Surgery</p>
-            
+        <div class="lg:w-1/4 mb-8 ">
+            <p class="text-lg font-normal text-white mb-4">{{ __('header.departments')}}</p>
+            <ul class="flex flex-col gap-3">
+                <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'emergency-medicine-and-critical-care'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'emergency-medicine-and-critical-care'])}}'})" 
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!!__('footer.emergency_medicine_and_critical_care')!!}</a></li>
+                
+                <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'orthopaedics-and-trauma-surgery'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'orthopaedics-and-trauma-surgery'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!! __('footer.orthopaedics_and_trauma_surgery')!!}</a></li>
+                
+                <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'physiotherapy'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'physiotherapy'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.physiotherapy')}}</a></li>
+                
+                <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neurology'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neurology'])}}'})" 
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.neurology')}}</a></li>
+                
+                <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.cardiology')}}</a></li>
+                
+                <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'urology'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'urology'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.urology')}}</a></li>
+                
+                <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ent'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ent'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.ent')}}</a></li>
+                
+                <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'dermatology-cosmetology'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'dermatology-cosmetology'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.dermatology_&_cosmetology')}}</a></li>
+                
+                <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'pediatrics-pediatric-surgery'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'pediatrics-pediatric-surgery'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!!__('footer.pediatrics_&_pediatric_surgery')!!}</a></li>
+                
+                <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'clinical-psychology'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'clinical-psychology'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.clinical_psychology')}}</a></li>
+                
+                <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'craniofacial-surgery'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'craniofacial-surgery'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.craniofacial_surgery')}}</a></li>
+            </ul>
         </div>
-        <div class="lg:w-1/4 mb-8 flex flex-col gap-2">
-        <p class="text-lg font-medium text-white mb-4 ">Facilities</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">24×7 Emergency Medicine <br> And Critical Care</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">24×7 Cardiac Care</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">Delivery Packages</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">Health Check-up Packages</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">Health Insurance</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">NICU</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">SICU</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">MICU</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">CCU</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">Other Facilities</p>
+        <div class="lg:w-1/4 mb-8 ">
+            <p class="text-lg font-normal text-white mb-4 ">{{ __('header.facilities')}}</p>
+            <ul class="flex flex-col gap-3">
+                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-emergency-medicine-and-critical-care'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-emergency-medicine-and-critical-care'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!!__('footer.24×7_emergency_medicine_and_critical_care')!!}</a></li>
+                
+                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-cardiac-care'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-cardiac-care'])}}'})" 
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.24×7_cardiac_care')}}</a></li>
+                
+                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'delivery-packages'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'delivery-packages'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.delivery_packages')}}</a></li>
+                
+                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'health-check-up-packages'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'health-check-up-packages'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.health_check-up_packages')}}</a></li>
+                
+                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'health-insurance'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'health-insurance'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.health_insurance')}}</a></li>
+                
+                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'nicu'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'nicu'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.nicu')}}</a></li>
+                
+                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'sicu'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'sicu'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.sicu')}}</a></li>
+                
+                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'micu'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'micu'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.micu')}}</a></li>
+                
+                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ccu'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ccu'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.ccu')}}</a></li>
+                
+                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'other-facilities'])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'other-facilities'])}}'})" 
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.other_facilities')}}</a></li>
+            </ul>
         </div>
-        <div class="lg:w-1/4 mb-8 flex flex-col gap-2">
-        <p class="text-lg font-medium text-white mb-4">About</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">Doctors</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">Infrastructure</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">Board Members</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">Careers</p>
+        <div class="lg:w-1/4 mb-8 ">
+            <p class="text-lg font-normal text-white mb-4">{{ __('header.about')}}</p>
+            <ul class="flex flex-col gap-3">
+                <li><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'doctors'])}}" 
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'doctors'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.doctors')}}</a></li>
+                
+                
+                
+                <li><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(),'slug' => 'careers'])}}" 
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'careers'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('footer.careers')}}</a></li>
+            </ul>
         </div>
-        <div class="lg:w-1/4 mb-8 flex flex-col gap-2">
-        <p class="text-lg font-medium text-white mb-4">Resources</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">E Book</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">Blogs</p>
-        <p class="text-sm text-white underline underline-offset-2 font-thin">Media</p>
+        <div class="lg:w-1/4 mb-8 ">
+            <p class="text-lg font-normal text-white mb-4">{{ __('footer.resources')}}</p>
+            <ul class="flex flex-col gap-3">
+                <li><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(),'slug' => 'ebooks'])}}" 
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ebooks'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('footer.ebook')}}</a></li>
+                <!-- <li><a class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('footer.blogs')}}</a></li> -->
+                <li><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-photos'])}}" 
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-photos'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.our_photos')}}</a></li>
+                <li><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our_videos'])}}" 
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our_videos'])}}'})"
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.our_videos')}}</a></li>
+            </ul>
         </div>
         
 
@@ -82,7 +162,7 @@
    
 </div>
 <div class="flex flex-col lg:flex-row justify-between gap-y-2  ltr:ml-10 rtl:mr-10 lg:mx-16 mt-16 ">
-    <p class="text-white text-sm">© 2023 Armed Centre. All rights reserved.</p>
-    <p class="text-white text-sm mb-8">Privacy Policy Terms of Service</p>
+    <p class="text-white text-sm lg:text-base">{{ __('footer.right_reserved')}}</p>
+    <p class="text-white text-sm lg:text-base mb-8">{{ __('footer.privacy_policy')}}</p>
 </div>
 </div>

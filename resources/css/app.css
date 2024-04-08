@@ -17,7 +17,7 @@ body {
 }
 .progress-bar div {
     width:100%;
-    background: repeating-linear-gradient(to right,#872850 0%,#e964a0 50%,#872850 100%);
+    background: repeating-linear-gradient(to right,#A2735F 0%,#F7EEE9 50%,#A2735F 100%);
     height: 3px;
     position:fixed;
     top:0;
