@@ -3,19 +3,19 @@
     <div class="font-helvetica">
         <x-header-component />
         <div class="">
-            <div class="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto mt-16 flex flex-col lg:flex-row lg:gap-x-6  gap-y-6 ltr:text-left rtl:text-right  ">
-                <div class="flex flex-col gap-y-6 xl:gap-10  lg:w-1/2">
-                    <p class="text-xs text-darkorange bg-beige text-center rounded-xl p-2 w-40">Harness Your Well-being</p>
-                    <p class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl">We provide<br><span class="text-customOrange">Integrated World<br>Class Patient Service<span></p>
-                    <p class="text-sm sm:text-base">All the Lorem Ipsum generators on the Internet tend to repeat
+            <div class="max-w-9/10  mx-auto mt-16 flex flex-col lg:flex-row lg:gap-x-6  gap-y-6 ltr:text-left rtl:text-right  ">
+                <div class="flex flex-col gap-y-6 xl:gap-6  lg:w-1/2 justify-center">
+                    <p class="text-sm text-darkorange bg-beige text-center rounded-full px-2 py-1 w-44">Harness Your Well-being</p>
+                    <p class="text-3xl sm:text-4xl md:text-6xl xl:text-7xl">We provide<br><span class="text-customOrange">Integrated World<br>Class Patient Service<span></p>
+                    <p class="text-sm sm:text-base md:text-lg">All the Lorem Ipsum generators on the Internet tend to repeat
                         predefined chunks as necessary,making this the first true generator.</p>
-                    <span class="lg:mt-6"><x-button-component /></span>
+                    <span class="lg:mt-6"><x-button-component title="{{ __('button.know_more')}}" /></span>
                 </div>
-
+                
                 <div class="flex justify-center lg:w-1/2">
                     <img src="/images/image9.png" class="w-96 lg:w-full rounded-2xl" alt="doctor_image">
                 </div>
-                <x-button-fixed />
+                <x-button-fixed title="{{ __('button.chat_now')}}"/>
             </div>
 
 
