@@ -9,7 +9,7 @@
                     <p class="text-3xl sm:text-4xl md:text-6xl xl:text-7xl">We provide<br><span class="text-customOrange">Integrated World<br>Class Patient Service<span></p>
                     <p class="text-sm sm:text-base md:text-lg">All the Lorem Ipsum generators on the Internet tend to repeat
                         predefined chunks as necessary,making this the first true generator.</p>
-                    <span class="lg:mt-6"><x-button-component title="{{ __('button.know_more')}}" /></span>
+                    <div class="lg:mt-6"><x-button-component title="{{ __('button.know_more')}}" /></div>
                 </div>
                 
                 <div class="flex justify-center lg:w-1/2">

@@ -147,7 +147,9 @@
                 <li><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(),'slug' => 'ebooks'])}}" 
                         @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ebooks'])}}'})"
                         class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('footer.ebook')}}</a></li>
-                <!-- <li><a class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('footer.blogs')}}</a></li> -->
+                <li><a href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}" 
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('blog.loc',['locale' => app()->currentLocale()])}}'})" 
+                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('footer.blogs')}}</a></li>
                 <li><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-photos'])}}" 
                         @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-photos'])}}'})"
                         class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.our_photos')}}</a></li>
