@@ -1,11 +1,16 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-y1P71iFz.css",
+    "file": "assets/app-CEGffm99.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/css/fonts/HelveticaNeueItalic.ttf": {
+    "file": "assets/HelveticaNeueItalic-DKx4JyHi.ttf",
+    "src": "resources/css/fonts/HelveticaNeueItalic.ttf"
+  },
   "resources/js/app.js": {
     "file": "assets/app-BCMqxNiK.js",
+    "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
   }
