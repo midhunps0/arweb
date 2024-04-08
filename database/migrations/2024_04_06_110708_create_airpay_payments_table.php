@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('selected_time');
             $table->float('amount');
             $table->boolean('status')->nullable();
+            $table->string('transaction_remarks')->nullable();
             $table->boolean('solver_confirmed')->default(false);
             $table->timestamps();
         });

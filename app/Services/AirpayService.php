@@ -72,12 +72,12 @@ class AirpayService
             ->get()->first();
         $success = $data['TRANSACTIONPAYMENTSTATUS'] == 'SUCCESS';
         $txn->airpay_transaction_id = $data['APTRANSACTIONID'];
-        $txn->amount= $data['AMOUNT'];
-        $txn->airpay_transaction_type = $data['TRANSACTIONTYPE'];
-        $txn->status = $success;
-        $txn->save();
 
         if ($success) {
+            $txn->amount= $data['AMOUNT'];
+            $txn->airpay_transaction_type = $data['TRANSACTIONTYPE'];
+            $txn->status = $success;
+            $txn->save();
             $result = (new BookingService())->confirmBOoking($txn);
             if ($result->Success) {
                 $txn->refresh();
@@ -99,6 +99,28 @@ class AirpayService
                     'transaction_id' => $txn->airpay_transaction_id
                 ];
             }
+        } else {
+            $txn->transaction_remarks = $data['REASON'];
+            $txn->save();
+            $txn->refresh();
+            info('payment failure');
+            info($data);
+            return [
+                'success' => false,
+                'status' => 'payment_failed',
+                'transaction_id' => $txn->airpay_transaction_id,
+                'reason' =>  $txn->transaction_remarks,
+            ];
+        }
+    }
+
+    public function processNotification($data) {
+        info('airpay notification');
+        info($data);
+        $txn = AirpayPayment::where('transaction_id', $data['TRANSACTIONID'])
+            ->get()->first();
+        if (!$txn->status) {
+            // $this->processResoponse($data);
         }
     }
 }

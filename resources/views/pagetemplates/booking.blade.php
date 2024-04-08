@@ -157,12 +157,14 @@
                 });
                 $watch('doctorId', (id) => {
                     theDate = '';
+                    theSlot = '';
                     if (id != '') {
                         fetchDates();
                     }
 
                 });
                 $watch('theDate', (d) => {
+                    theSlot = '';
                     if (d != '') {
                         fetchTimeslots();
                     }
