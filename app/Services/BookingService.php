@@ -21,13 +21,13 @@ class BookingService
         if ($token == null) {
             $newToken = $this->fetchToken();
             if (!isset($newToken)) {
-                throw new Exception('Failed to connect to booking server');
+                // throw new Exception('Failed to connect to booking server');
+                return null;
             } else {
                 $token = AppSetting::where('slug', 'solver_token')
                 ->get()->first();
                 $token->value = $newToken;
                 $token->updated_at = Carbon::now();
-                $token->save();
                 $this->solverToken = $newToken;
             }
         } else {
@@ -39,6 +39,7 @@ class BookingService
         $specialties = $this->fetchSpecialties();
         $doctors = $this->fetchDoctors();
         return [
+            'success' => true,
             'doctors' => $doctors,
             'specialties' => $specialties
         ];
