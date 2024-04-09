@@ -1,5 +1,5 @@
 @props(['src'=>'/images/blog1.jpg','date'=>'date','type'=>'type','title'=>'blog title','description'=>'blog description'])
-<div class="w-80 lg:w-96 flex flex-col " @mouseleave="open = !open">
+<div class="w-80 lg:w-full flex flex-col " @mouseleave="open = !open">
     <div  class="relative">
         <img  src="{{$src}}" class=" rounded-xl w-full h-48 cursor-pointer"  alt="" >
         
