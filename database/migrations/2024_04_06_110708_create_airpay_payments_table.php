@@ -21,12 +21,15 @@ return new class extends Migration
             $table->string('phone');
             $table->string('sp_cd');
             $table->string('cons_id');
+            $table->string('sp_name');
+            $table->string('cons_name');
             $table->string('selected_date');
             $table->string('selected_time');
             $table->float('amount');
             $table->boolean('status')->nullable();
             $table->string('transaction_remarks')->nullable();
             $table->boolean('solver_confirmed')->default(false);
+            $table->boolean('solver_booking_id')->nullable();
             $table->timestamps();
         });
     }

@@ -27,6 +27,7 @@ class BookingService
                 ->get()->first();
                 $token->value = $newToken;
                 $token->updated_at = Carbon::now();
+                $token->save();
                 $this->solverToken = $newToken;
             }
         } else {

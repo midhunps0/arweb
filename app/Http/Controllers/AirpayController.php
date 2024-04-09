@@ -19,6 +19,8 @@ class AirpayController extends SmartController
                 $request->input('cons_id'),
                 $request->input('sdate'),
                 $request->input('stime'),
+                $request->input('sp_name'),
+                $request->input('cons_name'),
             )
         ]);
     }
@@ -33,13 +35,11 @@ class AirpayController extends SmartController
         );
     }
 
-    public function notify(Request $request, AirpayService $service)
+    public function airpayNotification(Request $request, AirpayService $service)
     {
-        info('airpay response:');
+        info('airpay notification:');
         info($request->all());
-        return $this->buildResponse(
-            'airpay.response',
-            $service->processNotification($request->all())
-        );
+        $service->processNotification($request->all());
+        return response('ok', 200);
     }
 }

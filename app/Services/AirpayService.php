@@ -2,13 +2,15 @@
 namespace App\Services;
 
 use App\Helpers\AirpayChecksumHelper;
+use App\Mail\AppointmentConfirmed;
 use App\Models\AirpayPayment;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
 use Modules\Ynotz\AppSettings\Models\AppSetting;
 
 class AirpayService
 {
-    public function airpayForm($email, $phone, $name, $spCd, $consId, $sdate, $stime)
+    public function airpayForm($email, $phone, $name, $spCd, $consId, $sdate, $stime, $spName, $consName)
     {
         $amount = AppSetting::where('slug', 'booking_price')
             ->get()->first()->value;
@@ -60,6 +62,8 @@ class AirpayService
             'amount' => $amount,
             'sp_cd' => $spCd,
             'cons_id' => $consId,
+            'sp_name' => $spName,
+            'cons_name' => $consName,
             'selected_date' => $sdate,
             'selected_time' => $stime
         ]);
@@ -81,16 +85,32 @@ class AirpayService
             $result = (new BookingService())->confirmBOoking($txn);
             if ($result->Success) {
                 $txn->refresh();
+                $txn->solver_booking_id = $result->PayLoad[0]->AppointmentId;
                 $txn->solver_confirmed = true;
                 $txn->save();
+                $txn->refresh();
+
+                Mail::to($txn->email)->send(new AppointmentConfirmed(
+                    appointmentId: $txn->solver_booking_id,
+                    date: $txn->selected_date,
+                    time: $txn->selected_time,
+                    name: $txn->name,
+                    phone: $txn->phone,
+                    email: $txn->email,
+                    spName: $txn->sp_name,
+                    consName: $txn->cons_name,
+                ));
+
                 return [
                     'success' => true,
-                    'appointment_id' => $result->PayLoad[0]->AppointmentId,
+                    'appointment_id' => $txn->solver_booking_id,
                     'name' => $txn->name,
                     'phone' => $txn->phone,
                     'email' => $txn->email,
                     'date' => $txn->selected_date,
                     'time' => $txn->selected_time,
+                    'sp_name' => $txn->sp_name,
+                    'cons_name' => $txn->cons_name,
                 ];
             } else {
                 return [

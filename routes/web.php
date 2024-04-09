@@ -47,8 +47,8 @@ Route::get('/booking/slots', [BookingController::class, 'slots'])->name('booking
 Route::get('/booking/submit', [BookingController::class, 'submit'])->name('booking.submit');
 
 Route::get('/payment-form', [AirpayController::class, 'transactionForm'])->name('payment.airpay.form');
-Route::post('/responsefromairpay', [AirpayController::class, 'airpayResponse'])->name('payment.airpay.response');
-Route::post('/notify', [AirpayController::class, 'notify'])->name('payment.airpay.notify');
+Route::post('/responsefromairpay.php', [AirpayController::class, 'airpayResponse'])->name('payment.airpay.response');
+Route::post('/notify', [AirpayController::class, 'airpayNotification'])->name('payment.airpay.notify');
 // Route::get('/responsefromairpay.php', function() {
 //     return view('airpay.response', ['success' => false]);
 // })->name('payment.airpay.response-dummy');
