@@ -11,19 +11,19 @@
                         Your appointment is confirmed with the following details:
                     </div>
                     <div class="border border-gray p-4 m-auto font-bold">
-                        <div class="flex flex-row w-full gap-y-6 text-center mb-2">
+                        <div class="flex flex-row w-full gap-6 text-center mb-2">
                             <div class="flex-grow">Appointment ID: {{$appointment_id }}</div>
                         </div>
-                        <div class="flex flex-row w-full gap-y-6 text-center mb-2">
+                        <div class="flex flex-row w-full gap-6 text-center mb-2">
                             <div class="flex-grow">Consultation Date: {{$date }}</div>
-                        </div>
-                        <div class="flex flex-row w-full gap-y-6 text-center mb-2">
                             <div class="flex-grow">Consultation Time: {{$time }}</div>
                         </div>
-                        <div class="flex flex-row w-full text-center mb-2">
-                            <div class="flex-grow">Name: {{$name }}</div>
+                        <div class="flex flex-row w-full gap-6 text-center mb-2">
+                            <div class="flex-grow">Department: {{$sp_name }}</div>
+                            <div class="flex-grow">Doctor: {{$cons_name }}</div>
                         </div>
                         <div class="flex flex-row w-full text-center mb-2">
+                            <div class="flex-grow">Patient Name: {{$name }}</div>
                             <div class="flex-grow">Phone Number: {{$phone }}</div>
                         </div>
                         <div class="font-bold text-center mt-12">

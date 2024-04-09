@@ -91,6 +91,16 @@
                             );
                     });
                 },
+                getSpecialtyName(code) {
+                    return this.specialties.filter((s) => {
+                        return s.Sp_Cd == code;
+                    })[0].SpecialtyName;
+                },
+                getDoctorName(id) {
+                    return this.doctors.filter((d) => {
+                        return d.DoctorId == id;
+                    })[0].DoctorName;
+                },
                 getPaymentForm() {
                     axios.get(
                         '{{route('payment.airpay.form')}}',
@@ -102,7 +112,9 @@
                                 'sp_cd': this.specialtyCode,
                                 'cons_id': this.doctorId,
                                 'sdate': this.theDate,
-                                'stime': this.theSlot
+                                'stime': this.theSlot,
+                                'sp_name': this.getSpecialtyName(this.specialtyCode),
+                                'cons_name': this.getDoctorName(this.doctorId),
                             }
                         }
                     ).then((r) => {
@@ -182,18 +194,18 @@
                 divWidthOriginal = document.getElementById('booking-form-div').offsetWidth / 2;
                 divWidth = 0;
             "
-            class="min-h-1/2 gap-4 w-full border border-gray p-8">
+            class="min-h-1/2 gap-4 w-full border border-gray p-8 rounded-lg">
                 <div id="booking-form-div" class="flex w-full justify-center py-4 mb-4 px-8">
                     {{-- <x-booking-stage-component/> --}}
                     {{-- <x-bookingstage1 /> --}}
                     {{-- <x-bookingstage2 />
                     <x-bookingstage3 /> --}}
-                    <div class="flex flex-col gap-y-3 w-1/2 p-3 border border-lightgray bg-lightgray">
+                    <div class="flex flex-col gap-y-3 w-1/2 p-3 border border-lightgray bg-lightgray rounded-lg" :class="divWidth == 0 || 'ltr:rounded-r-none rtl:rounded-l-none'">
                         <div class="relative flex-grow">
                             <label class="font-bold label" for="title1">Department</label>
                             <select x-model="specialtyCode" id="title1" name="title1" type="text" autocomplete="title1"
-                                class="w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
-                                    border-gray"
+                                class="select bg-white px-2 w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
+                                    border-gray rounded-lg"
                                 required>
                                 <option value="">--Select--</option>
                                 <template x-for="(s, i) in specialties">
@@ -204,8 +216,8 @@
                         <div class="relative flex-grow">
                                 <label class="font-bold label" for="title2">Doctor</label>
                                 <select x-model="doctorId" id="title2" name="title2" type="text" autocomplete="title2"
-                                    class="w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
-                                        border-gray"
+                                    class="select bg-white px-2 w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
+                                        border-gray rounded-lg"
                                     required>
                                     <option value="">--Select--</option>
                                     <template x-for="(d, i) in specialtyDoctors">
@@ -216,8 +228,8 @@
                         <div class="relative flex-grow">
                                 <label class="font-bold label" for="title2">Consultation Date</label>
                                 <select x-model="theDate" id="title2" name="title2" type="text" autocomplete="title2"
-                                    class="w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
-                                        border-gray"
+                                    class="select bg-white px-2 w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
+                                        border-gray rounded-lg"
                                     required>
                                     <option value="">--Select--</option>
                                     <template x-for="(d, i) in dates">
@@ -228,8 +240,8 @@
                         <div class="relative flex-grow">
                             <label class="font-bold label" for="title2">Consultation Time</label>
                             <select x-model="theSlot" id="title2" name="title2" type="text" autocomplete="title2"
-                                class="w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
-                                    border-gray"
+                                class="select bg-white px-2 w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
+                                    border-gray rounded-lg"
                                 required>
                                 <option value="">--Select--</option>
                                 <template x-for="(t, i) in timeslots">
@@ -238,8 +250,8 @@
                             </select>
                         </div>
                     </div>
-                    <div id="personal-div" :style="`width: ${divWidth}px;`" class="flex flex-col gap-y-3 transition-all overflow-hidden bg-lightgray"
-                        :class="divWidth == 0 || 'p-3 border border-lightgray border-l-transparent'">
+                    <div id="personal-div" :style="`width: ${divWidth}px;`" class="flex flex-col gap-y-3 transition-all overflow-hidden bg-lightgray rounded-lg"
+                        :class="divWidth == 0 || 'p-3 border border-lightgray border-l-transparent ltr:rounded-l-none rtl:rounded-r-none'">
                         <h3 class="font-bold mt-2 text-center overflow-hidden" :class="divWidth != 0 || 'text-nowrap'">Please enter your contact details</h3>
                         <div class="relative text-sm text-error overflow-hidden" :class="divWidth != 0 || 'text-nowrap'">
                             Make sure that you enter the correct details. Booking confirmation will be sent to the email address provided.
@@ -247,22 +259,22 @@
                         <div class="relative">
                             <label class="label font-bold" for="name">Name</label>
                             <input x-model="name" name="name" type="text" autocomplete="name"
-                                class="w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
-                                    border-gray"
+                                class="input w-full bg-white  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0
+                                    border-gray rounded-lg"
                                 required>
                             </input>
                         </div>
                         <div class="relative">
                             <label class="label font-bold" for="phone no.">Phone No.</label>
                             <input x-model="phone" name="phone no." type="text" autocomplete="phone no."
-                                class="w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0 border-gray"
+                                class="input w-full bg-white  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0 border-gray rounded-lg"
                                 required>
                             </input>
                         </div>
                         <div class="relative">
                             <label class="label font-bold" for="phone no.">Email</label>
                             <input x-model="email" name="email" type="text" autocomplete="email"
-                                class="w-full  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0 border-gray"
+                                class="input w-full bg-white  h-10 text-gray-900 placeholder-transparent    focus:outline-none  focus:border-0 border-gray rounded-lg"
                                 required>
                             </input>
                         </div>
@@ -272,7 +284,7 @@
                     <form id="airpay-form"  action="https://payments.airpay.co.in/pay/index.php" method="post">
                         <div x-html="airpayFields"></div>
                     </form>
-                    <button type="button" @click="getPaymentForm();" class="text-white bg-blue text-xs lg:text-sm py-2 px-4 lg:py-2 lg:px-6 tracking-widest cursor-pointer disabled:bg-opacity-70 disabled:cursor-crosshair" :disabled="!inputsReady()">Confirm</button>
+                    <button type="button" @click="getPaymentForm();" class="text-white bg-darkorange text-xs lg:text-sm py-2 px-4 lg:py-2 lg:px-6 tracking-widest cursor-pointer disabled:bg-opacity-70 disabled:cursor-crosshair rounded-lg" :disabled="!inputsReady()">Confirm</button>
                 </div>
             </div>
         </div>
