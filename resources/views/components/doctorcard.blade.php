@@ -58,10 +58,12 @@
                 <p class="font-semibold">Qualification</p>
                 <p>{{$qualification}}</p>
             </div>
+            @if ($specialization != '')
             <div>
                 <p class="font-semibold">Specialization</p>
                 <p>{{$specialization}}</p>
             </div>
+            @endif
         </div>
     </div>
 </div>
