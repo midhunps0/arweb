@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="text-base">
         <x-header-component />
-        <div class="w-full px-2 md:px-16 lg:px-24 text-justify">
+        <div class="w-3/4 m-auto px-2 md:px-16 lg:px-24 text-justify">
             <x-page-title title="Our Doctors" />
             <div x-data="{
                     doctors: [],
