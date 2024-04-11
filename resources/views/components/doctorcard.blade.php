@@ -22,7 +22,7 @@
         </div>
         @endif
     </div>
-    <div class="md:flex-grow p-4 md:p-10">
+    <div class="p-4 md:p-10">
 
         <div x-show="false" class="fixed top-0 left-0 w-full h-full  ">
             <div class="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto flex flex-col justify-center  bg-white/95 h-screen">
