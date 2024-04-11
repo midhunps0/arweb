@@ -9,20 +9,20 @@
     'video_link' => null
     ])
 <div x-data="{ open:false }" class="border border-customOrange rounded-lg flex
-    flex-col md:flex-row ">
-    <div class="md:w-2/5 p-2 flex flex-col justify-center gap-y-2">
+    flex-col md:flex-row relative">
+    <div class="md:w-72 p-2 flex flex-col justify-center gap-y-2">
         <img src="/images/image9.png" class="rounded-lg" alt="doctor_image">
 
         @if ((isset($video_link) && $video_link != '') || $experience != '')
-        <div class="flex justify-end ">
-            <button @click.prevent="openScreen({{$index}})"class="bg-darkorange rounded-full py-2 flex justify-center items-center space-x-4 w-full text-white">
+        <div class="flex justify-end absolute top-4 right-4">
+            <button @click.prevent="openScreen({{$index}})"class="bg-darkorange rounded-full px-4 py-2 flex justify-center items-center space-x-4 w-full text-white">
                 <span>Details</span>
                 <x-easyadmin::display.icon icon="icons.youtube-icon" height="h-6" width="w-6" class="fill-current"/>
             </button>
         </div>
         @endif
     </div>
-    <div class="md:w-3/5 p-4 md:p-10">
+    <div class="md:flex-grow p-4 md:p-10">
 
         <div x-show="false" class="fixed top-0 left-0 w-full h-full  ">
             <div class="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto flex flex-col justify-center  bg-white/95 h-screen">

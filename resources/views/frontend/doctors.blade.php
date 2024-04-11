@@ -32,10 +32,10 @@
                     let result = {{Js::from($doctors)}};
                     doctors = result.data;
                     console.log(doctors);
-                " class="flex flex-row flex-wrap justify-center items-stretch min-h-2/3">
+                " class="min-h-2/3">
                 @foreach ($doctors as $d)
                 {{-- {{dd($d->current_translation['data'])}} --}}
-                <div class="md:w-1/2 p-2">
+                <div class="w-full p-2">
                     <x-doctorcard
                     index="{{$loop->index}}"
                     name="{{$d->current_translation['data']['name']}}"
