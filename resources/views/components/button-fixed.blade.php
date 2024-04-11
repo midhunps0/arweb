@@ -1,6 +1,6 @@
 @props(['href'=> '#','title'=>''])
 <div class="fixed z-50   bottom-16 w-full ">
-    <div class="max-w-screen-xl  ">
+    <div class="max-w-screen-2xl  ">
         <div class="flex  justify-end   max-w-9/10">
             <a href="{{ $href }}" class="flex ltr:flex-row rtl:flex-row-reverse items-center gap-2 bg-darkorange rounded-full font-helvetica text-white py-3 px-4 lg:py-4 lg:px-7 shadow-2xl shadow-white/30">
                 <span class="fill-current text-darkorange bg-white border border-white rounded-full w-8 h-8">

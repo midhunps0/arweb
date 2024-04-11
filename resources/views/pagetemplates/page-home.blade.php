@@ -22,14 +22,14 @@
 
                 <div class="max-w-9/10  mx-auto text-center mt-6 lg:mt-36 ">
                     <p class="text-3xl lg:text-6xl font-semi-bold ">Comprehensive Healthcare<br> Departments</p>
-                    <div class="flex flex-col gap-y-6 lg:gap-y-4 xl:gap mt-6 lg:mt-20">
-                        <div class="flex flex-col justify-center gap-y-6 lg:flex-row lg:justify-between  ">
+                    <div class="flex flex-col gap-y-6 xl:gap-y-8 lg:gap-y-4 xl:gap mt-6 lg:mt-20">
+                        <div class="flex flex-col justify-center gap-y-6 lg:flex-row lg:gap-x-6 xl:gap-x-8  ">
                             <x-dept-component src="{{url('/images/img6.png')}}"/>
                             <x-dept-component src="{{url('/images/img7.png')}}" :title="'Neurology'"/>
                             <x-dept-component src="{{url('/images/img1.png')}}" :title="'Cardiology'"/>
                             <x-dept-component src="{{url('/images/img4.png')}}" :title="'Physiotherapy'"/>
                         </div>
-                        <div class="flex flex-col gap-y-6 lg:flex-row justify-center   lg:justify-between">
+                        <div class="flex flex-col gap-y-6 lg:flex-row justify-center lg:gap-x-6 xl:gap-x-8">
                             <x-dept-component src="{{url('/images/img5.png')}}" :title="'ENT'"/>
                             <x-dept-component src="{{url('/images/img1.png')}}" :title="'Dermatology & Cosmetology'"/>
                             <x-dept-component src="{{url('/images/img6.png')}}" :title="'Pediatrics & Pediatric surgery'"/>
@@ -78,7 +78,7 @@
             </div>
             
             
-            <div class="mt-10">
+            <div class="mt-10 ">
                 <x-footer-component />
             </div>
 
