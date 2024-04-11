@@ -1,25 +1,88 @@
 <x-guest-layout>
     <div class="text-base">
-        <x-main-menu-component />
+        <x-header-component />
         <div class="w-full px-2 md:px-16 lg:px-24 text-justify">
             <x-page-title title="Our Doctors" />
-            <div class="my-12">
-                Craft IVF is a reputable fertility clinic that houses some of the best IVF doctors in India. With a team of experienced and skilled fertility specialists, including renowned doctors from Kerala, Craft IVF is a trusted destination for those seeking top-notch reproductive care. Their expertise in the field of IVF and their commitment to personalized treatment makes them the best choice for patients looking for the best IVF doctor in Kerala. Craft IVF is dedicated to helping individuals and couples achieve their dreams of parenthood, offering advanced techniques and comprehensive care under the guidance of the finest IVF doctors in Kerala.
-            </div>
-            <div class="flex flex-row flex-wrap justify-center items-stretch">
+            <div x-data="{
+                    doctors: [],
+                    currentIndex: 0,
+                    showScreen: false,
+                    close() {
+                        this.showScreen = false;
+                    },
+                    goPrev() {
+                        this.currentIndex = this.currentIndex > 0 ? this.currentIndex - 1 : this.currentIndex;
+                        console.log(this.currentIndex)
+                    },
+                    goNext() {
+                        console.log(`${this.currentIndex}, ${this.doctors.length}`)
+                        this.currentIndex = this.currentIndex < (this.doctors.length - 1) ? this.currentIndex + 1 : this.currentIndex;
+                        console.log(this.currentIndex)
+                    },
+                    close() {
+                        this.showScreen = false;
+                    },
+                    openScreen(i) {
+                        this.currentIndex = i;
+                        this.showScreen = true;
+                        console.log(this.doctors[this.currentIndex].current_translation.data.exp_summary)
+                    }
+                }"
+                x-init="
+                    let result = {{Js::from($doctors)}};
+                    doctors = result.data;
+                    console.log(doctors);
+                " class="flex flex-row flex-wrap justify-center items-stretch min-h-2/3">
                 @foreach ($doctors as $d)
-                {{-- {{dd($d->current_translation)}} --}}
-                    <div class="md:w-1/3 lg:w-1/5 box-border mb-8">
-                        <x-doctorcard-component
-                            name="{{$d->current_translation->data['name']}}"
-                            photo_url="{{$d->photo_url}}"
-                            designation="{{$d->current_translation->data['designation']}}"
-                            qualification="{{$d->current_translation->data['qualification']}}"
-                            slug="{{$d->current_translation->slug}}"/>
-                    </div>
+                {{-- {{dd($d->current_translation['data'])}} --}}
+                <div class="md:w-1/2 p-2">
+                    <x-doctorcard
+                    index="{{$loop->index}}"
+                    name="{{$d->current_translation['data']['name']}}"
+                    designation="{{$d->current_translation['data']['designation']}}"
+                    department="{{$d->current_translation['data']['department']}}"
+                    qualification="{{$d->current_translation['data']['qualification']}}"
+                    specialization="{{$d->current_translation['data']['specialisations']}}"
+                    experience="{{$d->current_translation['data']['exp_summary'] ?? ''}}"
+                    video_link="{{$d->current_translation['data']['video_link'] ?? null}}"
+                    />
+                    {{-- <div class="box-border aspect-video border border-gray rounded-lg p-2">
+                        <div @click="openScreen({{$loop->index}})" class="w-full h-full object-fill overflow-hidden rounded-lg cursor-pointer">
+                            <img src="{{$p->image_url}}" alt="">
+                        </div>
+                    </div> --}}
+                </div>
                 @endforeach
+                <div x-show="showScreen" class="fixed top-0 left-0 w-full h-full flex justify-center items-center p-10 bg-base-100 opacity-95 z-50 rounded-lg">
+                    <div class="h-full flex flex-col box-border aspect-video border border-gray rounded-lgrelative bg-opacity-100 bg-white rounded-lg p-4">
+                        <div class="w-full h-full flex flex-row items-start">
+                            <div class="w-1/2">
+                                <div class="relative z-10" style="position:relative;padding-bottom:56.25%">
+                                    <iframe width="100%" height="100%"
+                                        class="w-full absolute top-0 left-0" :src="doctors[currentIndex].current_translation.data.video_link"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+                                        referrerpolicy="origin" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="flex-grow overflow-y-scroll bg-red w-1/2 h-full px-4 leading-8 text-sm">
+                                <p class="font-bold">Experience Summary</p>
+                                <p x-text="doctors[currentIndex].current_translation.data.exp_summary"></p>
+                            </div>
+                        </div>
+                        <button @click.prevent.stop="close();" type="button" class="btn btn-sm btn-error absolute z-20 top-4 ltr:right-4 rtl:left-4">
+                            <x-easyadmin::display.icon icon="easyadmin::icons.close" height="h-4" width="w-4" />
+                        </button>
+                        <button @click.prevent.stop="goPrev();" type="button" class="btn btn-md btn-warning absolute z-20 top-1/2 ltr:left-4 rtl:right-4 ltr:rotate-0 rtl:rotate-180" :disabled="currentIndex == 0">
+                            <x-easyadmin::display.icon icon="easyadmin::icons.go_left" height="h-8" width="w-8" />
+                        </button>
+                        <button @click.prevent.stop="goNext();" type="button" class="btn btn-md btn-warning absolute z-20 top-1/2 ltr:right-4 rtl:left-4 ltr:rotate-0 rtl:rotate-180" :disabled="currentIndex == doctors.length - 1">
+                            <x-easyadmin::display.icon icon="easyadmin::icons.go_right" height="h-8" width="w-8" />
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-        <x-footer/>
+        <x-footer-component/>
     </div>
 </x-guest-layout>

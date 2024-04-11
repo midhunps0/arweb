@@ -7,8 +7,10 @@ use App\Models\HilightFeature;
 use App\Models\MetatagsList;
 use App\Models\News;
 use App\Models\PageTemplate;
+use App\Models\Photo;
 use App\Models\Review;
 use App\Models\Translation;
+use App\Models\Video;
 use App\Models\VideoTestimonial;
 use App\Models\WebPage;
 use Exception;
@@ -113,15 +115,25 @@ class WebPageService implements ModelViewConnector {
         return Doctor::paginate(30);
     }
 
-    public function getVideoTestomonialsData($locale)
+    public function getPhotosData($locale)
     {
-        return VideoTestimonial::paginate(30);
+        return Photo::paginate(30);
     }
 
-    public function getReviewsData($locale)
+    public function getVideosData($locale)
     {
-        return Review::paginate(30);
+        return Video::paginate(30);
     }
+
+    // public function getVideoTestomonialsData($locale)
+    // {
+    //     return VideoTestimonial::paginate(30);
+    // }
+
+    // public function getReviewsData($locale)
+    // {
+    //     return Review::paginate(30);
+    // }
 
     public function getFileFields(): array
     {

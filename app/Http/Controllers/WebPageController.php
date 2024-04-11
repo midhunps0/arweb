@@ -68,18 +68,18 @@ class WebPageController extends SmartController
         }
     }
 
-    public function news($locale = null)
-    {
-        $locale = $locale ?? 'en';
-        App::setlocale($locale);
-        $news = $this->connectorService->getNewsData($locale);
-        return $this->buildResponse(
-            'frontend.news',
-            [
-                'news' => $news
-            ]
-        );
-    }
+    // public function news($locale = null)
+    // {
+    //     $locale = $locale ?? 'en';
+    //     App::setlocale($locale);
+    //     $news = $this->connectorService->getNewsData($locale);
+    //     return $this->buildResponse(
+    //         'frontend.news',
+    //         [
+    //             'news' => $news
+    //         ]
+    //     );
+    // }
 
     public function blog($locale = null)
     {
@@ -107,31 +107,57 @@ class WebPageController extends SmartController
         );
     }
 
-    public function patientVideos($locale = null)
+    public function photos($locale = null)
     {
         $locale = $locale = $locale ?? 'en';
         App::setlocale($locale);
-        $videos = $this->connectorService->getVideoTestomonialsData($locale);
+        $photos = $this->connectorService->getPhotosData($locale);
         return $this->buildResponse(
-            'frontend.patient-videos',
+            'frontend.photos',
+            [
+                'photos' => $photos
+            ]
+        );
+    }
+
+    public function videos($locale = null)
+    {
+        $locale = $locale = $locale ?? 'en';
+        App::setlocale($locale);
+        $videos = $this->connectorService->getVideosData($locale);
+        return $this->buildResponse(
+            'frontend.videos',
             [
                 'videos' => $videos
             ]
         );
     }
 
-    public function patientReviews($locale = null)
-    {
-        $locale = $locale = $locale ?? 'en';
-        App::setlocale($locale);
-        $reviews = $this->connectorService->getReviewsData($locale);
-        return $this->buildResponse(
-            'frontend.patient-reviews',
-            [
-                'reviews' => $reviews
-            ]
-        );
-    }
+    // public function patientVideos($locale = null)
+    // {
+    //     $locale = $locale = $locale ?? 'en';
+    //     App::setlocale($locale);
+    //     $videos = $this->connectorService->getVideoTestomonialsData($locale);
+    //     return $this->buildResponse(
+    //         'frontend.patient-videos',
+    //         [
+    //             'videos' => $videos
+    //         ]
+    //     );
+    // }
+
+    // public function patientReviews($locale = null)
+    // {
+    //     $locale = $locale = $locale ?? 'en';
+    //     App::setlocale($locale);
+    //     $reviews = $this->connectorService->getReviewsData($locale);
+    //     return $this->buildResponse(
+    //         'frontend.patient-reviews',
+    //         [
+    //             'reviews' => $reviews
+    //         ]
+    //     );
+    // }
 
     public function create()
     {
