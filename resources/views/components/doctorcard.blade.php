@@ -10,7 +10,7 @@
     ])
 <div x-data="{ open:false }" class="border border-customOrange rounded-lg flex
     flex-col md:flex-row relative">
-    <div class="md:w-72 p-2 flex flex-col justify-center gap-y-2">
+    <div class="md:w-1/4 lg:w-1/5 p-2 flex flex-col justify-center gap-y-2">
         <img src="/images/image9.png" class="rounded-lg" alt="doctor_image">
 
         @if ((isset($video_link) && $video_link != '') || $experience != '')
@@ -22,7 +22,7 @@
         </div>
         @endif
     </div>
-    <div class="p-4 md:p-10">
+    <div class="p-4 md:p-10 md:w-3/4 lg:w-4/5">
 
         <div x-show="false" class="fixed top-0 left-0 w-full h-full  ">
             <div class="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto flex flex-col justify-center  bg-white/95 h-screen">
