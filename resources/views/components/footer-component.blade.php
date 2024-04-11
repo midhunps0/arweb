@@ -163,7 +163,7 @@
                         </div>
                 
                 </div>
-                <div class="flex flex-col lg:flex-row justify-between gap-y-2  ltr:ml-10 rtl:mr-10 lg:mx-16 mt-16 max-w-9/10  mx-auto  ">
+                <div class="flex flex-col lg:flex-row justify-between gap-y-2    mt-16 max-w-9/10  mx-auto  ">
                 <p class="text-white text-sm lg:text-base">{{ __('footer.right_reserved')}}</p>
                 <p class="text-white text-sm lg:text-base mb-8">{{ __('footer.privacy_policy')}}</p>
                 </div>
