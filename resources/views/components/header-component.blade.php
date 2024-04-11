@@ -166,7 +166,14 @@
             <!-- <span class="inline-block">|</span> -->
             <!-- <li><button @click="direction = 'rtl'" class="lg:text-base xl:text-base rtl:font-semibold text-gray-700  hover:text-pink-400 rtl:text-pink-700 cursor-pointer ">Arabic</li> -->
 
-            <li><a class="text-gray-700  lg:text-base xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.about')}}</a></li>
+            {{-- <li><a class="text-gray-700  lg:text-base xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.about')}}</a></li> --}}
+
+            <li>
+                <a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'about'])}}"
+                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'about'])}}'})"
+                    class="text-gray-700   lg:text-base xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.about')}}</a>
+            </li>
+
             <li x-data="{open : false}"  @mouseleave="open = false" >
                 <button @mouseover="open = true" class="text-gray-700   lg:text-base xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer flex flex-row items-center">
                     <p>{{ __('header.departments')}}</p>
@@ -291,10 +298,11 @@
                 </div>
 
             </li>
-            <li><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'careers'])}}"
+            <li>
+                <a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'careers'])}}"
                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'careers'])}}'})"
-                    class="text-gray-700   lg:text-base xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.career')}}</a></li>
-
+                    class="text-gray-700   lg:text-base xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.career')}}</a>
+            </li>
             <li><a href="{{route('contact')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('contact')}}', route: 'contact'})"
                     class="text-gray-700   lg:text-base xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.contact')}}</a></li>
 

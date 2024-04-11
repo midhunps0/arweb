@@ -56,6 +56,7 @@ class WebPageController extends SmartController
         try {
             $showPageData = $this->connectorService->getShowPageData($slug);
             $template = PageTemplate::find($showPageData->instance->template_id);
+            // dd($template);
             if (!($showPageData instanceof ShowPageData)) {
                 throw new Exception('getShowPageData() of connectorService must return an instance of ' . ShowPageData::class);
             }
