@@ -1,7 +1,7 @@
 <div class="bg-black/95">
         <div class="max-w-screen-2xl mx-auto">
                 <div class= "flex flex-col lg:flex-row max-w-9/10  mx-auto ">
-                        <div class="lg:w-1/3 pt-16 ltr:ml-16 rtl:mr-16 flex flex-col justify-start gap-y-8 ">
+                        <div class="lg:w-1/3 pt-16  flex flex-col justify-start gap-y-8 ">
                                 <div class="rounded-full bg-white flex justify-center p-2 w-52 ">
                                         <img src="/images/speciality.png" class=" h-12    " alt="craft_logo"> 
                                 </div>
@@ -34,7 +34,7 @@
                                 </div>
                         
                         </div>
-                        <div class="lg:w-2/3 ltr:ml-16 rtl:mr-16 lg:ml-0 ltr:text-left rtl:text-right pt-16 flex flex-col lg:flex-row justify-end gap-x-2  ">
+                        <div class="lg:w-2/3  ltr:text-left rtl:text-right pt-16 flex flex-col lg:flex-row justify-end gap-x-2  ">
                                 <div class="lg:w-1/4 mb-8 ">
                                 <p class="text-lg font-normal text-white mb-4">{{ __('header.departments')}}</p>
                                 <ul class="flex flex-col gap-3">
