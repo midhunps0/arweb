@@ -32,9 +32,9 @@ use Modules\Ynotz\EasyAdmin\Services\RouteHelper;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// })->name('home');
+Route::get('/contact-us', function () {
+    return view('pagetemplates.contact_us');
+})->name('contact');
 Route::get('/', [WebPageController::class, 'home'])->name('home');
 Route::get('/ar', [WebPageController::class, 'homeAr'])->name('home.ar');
 Route::get('/contact', [WebPageController::class, 'contact'])->name('contact');

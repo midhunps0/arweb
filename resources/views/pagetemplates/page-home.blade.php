@@ -1,6 +1,6 @@
 <x-guest-layout>
     {{-- <div class="bg-white items-center max-w-8xl  mx-auto text-base-content "> --}}
-    <div class="font-helvetica max-8xl mx-auto">
+    <div class="font-helvetica max-w-8xl mx-auto">
         <x-header-component />
         <div>
             <div class="max-w-screen-2xl mx-auto">

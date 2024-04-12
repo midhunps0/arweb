@@ -156,6 +156,7 @@ export default {
                 'darkgray':'#676868',
                 'yellow':'#FBBC04',
                 'gray-600':'#353535',
+                'lightpink':'#fbf8fb',
             }
         },
     },
