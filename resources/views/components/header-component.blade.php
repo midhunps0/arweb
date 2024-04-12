@@ -156,7 +156,7 @@
                 class="text-gray-700   text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.contact')}}</a></li>
 
                 <li><a href="{{route('booking')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking' )}}', route: 'booking'})"
-                        class="bg-darkorange text-white rounded-full font-helvetica text-base py-3 px-4 shadow-2xl cursor-pointer transition-all duration-700 ease-in-out hover:bg-black">{{ __('header.schedule_an_appointment')}}</a></li>
+                        class="bg-darkorange text-white rounded-full font-helvetica text-base py-3 px-4 block shadow-2xl cursor-pointer transition-all duration-700 ease-in-out hover:bg-black">{{ __('header.schedule_an_appointment')}}</a></li>
             </ul>
         </div>
     </div>
