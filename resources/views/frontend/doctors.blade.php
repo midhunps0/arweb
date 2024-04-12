@@ -34,7 +34,6 @@
                     console.log(doctors);
                 " class="min-h-2/3">
                 @foreach ($doctors as $d)
-                {{-- {{dd($d->current_translation['data'])}} --}}
                 <div class="w-full p-2">
                     <x-doctorcard
                     index="{{$loop->index}}"
@@ -45,6 +44,7 @@
                     specialization="{{$d->current_translation['data']['specialisations']}}"
                     experience="{{$d->current_translation['data']['exp_summary'] ?? ''}}"
                     video_link="{{$d->current_translation['data']['video_link'] ?? null}}"
+                    photo_url="{{$d->photo_url}}"
                     />
                     {{-- <div class="box-border aspect-video border border-gray rounded-lg p-2">
                         <div @click="openScreen({{$loop->index}})" class="w-full h-full object-fill overflow-hidden rounded-lg cursor-pointer">

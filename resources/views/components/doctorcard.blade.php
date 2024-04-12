@@ -6,12 +6,13 @@
     'qualification'=>'',
     'specialization'=>'',
     'experience'=>'',
-    'video_link' => null
+    'video_link' => null,
+    'photo_url' => null
     ])
 <div x-data="{ open:false }" class="border border-customOrange rounded-lg flex
     flex-col md:flex-row relative">
     <div class="md:w-1/4 p-2 flex flex-col justify-center gap-y-2">
-        <img src="/images/image9.png" class="rounded-lg max-w-52 md:max-w-none" alt="doctor_image">
+        <img src="{{$photo_url ?? ''}}" class="rounded-lg max-w-52 md:max-w-none" alt="doctor_image">
 
         @if ((isset($video_link) && $video_link != '') || $experience != '')
         <div class="flex justify-end absolute top-4 right-4">

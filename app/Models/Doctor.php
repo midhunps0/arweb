@@ -71,7 +71,7 @@ class Doctor extends Model implements MediaOwner
     {
         return Attribute::make(
             get: function ($v) {
-                return Storage::url($this->getSingleMediaFilePath('photo'));
+                return $this->getSingleMediaFilePath('photo') != '' ? Storage::url($this->getSingleMediaFilePath('photo')) : '';
             }
         );
     }

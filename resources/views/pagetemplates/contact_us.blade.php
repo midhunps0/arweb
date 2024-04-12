@@ -40,6 +40,4 @@
             <x-footer-component />
         </div>
     </div>
-    
-
 </x-guest-layout>

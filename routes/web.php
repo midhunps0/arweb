@@ -32,12 +32,11 @@ use Modules\Ynotz\EasyAdmin\Services\RouteHelper;
 |
 */
 
-Route::get('/contact-us', function () {
-    return view('pagetemplates.contact_us');
-})->name('contact');
+// Route::get('/contact-us', function () {
+//     return view('pagetemplates.contact_us');
+// })->name('contact');
 Route::get('/', [WebPageController::class, 'home'])->name('home');
 Route::get('/ar', [WebPageController::class, 'homeAr'])->name('home.ar');
-Route::get('/contact', [WebPageController::class, 'contact'])->name('contact');
 
 Route::get('/booking', [BookingController::class, 'bookingPage'])->name('booking');
 Route::get('/booking/specialties', [BookingController::class, 'specialties'])->name('booking.specialties');
@@ -54,7 +53,8 @@ Route::post('/notify', [AirpayController::class, 'airpayNotification'])->name('p
 // })->name('payment.airpay.response-dummy');
 
 
-Route::get('/ar/contact', [WebPageController::class, 'contactAr'])->name('contact.ar');
+Route::get('/contact-us', [WebPageController::class, 'contact'])->name('contact');
+Route::get('/ar/contact-us', [WebPageController::class, 'contactAr'])->name('contact.ar');
 
 Route::get('/consequatur-molestias-debitis', [ArticleController::class, 'old'])->name('articles.old');
 
