@@ -128,7 +128,7 @@
                     </div>
                 </li>
                 <li><a href="{{route('doctors.loc', ['locale' => app()->currentLocale()])}}"
-                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('doctors.loc', ['locale' => app()->currentLocale()])}}')"
+                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('doctors.loc', ['locale' => app()->currentLocale()])}}'})"
                         class="text-gray-700   text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer">{{ __('header.doctors')}}</a></li>
 
                         <li x-data="{open : false}" class="flex flex-col  justify-center ">

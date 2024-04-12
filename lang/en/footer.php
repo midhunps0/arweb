@@ -14,7 +14,12 @@ return[
     'blogs' => 'Blogs',
     'right_reserved' => '© 2023 Armed Centre. All rights reserved.',
     'privacy_policy' => 'Privacy Policy Terms of Service',
-    '' => '',
-    '' => '',
+    'contact_us' => 'Contact Us',
+    'name' => 'Name',
+    'email' => 'Email',
+    'message' => 'Message',
+    'type_your_msg' => 'Type your message',
+    'terms_&_conditions' => 'I accept the <span class="underline underline-offset-2">Terms & Conditions</span>',
+    
 ];
 ?>

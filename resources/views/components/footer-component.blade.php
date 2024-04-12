@@ -130,8 +130,8 @@
                                 <div class="lg:w-1/4 mb-8 ">
                                         <p class="text-lg font-normal text-white mb-4">{{ __('header.about')}}</p>
                                         <ul class="flex flex-col gap-3">
-                                                <li><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'doctors'])}}" 
-                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'doctors'])}}'})"
+                                                <li><a href="{{route('doctors.loc', ['locale' => app()->currentLocale()])}}"
+                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('doctors.loc', ['locale' => app()->currentLocale()])}}'})"
                                                         class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.doctors')}}</a></li>
                                                 
                                                 
@@ -150,11 +150,11 @@
                                                 <li><a href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}" 
                                                         @click.prevent.stop="$dispatch('linkaction', {link: '{{route('blog.loc',['locale' => app()->currentLocale()])}}'})" 
                                                         class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('footer.blogs')}}</a></li>
-                                                <li><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-photos'])}}" 
-                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our-photos'])}}'})"
+                                                <li><a href="{{route('photos.loc', ['locale' => app()->currentLocale()])}}"
+                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('photos.loc', ['locale' => app()->currentLocale()])}}'})"
                                                         class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.our_photos')}}</a></li>
-                                                <li><a href="{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our_videos'])}}" 
-                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('webpages.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'our_videos'])}}'})"
+                                                <li><a href="{{route('videos.loc', ['locale' => app()->currentLocale()])}}"
+                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('videos.loc', ['locale' => app()->currentLocale()])}}'})"
                                                         class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.our_videos')}}</a></li>
                                         </ul>
                                 </div>
