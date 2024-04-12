@@ -53,7 +53,7 @@
                     </div> --}}
                 </div>
                 @endforeach
-                <div x-show="showScreen" class="fixed top-0 left-0 w-full h-full flex justify-center items-center p-10 bg-base-100 opacity-95 z-50 rounded-lg">
+                <div x-show="showScreen" class="fixed top-0 left-0 w-full h-full flex justify-center items-center p-10 bg-base-100 opacity-95 z-50 rounded-lg" x-transition>
                     <div class="h-full flex flex-col box-border aspect-video border border-gray rounded-lgrelative bg-opacity-100 bg-white rounded-lg p-4">
                         <div class="w-full h-full flex flex-row items-start">
                             <div class="w-1/2">
