@@ -2,7 +2,7 @@
     <div class="text-base">
         <x-header-component />
         <div class="w-full px-2 md:px-16 lg:px-24 text-justify">
-            <x-page-title title="Our Photos" />
+            <x-page-title title="Our Videos" />
             <div class="flex flex-row flex-wrap justify-center items-stretch">
                 @foreach ($videos as $v)
                     <div class="md:w-1/3 box-border p-2">
