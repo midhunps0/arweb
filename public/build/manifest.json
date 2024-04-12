@@ -1,6 +1,10 @@
 {
   "resources/css/app.css": {
+<<<<<<< HEAD
     "file": "assets/app-B-R9Rr2A.css",
+=======
+    "file": "assets/app-ICumrUyK.css",
+>>>>>>> reshma_ar
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -10,6 +14,10 @@
   },
   "resources/js/app.js": {
     "file": "assets/app-BCMqxNiK.js",
+<<<<<<< HEAD
+=======
+    "name": "app",
+>>>>>>> reshma_ar
     "src": "resources/js/app.js",
     "isEntry": true
   }
