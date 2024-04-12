@@ -102,11 +102,15 @@ require __DIR__.'/auth.php';
 Route::group(['middleware' => ['ynotz.translation']], function () {
     Route::get('/our-blogs', [WebPageController::class, 'blog'])->name('blog');
     Route::get('/our-doctors', [WebPageController::class, 'doctors'])->name('doctors');
+    Route::get('/our-photos', [WebPageController::class, 'photos'])->name('photos');
+    Route::get('/our-videos', [WebPageController::class, 'videos'])->name('videos');
     // Route::get('/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials');
     Route::get('/patient-testimonials', [WebPageController::class, 'patientReviews'])->name('patientreviews');
     // Route::get('/{locale}/news', [WebPageController::class, 'news'])->name('news.loc');
     Route::get('/{locale}/our-blogs', [WebPageController::class, 'blog'])->name('blog.loc');
     Route::get('/{locale}/our-doctors', [WebPageController::class, 'doctors'])->name('doctors.loc');
+    Route::get('/{locale}/our-photos', [WebPageController::class, 'photos'])->name('photos.loc');
+    Route::get('/{locale}/our-videos', [WebPageController::class, 'videos'])->name('videos.loc');
     // Route::get('/{locale}/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials.loc');
     Route::get('/{locale}/patient-testimonials', [WebPageController::class, 'patientReviews'])->name('patientreviews.loc');
     Route::get('/{slug}', [WebPageController::class, 'quickShow'])->name('webpages.view');

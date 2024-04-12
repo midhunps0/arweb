@@ -19,6 +19,7 @@ class Photo extends Model implements MediaOwner
     protected $appends = [
         'translations_array',
         'current_translation',
+        'image_url'
     ];
 
     public function getMediaStorage(): array
