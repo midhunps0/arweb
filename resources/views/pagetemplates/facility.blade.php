@@ -5,7 +5,7 @@
             <x-page-title title="{{$instance->current_translation->data['title']}}" />
             <div class="flex flex-row">
                 {{-- main body --}}
-                <div class="md:w-3/4">
+                <div class="md:w-4/5 m-auto">
                     <div>
                         @if (isset($instance->current_translation->data['body']))
                         <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['body'])"/>
@@ -13,13 +13,13 @@
                     </div>
                 </div>
                 {{-- Sidebar --}}
-                <div class="md:w-1/4">
+                {{-- <div class="md:w-1/4">
                     @if (isset($instance->current_translation->data['sidebar']))
                     <div class="border border-gray bg-lightgray rounded-md p-2">
                     <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['sidebar'])"/>
                     </div>
                     @endif
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="mt-10">
