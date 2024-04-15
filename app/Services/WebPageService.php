@@ -81,14 +81,14 @@ class WebPageService implements ModelViewConnector {
 
         $thedata = [];
         if ($slug == 'home') {
-            $hfeatures = HilightFeature::all();
-            foreach ($hfeatures as $f) {
-                $thedata['hfeatures'][$f->display_location] = $f;
-            }
-            $thedata['reviews'] = Review::orderBy('id', 'desc')->limit(12)->get();
-            $thedata['videos'] = VideoTestimonial::orderBy('id', 'desc')->limit(6)->get();
-            $thedata['doctors'] = Doctor::orderBy('id', 'desc')->limit(6)->get();
-            $thedata['newsitems'] = News::orderBy('id', 'desc')->limit(6)->get();
+            // $hfeatures = HilightFeature::all();
+            // foreach ($hfeatures as $f) {
+            //     $thedata['hfeatures'][$f->display_location] = $f;
+            // }
+            // $thedata['reviews'] = Review::orderBy('id', 'desc')->limit(12)->get();
+            // $thedata['videos'] = VideoTestimonial::orderBy('id', 'desc')->limit(6)->get();
+            // $thedata['doctors'] = Doctor::orderBy('id', 'desc')->limit(6)->get();
+            // $thedata['newsitems'] = News::orderBy('id', 'desc')->limit(6)->get();
             $thedata['articles'] = Article::orderBy('id', 'desc')->limit(6)->get();
             // dd($thedata['doctors']);
         }

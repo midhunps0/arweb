@@ -1,5 +1,6 @@
 <x-guest-layout>
     {{-- <div class="bg-white items-center max-w-8xl  mx-auto text-base-content "> --}}
+        {{-- {{dd($data)}} --}}
     <div class="font-helvetica max-w-8xl mx-auto">
         <x-header-component />
         <div>
@@ -7,12 +8,13 @@
                 <div class="max-w-9/10  mx-auto mt-16 flex flex-col lg:flex-row lg:gap-x-6  gap-y-6 ltr:text-left rtl:text-right  ">
                     <div class="flex flex-col gap-y-6 xl:gap-6  lg:w-1/2 justify-center">
                         <p class="text-sm text-darkorange bg-beige text-center rounded-full px-2 py-1 w-44">Harness Your Well-being</p>
-                        <p class="text-3xl sm:text-4xl md:text-6xl xl:text-7xl">We provide<br><span class="text-customOrange">Integrated World<br>Class Patient Service<span></p>
-                        <p class="text-sm sm:text-base md:text-lg">All the Lorem Ipsum generators on the Internet tend to repeat
-                            predefined chunks as necessary,making this the first true generator.</p>
+                        <p class="text-3xl sm:text-4xl md:text-6xl xl:text-7xl">
+                            {!!$instance->current_translation->data['title']!!}
+                        </p>
+                        <p class="text-sm sm:text-base md:text-lg">{{$instance->current_translation->data['sub_title']}}</p>
                         <div class="lg:mt-6"><x-button-component title="{{ __('button.know_more')}}" /></div>
                     </div>
-                    
+
                     <div class="flex justify-center lg:w-1/2">
                         <img src="/images/image9.png" class="w-96 lg:w-full rounded-2xl" alt="doctor_image">
                     </div>
@@ -21,7 +23,7 @@
 
 
                 <div class="max-w-9/10  mx-auto text-center mt-6 lg:mt-36 ">
-                    <p class="text-3xl lg:text-6xl font-semi-bold ">Comprehensive Healthcare<br> Departments</p>
+                    <p class="text-3xl lg:text-6xl font-semi-bold ">{{$instance->current_translation->data['departments_title']}}</p>
                     <div class="flex flex-col gap-y-6 xl:gap-y-8 lg:gap-y-4 xl:gap mt-6 lg:mt-20">
                         <div class="flex flex-col justify-center gap-y-6 lg:flex-row lg:gap-x-6 xl:gap-x-8  ">
                             <x-dept-component src="{{url('/images/img6.png')}}"/>
@@ -35,49 +37,85 @@
                             <x-dept-component src="{{url('/images/img6.png')}}" :title="'Pediatrics & Pediatric surgery'"/>
                             <x-dept-component src="{{url('/images/img7.png')}}" :title="'Clinical Surgery'"/>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="mt-6 max-w-9/10  mx-auto">
-                    <x-sub-white /> 
+                    {{--  --}}
+                    <div class="bg-white flex flex-col lg:flex-row h-fit lg:mt-16">
+
+                        <div class="lg:w-1/2  p-6  flex flex-col justify-center gap-y-4">
+                            <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">About</p>
+                            <p class="text-3xl lg:text-6xl" >{{$instance->current_translation->data['welcome_title']}}</p>
+                            <p class="text-sm lg:text-lg">{{$instance->current_translation->data['welcome_description']}}</p>
+                            <div class="mt-6"><x-button-component title="{{ __('button.more_about_us')}}"/></div>
+                        </div>
+                        <div class="lg:w-1/2 py-6 lg:py-20 ">
+                            <img src="{{url('/images/doctor1.jpg')}}" class=" w-full  rounded-3xl "alt="doctor_image">
+                        </div>
+                    </div>
                 </div>
             </div>
-            
+
             <div class="bg-black/95">
                 <div class="max-w-screen-2xl mx-auto">
                     <div class="flex flex-col items-center ">
                         <div class="lg:hidden max-w-9/10  mx-auto flex flex-col gap-y-6 mt-6">
-                            <x-blog-card :title="'Our Value'" :content="'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to makelec'" />
-                            <x-blog-card :title="'Our Mission'" :content="'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to makelec'" />
-                            <x-blog-card :title="'Our vision'" :content="'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to makelec'" />
+                            <x-blog-card title="{{$instance->current_translation->data['value_title']}}" content="{{$instance->current_translation->data['value_description']}}" />
+                            <x-blog-card title="{{$instance->current_translation->data['mission_title']}}" content="{{$instance->current_translation->data['mission_description']}}" />
+                            <x-blog-card title="{{$instance->current_translation->data['vision_title']}}" content="{{$instance->current_translation->data['vision_description']}}" />
                         </div>
                         <div class="max-w-9/10  mx-auto hidden lg:flex flex-row lg:gap-2 xl:gap-4 py-20 items-stretch">
                             <div class="w-1/2 flex h-full">
-                            <x-blog-big :title="'Our Value'" :content="'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to makelec'" />
+                            <x-blog-big title="{{$instance->current_translation->data['value_title']}}" content="{{$instance->current_translation->data['value_description']}}" />
                             </div>
                             <div class="w-1/2 flex flex-col  lg:gap-3   ">
-                            <x-blogcard-bigsc  :title="'Our Mission'" :content="'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to makelec'" />
-                            <x-blogcard-bigsc  :title="'Our Vision'" :content="'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to makelec'" />
+                            <x-blogcard-bigsc  title="{{$instance->current_translation->data['mission_title']}}" content="{{$instance->current_translation->data['mission_description']}}" />
+                            <x-blogcard-bigsc  title="{{$instance->current_translation->data['vision_title']}}" content="{{$instance->current_translation->data['vision_description']}}" />
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="max-w-9/10  mx-auto">
-                        <x-sub-black />
+                        <div class=" flex flex-col-reverse items-center lg:flex-row lg:gap-6 py-12">
+                            <div class="lg:w-1/2 mt-6 lg:py-6">
+                                <img src="{{url('/images/img5.png')}}" class=""alt="doctor_image">
+                            </div>
+                            <div class="lg:w-1/2 text-white   flex flex-col justify-center   gap-y-4">
+                                <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">About</p>
+                                <p class="text-3xl lg:text-5xl " >{{$instance->current_translation->data['commitment_title']}}</p>
+                                <p class="text-sm lg:text-lg">{{$instance->current_translation->data['commitment_description']}}</p>
+                                <x-transparent-button />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="max-w-screen-2xl mx-auto">
                 <div class=" mt-10 xl:mt-16 max-w-9/10  mx-auto">
-                    <x-blog-component/>
+                    <div class="flex flex-col gap-4 ">
+                        <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">Blogs</p>
+                        <p class="text-3xl lg:text-6xl " >{{$instance->current_translation->data['blog_title']}}</p>
+                        <div class="mt-6 lg:py-6"><x-button-component href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"
+                                            @click.prevent.stop="$dispatch('linkaction', {link: '{{route('blog.loc',['locale' => app()->currentLocale()])}}'})"  title="{{ __('button.view_all')}}"/></div>
+                        <div class="flex flex-col items-center lg:flex-row lg:gap-2 xl:gap-6 mt-6">
+                            <x-rblogcard  />
+                            <x-rblogcard />
+                            <x-rblogcard />
+                        </div>
+                    </div>
                 </div>
                 <div class="max-w-9/10  mx-auto mt-6 lg:mt-32">
-                    <x-ready-component />
+                    <div class="bg-darkorange rounded-xl text-white p-4 lg:p-16 text-center">
+                        <p class="text-3xl md:text-4xl lg:text-6xl">{{$instance->current_translation->data['action_title']}}</p>
+                        <p class="text-base mt-2 ">{{$instance->current_translation->data['action_subtitle']}}</p>
+                        <div class="mt-16 mb-4"><x-beige-button title="{{__('header.schedule_an_appointment')}}" /></div>
+                    </div>
                 </div>
             </div>
-            
-            
+
+
             <div class="mt-10 ">
                 <x-footer-component />
             </div>
