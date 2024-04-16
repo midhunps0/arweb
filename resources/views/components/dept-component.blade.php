@@ -1,4 +1,4 @@
-@props(['src'=>'/images/img1.png','title'=>'Orthopediac and sports medicine'])
+@props(['src'=>'/images/img1.png','title'=>''])
 <div x-data="{open:false}" class="relative flex justify-center" @mouseleave="open = false">
     <img src="{{$src}}" class="w-80 lg:w-56 xl:w-80   " alt="hospital_department_image" @mouseover="open = true" >
     <div x-show="open" class="  absolute  top-0 bg-gradient-to-b from-transparent to-black/50 rounded-2xl h-80 w-80 lg:w-56 lg:h-56 xl:w-full xl:h-80 transition-all duration-700 ease-in-out"></div>

@@ -32,6 +32,11 @@ return[
     'career' => 'Career',
     'contact' => 'Contact',
     'schedule_an_appointment' => 'Schedule an Appointment',
+    'harness_your_well_being' => 'Harness Your Well-being',
+    'about' => 'About',
+    'blogs' => 'Blogs',
+    '' => '',
+    '' => '',
     '' => '',
 ];
 ?>

@@ -73,8 +73,8 @@ body {
 .card .list{
     @apply list-disc px-4;
 }
-.border-right{
-    @apply  border-r-2 border-customOrange h-full;
+.border-x{
+    @apply  border-x-2 border-customOrange h-full;
 }
 .page-content {
     @apply mt-6 text-justify p-4;
@@ -118,4 +118,10 @@ body {
 }
 .small-content .para{
     @apply hover:underline underline-offset-1;
+}
+.box-shadow{
+    @apply shadow shadow-customOrange rounded-lg py-2;
+}
+.box-shadow .para{
+    @apply my-4;
 }

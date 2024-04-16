@@ -7,7 +7,7 @@
             <div class="max-w-screen-2xl mx-auto">
                 <div class="max-w-9/10  mx-auto mt-16 flex flex-col lg:flex-row lg:gap-x-6  gap-y-6 ltr:text-left rtl:text-right  ">
                     <div class="flex flex-col gap-y-6 xl:gap-6  lg:w-1/2 justify-center">
-                        <p class="text-sm text-darkorange bg-beige text-center rounded-full px-2 py-1 w-44">Harness Your Well-being</p>
+                        <p class="text-sm text-darkorange bg-beige text-center rounded-full px-2 py-1 w-44">{{ __('header.harness_your_well_being')}}</p>
                         <p class="text-3xl sm:text-4xl md:text-6xl xl:text-7xl">
                             {!!$instance->current_translation->data['title']!!}
                         </p>
@@ -26,16 +26,16 @@
                     <p class="text-3xl lg:text-6xl font-semi-bold ">{{$instance->current_translation->data['departments_title']}}</p>
                     <div class="flex flex-col gap-y-6 xl:gap-y-8 lg:gap-y-4 xl:gap mt-6 lg:mt-20">
                         <div class="flex flex-col justify-center gap-y-6 lg:flex-row lg:gap-x-6 xl:gap-x-8  ">
-                            <x-dept-component src="{{url('/images/img6.png')}}"/>
-                            <x-dept-component src="{{url('/images/img7.png')}}" :title="'Neurology'"/>
-                            <x-dept-component src="{{url('/images/img1.png')}}" :title="'Cardiology'"/>
-                            <x-dept-component src="{{url('/images/img4.png')}}" :title="'Physiotherapy'"/>
+                            <x-dept-component src="{{url('/images/img6.png')}}" title="{{ __('header.orthopaedics_and_trauma_surgery')}}"/>
+                            <x-dept-component src="{{url('/images/img7.png')}}" title="{{ __('header.neurology')}}"/>
+                            <x-dept-component src="{{url('/images/img1.png')}}" title="{{ __('header.cardiology')}}"/>
+                            <x-dept-component src="{{url('/images/img4.png')}}" title="{{ __('header.physiotherapy')}}"/>
                         </div>
                         <div class="flex flex-col gap-y-6 lg:flex-row justify-center lg:gap-x-6 xl:gap-x-8">
-                            <x-dept-component src="{{url('/images/img5.png')}}" :title="'ENT'"/>
-                            <x-dept-component src="{{url('/images/img1.png')}}" :title="'Dermatology & Cosmetology'"/>
-                            <x-dept-component src="{{url('/images/img6.png')}}" :title="'Pediatrics & Pediatric surgery'"/>
-                            <x-dept-component src="{{url('/images/img7.png')}}" :title="'Clinical Surgery'"/>
+                            <x-dept-component src="{{url('/images/img5.png')}}" title="{{ __('header.ent')}}"/>
+                            <x-dept-component src="{{url('/images/img1.png')}}" title="{{ __('header.dermatology_&_cosmetology')}}"/>
+                            <x-dept-component src="{{url('/images/img6.png')}}" title="{{ __('header.pediatrics_&_pediatric_surgery')}}"/>
+                            <x-dept-component src="{{url('/images/img7.png')}}" title="{{ __('header.clinical_psychology')}}"/>
                         </div>
 
                     </div>
@@ -45,7 +45,7 @@
                     <div class="bg-white flex flex-col lg:flex-row h-fit lg:mt-16">
 
                         <div class="lg:w-1/2  p-6  flex flex-col justify-center gap-y-4">
-                            <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">About</p>
+                            <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">{{ __('header.about') }}</p>
                             <p class="text-3xl lg:text-6xl" >{{$instance->current_translation->data['welcome_title']}}</p>
                             <p class="text-sm lg:text-lg">{{$instance->current_translation->data['welcome_description']}}</p>
                             <div class="mt-6"><x-button-component title="{{ __('button.more_about_us')}}"/></div>
@@ -82,7 +82,7 @@
                                 <img src="{{url('/images/img5.png')}}" class=""alt="doctor_image">
                             </div>
                             <div class="lg:w-1/2 text-white   flex flex-col justify-center   gap-y-4">
-                                <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">About</p>
+                                <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">{{ __('header.about') }}</p>
                                 <p class="text-3xl lg:text-5xl " >{{$instance->current_translation->data['commitment_title']}}</p>
                                 <p class="text-sm lg:text-lg">{{$instance->current_translation->data['commitment_description']}}</p>
                                 <x-transparent-button />
@@ -95,7 +95,7 @@
             <div class="max-w-screen-2xl mx-auto">
                 <div class=" mt-10 xl:mt-16 max-w-9/10  mx-auto">
                     <div class="flex flex-col gap-4 ">
-                        <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">Blogs</p>
+                        <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">{{ __('header.blogs') }}</p>
                         <p class="text-3xl lg:text-6xl " >{{$instance->current_translation->data['blog_title']}}</p>
                         <div class="mt-6 lg:py-6"><x-button-component href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"
                                             @click.prevent.stop="$dispatch('linkaction', {link: '{{route('blog.loc',['locale' => app()->currentLocale()])}}'})"  title="{{ __('button.view_all')}}"/></div>
