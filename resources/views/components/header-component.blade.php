@@ -1,5 +1,11 @@
 <div class="flex flex-row justify-between  items-center bg-white relative lg:px-7 xl:px-12 pt-4 max-w-screen-2xl mx-auto">
-    <a href="{{route('home.ar')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('home.ar')}}', route: 'home.ar'})"><img src="/images/speciality.png" class=" bg-gray-600 bg-opacity-5 w-52 px-3 py-2  rounded-full  " alt="craft_logo"></a>
+    @php
+        $route = 'home';
+        if (App::currentLocale() == 'ar') {
+            $route = 'home.ar';
+        }
+    @endphp
+    <a href="{{route($route)}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route($route)}}', route: 'home.ar'})"><img src="/images/speciality.png" class=" bg-gray-600 bg-opacity-5 w-52 px-3 py-2  rounded-full  " alt="craft_logo"></a>
 
     <div x-data="{open:!open}" class="w-1/6 flex justify-end p-2 lg:hidden overflow-y-scroll">
         <button @click="open = !open">
