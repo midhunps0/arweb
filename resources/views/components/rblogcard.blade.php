@@ -1,4 +1,4 @@
-@props(['slug' => 'home', 'img_url'=>'/images/blog1.jpg', 'title' => 'An article'])
+@props(['slug' => 'home', 'img_url'=>'', 'title' => ''])
 @php
     $link = route('articles.guest.show', ['slug' => $slug, 'locale' => app()->currentLocale()]);
 @endphp
@@ -11,7 +11,7 @@
             <p class="text-sm">{{$type}}</p>
         </div> --}}
         <div class="mt-2">
-            <p class="text-xl font-normal">
+            <p class="text-lg font-normal">
                 <a class="flex flex-row items-center p-1 gap-1 px-2" href="{{$link}}" @click.prevent.stop="$dispatch('linkaction', {
                     link: '{{$link}}', route: 'articles.guest.show'
                 })">
