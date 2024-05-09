@@ -105,7 +105,7 @@ body {
     @apply text-customOrange mt-4;
 }
 .long-card h2{
-    @apply text-customOrange text-2xl ; 
+    @apply text-customOrange text-2xl ;
 }
 .long-card .list{
     @apply list-disc px-4;
@@ -119,9 +119,24 @@ body {
 .small-content .para{
     @apply hover:underline underline-offset-1;
 }
+<<<<<<< HEAD
 .box-shadow{
     @apply shadow shadow-customOrange rounded-lg py-2;
 }
 .box-shadow .para{
     @apply my-4;
+=======
+
+.cube-enter-start {
+    transform: translateX(50%) rotateY(90deg);
+}
+.cube-enter-end {
+    transform: translateX(0%) rotateY(0deg);
+}
+.cube-leave-start {
+    transform: translateX(0%) rotateY(0deg);
+}
+.cube-leave-end {
+    transform: translateX(-50%) rotateY(-90deg);
+>>>>>>> da13eb2 (added home page slider)
 }

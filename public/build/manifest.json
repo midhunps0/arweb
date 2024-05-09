@@ -1,6 +1,10 @@
 {
   "resources/css/app.css": {
+<<<<<<< HEAD
     "file": "assets/app-BJF3MPTF.css",
+=======
+    "file": "assets/app-PPstCjvS.css",
+>>>>>>> da13eb2 (added home page slider)
     "src": "resources/css/app.css",
     "isEntry": true
   },

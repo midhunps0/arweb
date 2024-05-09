@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Article;
+use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\HilightFeature;
 use App\Models\MetatagsList;
@@ -108,6 +109,11 @@ class WebPageService implements ModelViewConnector {
     public function getBlogData($locale)
     {
         return Article::paginate(30);
+    }
+
+    public function getDepartmentsData($locale)
+    {
+        return Department::all();
     }
 
     public function getDoctorsData($locale)

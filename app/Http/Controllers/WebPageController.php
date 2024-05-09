@@ -95,6 +95,19 @@ class WebPageController extends SmartController
         );
     }
 
+    public function departments($locale = null)
+    {
+        $locale = $locale = $locale ?? 'en';
+        App::setlocale($locale);
+        $departments = $this->connectorService->getDepartmentsData($locale);
+        return $this->buildResponse(
+            'frontend.departments',
+            [
+                'departments' => $departments
+            ]
+        );
+    }
+
     public function doctors($locale = null)
     {
         $locale = $locale = $locale ?? 'en';

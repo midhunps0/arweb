@@ -107,6 +107,7 @@ Route::group(['middleware' => ['ynotz.translation']], function () {
     // Route::get('/patient-videos', [WebPageController::class, 'patientVideos'])->name('videotestimonials');
     Route::get('/patient-testimonials', [WebPageController::class, 'patientReviews'])->name('patientreviews');
     // Route::get('/{locale}/news', [WebPageController::class, 'news'])->name('news.loc');
+    Route::get('/{locale}/our-departments', [WebPageController::class, 'departments'])->name('departments.loc');
     Route::get('/{locale}/our-blogs', [WebPageController::class, 'blog'])->name('blog.loc');
     Route::get('/{locale}/our-doctors', [WebPageController::class, 'doctors'])->name('doctors.loc');
     Route::get('/{locale}/our-photos', [WebPageController::class, 'photos'])->name('photos.loc');
