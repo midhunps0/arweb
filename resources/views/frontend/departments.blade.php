@@ -6,7 +6,7 @@
             <div class="flex flex-row flex-wrap justify-center items-stretch">
                 @foreach ($departments as $d)
                 {{-- {{dd($a->current_translation)}} --}}
-                    <div class="md:w-1/3 p-3 box-border">
+                    <div class="md:w-1/4 p-3 box-border">
                         <x-dept-component
                             title="{{$d->current_translation->data['title']}}"
                             src="{{$d->current_translation->display_image}}"/>

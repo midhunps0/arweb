@@ -119,13 +119,13 @@ body {
 .small-content .para{
     @apply hover:underline underline-offset-1;
 }
-<<<<<<< HEAD
+
 .box-shadow{
     @apply shadow shadow-customOrange rounded-lg py-2;
 }
 .box-shadow .para{
     @apply my-4;
-=======
+}
 
 .cube-enter-start {
     transform: translateX(50%) rotateY(90deg);
@@ -138,5 +138,4 @@ body {
 }
 .cube-leave-end {
     transform: translateX(-50%) rotateY(-90deg);
->>>>>>> da13eb2 (added home page slider)
 }

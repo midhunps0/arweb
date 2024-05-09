@@ -86,7 +86,7 @@
                     <p class="text-3xl lg:text-6xl font-semi-bold ">{{$instance->current_translation->data['departments_title']}}</p>
                     <div class="flex flex-col gap-y-6 xl:gap-y-8 lg:gap-y-4 xl:gap mt-6 lg:mt-20">
                         <div class="flex flex-col justify-center gap-y-6 lg:flex-row lg:gap-x-6 xl:gap-x-8  ">
-                            <x-dept-component src="{{url('/images/orthopedicsqr-modified.png')}}" title="{{ __('header.orthopaedics_and_trauma_surgery')}}" 
+                            <x-dept-component src="{{url('/images/orthopedicsqr-modified.png')}}" title="{{ __('header.orthopaedics_and_trauma_surgery')}}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'orthopaedics-and-trauma-surgery'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'orthopaedics-and-trauma-surgery'])}}'})"/>
                             <x-dept-component src="{{url('/images/neurologysqr-modified.png')}}" title="{{ __('header.neurology')}}"
@@ -103,7 +103,7 @@
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ent'])}}'})"/>
                         </div>
                         <div class="flex flex-col gap-y-6 lg:flex-row justify-center lg:gap-x-6 xl:gap-x-8">
-                            
+
                             <x-dept-component src="{{url('/images/dermatologysqr-modified.png')}}" title="{!! __('header.dermatology_&_cosmetology')!!}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'dermatology-cosmetology'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'dermatology-cosmetology'])}}'})"/>
@@ -120,9 +120,9 @@
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'emergency-medicine-and-critical-care'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'emergency-medicine-and-critical-care'])}}'})"/>
                         </div>
-                        
+
                         <div class="my-6">
-                            <x-button-component title="View All Departments" href="{{route('all_departments')}}"/>
+                            <x-button-component title="View All Departments" href="{{route('departments.loc', ['locale' => app()->currentLocale()])}}"/>
                         </div>
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                                 <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">{{ __('header.about') }}</p>
                                 <p class="text-3xl lg:text-5xl " >{{$instance->current_translation->data['commitment_title']}}</p>
                                 <p class="text-sm lg:text-lg">{{$instance->current_translation->data['commitment_description']}}</p>
-                                <x-transparent-button href="{{route('all_departments')}}"/>
+                                <x-transparent-button href="{{route('departments.loc', ['locale' => app()->currentLocale()])}}"/>
                             </div>
                         </div>
                     </div>

@@ -5,7 +5,7 @@
             $route = 'home.ar';
         }
     @endphp
-    <a href="{{route($route)}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route($route)}}', route: {{$route}}})"><img src="/images/speciality.png" class=" bg-gray-600 bg-opacity-5 w-52 px-3 py-2  rounded-full  " alt="craft_logo"></a>
+    <a href="{{route($route)}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route($route)}}', route: '{{$route}}'})"><img src="/images/speciality.png" class=" bg-gray-600 bg-opacity-5 w-52 px-3 py-2  rounded-full  " alt="craft_logo"></a>
 
     <div x-data="{open:!open}" class="w-1/6 flex justify-end p-2 lg:hidden overflow-y-scroll">
         <button @click="open = !open">
