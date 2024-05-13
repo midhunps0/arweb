@@ -27,9 +27,9 @@
                             }, 3000);
                         " class="md:flex justify-center lg:flex lg:justify-normal relative w-full m-auto md:w-4/5 lg:m-0">
                         {{-- <div class="w-4/5 lg:w-3/4 shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10" alt="baby_image"> --}}
-                            <img src="/images/home/bg.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
+                            <img src="/images/slider/bg.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
                         {{-- </div> --}}
-                        <div x-show="currentIndex == 0" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="nicu sicu micu ccu"
+                        <div x-show="currentIndex == 0" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0 rounded-3xl overflow-hidden" alt="nicu sicu micu ccu"
                             x-transition:enter="transition ease-in-out duration-1000"
                             x-transition:enter-start="cube-enter-start"
                             x-transition:enter-end="cube-enter-end"
@@ -39,7 +39,7 @@
                             >
                             <img src="/images/slider/world_class_care.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="0% emi offer">
                         </div>
-                        <div x-show="currentIndex == 1" class="h-full w-full shadow-[5px_5px_7px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0"
+                        <div x-show="currentIndex == 1" class="h-full w-full shadow-[5px_5px_7px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0 rounded-3xl overflow-hidden"
                             x-transition:enter="transition ease-in-out duration-1000"
                             x-transition:enter-start="cube-enter-start"
                             x-transition:enter-end="cube-enter-end"
@@ -49,7 +49,7 @@
                             >
                             <img src="/images/slider/cardiac_care.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image" alt="santhwanam package">
                         </div>
-                        <div x-show="currentIndex == 2" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="baby_image"
+                        <div x-show="currentIndex == 2" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0 rounded-3xl overflow-hidden" alt="baby_image"
                             x-transition:enter="transition ease-in-out duration-1000"
                             x-transition:enter-start="cube-enter-start"
                             x-transition:enter-end="cube-enter-end"
@@ -59,7 +59,7 @@
                             >
                             <img src="/images/slider/24x7_emergency.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="now in cochin">
                         </div>
-                        <div x-show="currentIndex == 3" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0" alt="emergency care"
+                        <div x-show="currentIndex == 3" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0 rounded-3xl overflow-hidden" alt="emergency care"
                             x-transition:enter="transition ease-in-out duration-1000"
                             x-transition:enter-start="cube-enter-start"
                             x-transition:enter-end="cube-enter-end"
