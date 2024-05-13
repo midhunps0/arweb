@@ -9,7 +9,8 @@
                     <div class="md:w-1/4 p-3 box-border">
                         <x-dept-component
                             title="{{$d->current_translation->data['title']}}"
-                            src="{{$d->current_translation->display_image}}"/>
+                            src="{{$d->current_translation->display_image}}"
+                            href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $d->current_translation->slug])}}"/>
                     </div>
                 @endforeach
             </div>

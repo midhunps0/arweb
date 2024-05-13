@@ -57,6 +57,16 @@
                     <div class="h-full flex flex-col box-border aspect-video border border-gray rounded-lgrelative bg-opacity-100 bg-white rounded-lg p-4">
                         <div class="w-full h-full flex flex-row items-start">
                             <div class="w-1/2">
+                                <div class="w-full flex flex-row gap-4 p-3 border border-black border-opacity-20 rounded-lg">
+                                    <div class="w-1/2">
+                                        <img :src="doctors[currentIndex].photo_url" alt="">
+                                    </div>
+                                    <div class="w-1/2 flex flex-col gap-y-4">
+                                        <div><span class="font-bold">Name: </span><br><span x-text="doctors[currentIndex].current_translation.data.name"></span></div>
+                                        <div><span class="font-bold">Designation: </span><br><span x-text="doctors[currentIndex].current_translation.data.designation"></span></div>
+                                        <div><span class="font-bold">Department: </span><br><span x-text="doctors[currentIndex].current_translation.data.department"></span></div>
+                                    </div>
+                                </div>
                                 <div class="relative z-10" style="position:relative;padding-bottom:56.25%">
                                     <iframe width="100%" height="100%"
                                         class="w-full absolute top-0 left-0" :src="doctors[currentIndex].current_translation.data.video_link"

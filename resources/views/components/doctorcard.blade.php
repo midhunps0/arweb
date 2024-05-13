@@ -14,14 +14,14 @@
     <div class="md:w-1/4 p-2 flex flex-col justify-center gap-y-2">
         <img src="{{$photo_url ?? ''}}" class="rounded-lg max-w-52 md:max-w-none" alt="doctor_image">
 
-        @if ((isset($video_link) && $video_link != '') || $experience != '')
+        {{-- @if ((isset($video_link) && $video_link != '') || $experience != '') --}}
         <div class="flex justify-end absolute top-4 right-4">
             <button @click.prevent="openScreen({{$index}})"class="bg-darkorange rounded-full px-4 py-2 flex justify-center items-center space-x-4 w-full text-white">
                 <span>Details</span>
                 <x-easyadmin::display.icon icon="icons.youtube-icon" height="h-6" width="w-6" class="fill-current"/>
             </button>
         </div>
-        @endif
+        {{-- @endif --}}
     </div>
     <div class="p-4 md:p-10 md:w-3/4">
 
