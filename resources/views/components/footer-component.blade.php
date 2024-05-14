@@ -2,8 +2,8 @@
         <div class="max-w-screen-2xl mx-auto">
                 <div class= "flex flex-col lg:flex-row max-w-9/10  mx-auto ">
                         <div class="lg:w-1/3 pt-16  flex flex-col justify-start gap-y-8 ">
-                                <div class="rounded-full bg-darkorange flex justify-center pb-2 pt-3 px-4 w-fit">
-                                        <img src="/images/logo.webp" class=" h-12    " alt="craft_logo">
+                                <div class="flex justify-center p-1 w-fit">
+                                        <img src="/images/ar_logo.webp" class="h-12" alt="craft_logo">
                                 </div>
                                 <div class="flex flex-row items-center gap-x-1 mt-6 ">
                                         <span class="fill-current text-white flex items-center ">
