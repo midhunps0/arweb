@@ -76,8 +76,8 @@
                             <p class="text-darkgray">{!!__('homecontent.most_trusted_hospital')!!}</p>
                             <p class="text-darkgray">{!!__('homecontent.for_infertility_treatment')!!}</p>
                         </div>
-                    </div>
                     </div> -->
+                    </div>
                     <x-button-fixed title="{{ __('button.chat_now')}}"/>
                 </div>
 
