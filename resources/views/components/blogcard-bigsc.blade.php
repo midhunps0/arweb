@@ -5,6 +5,6 @@
         <p class="text-sm lg:text-base font-thin  font-helvetica ltr:text-left rtl:text-right mt-6">{{ $content }}</p>
     </div>
     <div class="w-1/2  h-full">
-        <img src="{{$src}}" class="object-cover w-full h-48 md:h-full ltr:rounded-tr-3xl ltr:rounded-br-3xl rtl:rounded-tl-3xl rtl:rounded-bl-3xl " alt="">
+        <img src="{{$src}}" class="object-fit w-full h-48 md:h-full ltr:rounded-tr-3xl ltr:rounded-br-3xl rtl:rounded-tl-3xl rtl:rounded-bl-3xl " alt="">
     </div>
 </div>

@@ -70,14 +70,14 @@
                             <img src="/images/slider/nicu_sicu.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="ranked among tp 10">
                         </div>
                     </div>
-                    <div class="flex justify-center">
+                    <!-- <div class="flex justify-center">
                         <div
                             class="flex flex-col justify-center lg:hidden absolute  bg-lightgray/80 z-20  text-center font-franklin w-4/5 sm:w-11/12 md:w-11/12  text-2xl md:text-3xl py-6 md:py-12 md:-mt-16  -mt-12 shadow-[0px_10px_12px_-4px_rgba(0,0,0,0.3)]">
                             <p class="text-darkgray">{!!__('homecontent.most_trusted_hospital')!!}</p>
                             <p class="text-darkgray">{!!__('homecontent.for_infertility_treatment')!!}</p>
                         </div>
                     </div>
-                    </div>
+                    </div> -->
                     <x-button-fixed title="{{ __('button.chat_now')}}"/>
                 </div>
 
@@ -128,7 +128,7 @@
                 </div>
                 <div class="mt-6 max-w-9/10  mx-auto">
                     {{--  --}}
-                    <div class="bg-white flex flex-col lg:flex-row h-fit lg:mt-16">
+                    <div class="bg-white flex flex-col lg:flex-row  lg:mt-16">
 
                         <div class="lg:w-1/2  p-6  flex flex-col justify-center gap-y-4">
                             <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">{{ __('header.about') }}</p>
@@ -137,7 +137,7 @@
                             <div class="mt-6"><x-button-component title="{{ __('button.more_about_us')}}"/></div>
                         </div>
                         <div class="lg:w-1/2 py-6 lg:py-20 ">
-                            <img src="{{url('/images/doctor1.jpg')}}" class=" w-full  rounded-3xl "alt="doctor_image">
+                            <img src="{{url('/images/_DSC0104-fotor-20240516115640.webp')}}" class=" w-full rounded-3xl "alt="doctor_image">
                         </div>
                     </div>
                 </div>
