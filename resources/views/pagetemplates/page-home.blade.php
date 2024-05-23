@@ -137,7 +137,7 @@
                             <div class="mt-6"><x-button-component title="{{ __('button.more_about_us')}}"/></div>
                         </div>
                         <div class="lg:w-1/2 py-6 lg:py-20 ">
-                            <img src="{{url('/images/_DSC0104-fotor-20240516115640.webp')}}" class=" w-full rounded-3xl "alt="doctor_image">
+                            <img src="{{url('/images/ar_campus_modified.webp')}}" class=" w-full rounded-3xl "alt="ar_hospital_image">
                         </div>
                     </div>
                 </div>
