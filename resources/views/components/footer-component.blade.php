@@ -25,12 +25,12 @@
                                         <p class="text-white text-sm lg:text-base ">{!!__('footer.ar_address_kodungallur')!!}</p>
                                 </div>
                                 <div class="flex flex-row items-center gap-x-2 ">
-                                <span class="fill-current text-white flex items-center gap-x-3">
-                                        <x-easyadmin::display.icon icon="icons.facebook-icon" height="h-4" width="w-4"/>
-                                        <x-easyadmin::display.icon icon="icons.instagram-icon" height="h-4" width="w-4"/>
-                                        <x-easyadmin::display.icon icon="icons.linkedin-icon" height="h-4" width="w-4"/>
-                                        <x-easyadmin::display.icon icon="icons.youtube-icon" height="h-4" width="w-4"/>
-                                </span>
+                                <div class="flex items-center gap-x-3">
+                                        <a href="https://www.facebook.com/arsuperspecialityhospital/" target="blank" class="fill-current text-white"><x-easyadmin::display.icon icon="icons.facebook-icon" height="h-4" width="w-4"/></a>
+                                        <a href="https://www.instagram.com/arhospital/" target="blank" class="fill-current text-white"><x-easyadmin::display.icon icon="icons.instagram-icon" height="h-4" width="w-4"/></a>
+                                        <a href="https://in.linkedin.com/in/ar-medical-centre-aa5b91216" target="blank" class="fill-current text-white"><x-easyadmin::display.icon icon="icons.linkedin-icon" height="h-4" width="w-4"/></a>
+                                        <a href="https://www.youtube.com/@arhospital" target="blank" class="fill-current text-white"><x-easyadmin::display.icon icon="icons.youtube-icon" height="h-4" width="w-4"/></a>
+                                </div>
                                 </div>
 
                         </div>
