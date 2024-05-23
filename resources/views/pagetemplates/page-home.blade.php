@@ -194,9 +194,9 @@
                         <div class="mt-6 lg:py-6"><x-button-component href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"
                                             @click.prevent.stop="$dispatch('linkaction', {link: '{{route('blog.loc',['locale' => app()->currentLocale()])}}'})"  title="{{ __('button.view_all')}}"/></div>
                         <div class="flex flex-col items-center lg:flex-row lg:gap-2 xl:gap-6 mt-6">
-                            <x-rblogcard img_url="{{url('/images/preventive-healthcare1.jpg')}}" title="{{ __('header.preventive_health') }}"/>
-                            <x-rblogcard img_url="{{url('/images/mental-health.webp')}}" title="{{ __('header.mental_health') }}"/>
-                            <x-rblogcard img_url="{{url('/images/lifestyle-transformed.webp')}}" title="{{__('header.lifestyle')}}"/>
+                            <x-rblogcard img_url="{{url('/images/preventive-healthcare1.jpg')}}" title="{{ __('header.preventive_health') }}" slug="importance-of-lifestyle"/>
+                            <x-rblogcard img_url="{{url('/images/mental-health.webp')}}" title="{{ __('header.mental_health') }}" slug="mental-health-awareness-and-support"/>
+                            <x-rblogcard img_url="{{url('/images/lifestyle-transformed.webp')}}" title="{{__('header.lifestyle')}}" slug="the-importance-of-preventive-healthcare"/>
                         </div>
                     </div>
                 </div>

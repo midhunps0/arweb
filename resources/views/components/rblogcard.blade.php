@@ -1,4 +1,4 @@
-@props(['slug' => 'home', 'img_url'=>'', 'title' => ''])
+@props(['slug' => '', 'img_url'=>'', 'title' => '',])
 @php
     $link = route('articles.guest.show', ['slug' => $slug, 'locale' => app()->currentLocale()]);
 @endphp
