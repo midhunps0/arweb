@@ -38,41 +38,9 @@
                                 <div class="lg:w-1/4 mb-8 ">
                                 <p class="text-lg font-normal text-white mb-4">{{ __('header.departments')}}</p>
                                 <ul class="flex flex-col gap-3">
-                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'emergency-medicine-and-critical-care'])}}"
-                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'emergency-medicine-and-critical-care'])}}'})"
-                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!!__('footer.emergency_medicine_and_critical_care')!!}</a></li>
-
-                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'orthopaedics-and-trauma-surgery'])}}"
-                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'orthopaedics-and-trauma-surgery'])}}'})"
-                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!! __('footer.orthopaedics_and_trauma_surgery')!!}</a></li>
-
-                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'physiotherapy'])}}"
-                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'physiotherapy'])}}'})"
-                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.physiotherapy')}}</a></li>
-
-                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neurology'])}}"
-                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neurology'])}}'})"
-                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.neurology')}}</a></li>
-
                                         <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}'})"
                                                 class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.cardiology')}}</a></li>
-
-                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'urology'])}}"
-                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'urology'])}}'})"
-                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.urology')}}</a></li>
-
-                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ent'])}}"
-                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ent'])}}'})"
-                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.ent')}}</a></li>
-
-                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'dermatology-cosmetology'])}}"
-                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'dermatology-cosmetology'])}}'})"
-                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.dermatology_&_cosmetology')}}</a></li>
-
-                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'pediatrics-pediatric-surgery'])}}"
-                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'pediatrics-pediatric-surgery'])}}'})"
-                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!!__('footer.pediatrics_&_pediatric_surgery')!!}</a></li>
 
                                         <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'clinical-psychology'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'clinical-psychology'])}}'})"
@@ -81,6 +49,39 @@
                                         <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'craniofacial-surgery'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'craniofacial-surgery'])}}'})"
                                                 class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.craniofacial_surgery')}}</a></li>
+
+                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'dermatology-cosmetology'])}}"
+                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'dermatology-cosmetology'])}}'})"
+                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.dermatology_&_cosmetology')}}</a></li>
+
+                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'emergency-medicine-and-critical-care'])}}"
+                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'emergency-medicine-and-critical-care'])}}'})"
+                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!!__('footer.emergency_medicine_and_critical_care')!!}</a></li>
+
+                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ent'])}}"
+                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ent'])}}'})"
+                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.ent')}}</a></li>
+
+                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neurology'])}}"
+                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neurology'])}}'})"
+                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.neurology')}}</a></li>
+
+                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'orthopaedics-and-trauma-surgery'])}}"
+                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'orthopaedics-and-trauma-surgery'])}}'})"
+                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!! __('footer.orthopaedics_and_trauma_surgery')!!}</a></li>
+
+                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'pediatrics-pediatric-surgery'])}}"
+                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'pediatrics-pediatric-surgery'])}}'})"
+                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!!__('footer.pediatrics_&_pediatric_surgery')!!}</a></li>
+
+                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'physiotherapy'])}}"
+                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'physiotherapy'])}}'})"
+                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.physiotherapy')}}</a></li>
+
+                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'urology'])}}"
+                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'urology'])}}'})"
+                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.urology')}}</a></li>
+
                                 </ul>
                                 </div>
                                 <div class="lg:w-1/4 mb-8 ">
