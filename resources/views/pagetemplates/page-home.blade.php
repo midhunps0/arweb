@@ -147,20 +147,20 @@
                 <div class="max-w-screen-2xl mx-auto">
                     <div class="flex flex-col items-center ">
                         <div class="lg:hidden max-w-9/10  mx-auto flex flex-col gap-y-6 mt-6">
-                            <x-blog-card title="{{$instance->current_translation->data['value_title']}}" content="{{$instance->current_translation->data['value_description']}}" src="/images/values.png" />
-                            <x-blog-card title="{{$instance->current_translation->data['mission_title']}}" content="{{$instance->current_translation->data['mission_description']}}" src="/images/mission.png" />
-                            <x-blog-card title="{{$instance->current_translation->data['vision_title']}}" content="{{$instance->current_translation->data['vision_description']}}" src="/images/vision.png" />
+                            <x-blog-card title="{{$instance->current_translation->data['value_title']}}" content="{{$instance->current_translation->data['value_description']}}" src="/images/value.webp" />
+                            <x-blog-card title="{{$instance->current_translation->data['mission_title']}}" content="{{$instance->current_translation->data['mission_description']}}" src="/images/mission.webp" />
+                            <x-blog-card title="{{$instance->current_translation->data['vision_title']}}" content="{{$instance->current_translation->data['vision_description']}}" src="/images/vision.webp" />
                         </div>
                         <div class="max-w-9/10  mx-auto hidden lg:flex flex-row lg:gap-2 xl:gap-4 py-20 items-stretch">
                             <!-- <div class="w-1/2 flex h-full">
                             <x-blog-big title="{{$instance->current_translation->data['value_title']}}" content="{{$instance->current_translation->data['value_description']}}" />
                             </div> -->
                             <div class="w-1/2 flex flex-col lg:gap-3">
-                            <x-blogcard-bigsc  title="{{$instance->current_translation->data['value_title']}}" content="{{$instance->current_translation->data['value_description']}}" src="/images/values.png" />
-                            <x-blogcard-bigsc  title="{{$instance->current_translation->data['vision_title']}}" content="{{$instance->current_translation->data['vision_description']}}" src="/images/vision.png"/>
+                            <x-blogcard-bigsc  title="{{$instance->current_translation->data['value_title']}}" content="{{$instance->current_translation->data['value_description']}}" src="/images/value.webp" />
+                            <x-blogcard-bigsc  title="{{$instance->current_translation->data['vision_title']}}" content="{{$instance->current_translation->data['vision_description']}}" src="/images/vision.webp"/>
                             </div>
                             <div class="w-1/2 flex flex-col lg:gap-3">
-                                <x-blogcard-bigsc  title="{{$instance->current_translation->data['mission_title']}}" content="{{$instance->current_translation->data['mission_description']}}" src="/images/mission.png" />
+                                <x-blogcard-bigsc  title="{{$instance->current_translation->data['mission_title']}}" content="{{$instance->current_translation->data['mission_description']}}" src="/images/mission.webp" />
                                 <div class="flex flex-row justify-center bg-beige rounded-3xl w-full h-1/2 ">
                                     <div class="w-full h-full">
                                         <img src="/images/doctor-patient.webp" class="object-cover w-full h-full rounded-3xl " alt="">
