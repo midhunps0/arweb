@@ -86,37 +86,37 @@
                     <p class="text-3xl lg:text-6xl font-semi-bold ">{{$instance->current_translation->data['departments_title']}}</p>
                     <div class="flex flex-col gap-y-6 xl:gap-y-8 lg:gap-y-4 xl:gap mt-6 lg:mt-20">
                         <div class="flex flex-col justify-center gap-y-6 lg:flex-row lg:gap-x-6 xl:gap-x-8  ">
-                            <x-dept-component src="{{url('/images/orthopedicsqr-modified.png')}}" title="{{ __('header.orthopaedics_and_trauma_surgery')}}"
+                            <x-dept-component src="{{url('/images/orthopedicsqr_modified.webp')}}" title="{{ __('header.orthopaedics_and_trauma_surgery')}}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'orthopaedics-and-trauma-surgery'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'orthopaedics-and-trauma-surgery'])}}'})"/>
-                            <x-dept-component src="{{url('/images/neurologysqr-modified.png')}}" title="{{ __('header.neurology')}}"
+                            <x-dept-component src="{{url('/images/neurologywarm.webp')}}" title="{{ __('header.neurology')}}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neurology'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'neurology'])}}'})"/>
-                            <x-dept-component src="{{url('/images/cardilogysqr-modified.png')}}" title="{{ __('header.cardiology')}}"
+                            <x-dept-component src="{{url('/images/cardiologywarm.webp')}}" title="{{ __('header.cardiology')}}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}'})"/>
-                            <x-dept-component src="{{url('/images/physiotherapysqr-modified.png')}}" title="{{ __('header.physiotherapy')}}"
+                            <x-dept-component src="{{url('/images/physiotherapywarm.webp')}}" title="{{ __('header.physiotherapy')}}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'physiotherapy'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'physiotherapy'])}}'})"/>
-                            <x-dept-component src="{{url('/images/entsqr-modified.png')}}" title="{{ __('header.ent')}}"
+                            <x-dept-component src="{{url('/images/entsqr_modified.webp')}}" title="{{ __('header.ent')}}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ent'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ent'])}}'})"/>
                         </div>
                         <div class="flex flex-col gap-y-6 lg:flex-row justify-center lg:gap-x-6 xl:gap-x-8">
 
-                            <x-dept-component src="{{url('/images/dermatologysqr-modified.png')}}" title="{!! __('header.dermatology_&_cosmetology')!!}"
+                            <x-dept-component src="{{url('/images/dermatologywarm.webp')}}" title="{!! __('header.dermatology_&_cosmetology')!!}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'dermatology-cosmetology'])}}"
-                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'dermatology-cosmetology'])}}'})"/>
-                            <x-dept-component src="{{url('/images/pediatricsqr-modified.png')}}" title="{!! __('header.pediatrics_&_pediatric_surgery')!!}"
+                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'dermatology-cosmetology'])}}'})" />
+                            <x-dept-component src="{{url('/images/pediatricsqr.webp')}}" title="{!! __('header.pediatrics_&_pediatric_surgery')!!}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'pediatrics-pediatric-surgery'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'pediatrics-pediatric-surgery'])}}'})"/>
-                            <x-dept-component src="{{url('/images/clinicalpic1-modified.png')}}" title="{{ __('header.clinical_psychology')}}"
+                            <x-dept-component src="{{url('/images/clinical_psychology_modified.webp')}}" title="{{ __('header.clinical_psychology')}}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'clinical-psychology'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'clinical-psychology'])}}'})"/>
-                                                <x-dept-component src="{{url('/images/cranio-maxillofacial-surgery-modified.png')}}" title="{{ __('header.craniofacial_surgery')}}"
+                            <x-dept-component src="{{url('/images/cranio_maxillofacial_surgery.webp')}}" title="{{ __('header.craniofacial_surgery')}}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'craniofacial-surgery'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'craniofacial-surgery'])}}'})"/>
-                            <x-dept-component src="{{url('/images/emergencymedsqr-modified.png')}}" title="{!! __('header.emergency_medicine')!!}"
+                            <x-dept-component src="{{url('/images/emergency_criticalcare_modified.webp')}}" title="{!! __('header.emergency_medicine')!!}"
                                                 href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'emergency-medicine-and-critical-care'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'emergency-medicine-and-critical-care'])}}'})"/>
                         </div>
