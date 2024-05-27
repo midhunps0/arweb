@@ -118,7 +118,8 @@ class WebPageService implements ModelViewConnector {
 
     public function getDoctorsData($locale)
     {
-        return Doctor::paginate(30);
+        return Doctor::orderBy('department_id')
+            ->get();
     }
 
     public function getPhotosData($locale)

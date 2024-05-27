@@ -21,8 +21,14 @@ class Doctor extends Model implements MediaOwner
     protected $appends = [
         'translations_array',
         'current_translation',
-        'photo_url'
+        'photo_url',
+        'default_department'
     ];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id', 'id');
+    }
 
     public function defaultName(): Attribute
     {
@@ -37,9 +43,14 @@ class Doctor extends Model implements MediaOwner
     {
         return Attribute::make(
             get: function() {
-                return ($this->translations()->where('locale', App::getLocale())->get()->first()->data)['department'] ?? '';
+                return $this->department->default_title;
             }
         );
+        // return Attribute::make(
+        //     get: function() {
+        //         return ($this->translations()->where('locale', App::getLocale())->get()->first()->data)['department'] ?? '';
+        //     }
+        // );
     }
 
     public function defaultDesignation(): Attribute

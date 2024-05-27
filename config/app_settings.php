@@ -30,5 +30,5 @@ return [
     'airpay_username' => '1669076',
     'airpay_password' => 'u9RVqNzn',
     'airpay_api_key' => 'jBtjXt2NM7Xur8h6',
-    'airpay_mercid' => '270462',
+    'airpay_mercid' => '270462'
 ];

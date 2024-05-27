@@ -39,7 +39,7 @@
                     index="{{$loop->index}}"
                     name="{{$d->current_translation['data']['name']}}"
                     designation="{{$d->current_translation['data']['designation']}}"
-                    department="{{$d->current_translation['data']['department']}}"
+                    department="{{$d->default_department}}"
                     qualification="{{$d->current_translation['data']['qualification']}}"
                     specialization="{{$d->current_translation['data']['specialisations']}}"
                     experience="{{$d->current_translation['data']['exp_summary'] ?? ''}}"
@@ -64,7 +64,7 @@
                                     <div class="w-1/2 flex flex-col gap-y-4">
                                         <div><span class="font-bold">Name: </span><br><span x-text="doctors[currentIndex].current_translation.data.name"></span></div>
                                         <div><span class="font-bold">Designation: </span><br><span x-text="doctors[currentIndex].current_translation.data.designation"></span></div>
-                                        <div><span class="font-bold">Department: </span><br><span x-text="doctors[currentIndex].current_translation.data.department"></span></div>
+                                        <div><span class="font-bold">Department: </span><br><span x-text="doctors[currentIndex].default_department"></span></div>
                                     </div>
                                 </div>
                                 <div class="relative z-10" style="position:relative;padding-bottom:56.25%">

@@ -128,6 +128,7 @@ class PageTemplateController extends SmartController
         }
         // $t = PageTemplate::find($request->template_id);
         // dd($t);
+        // dd($viewFile);
         return response()->json(
             [
                 'form' => view(

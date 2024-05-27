@@ -13,6 +13,7 @@ class Department extends Model
 
     protected $appends = [
         'translations_array',
-        'current_translation'
+        'current_translation',
+        'default_title'
     ];
 }

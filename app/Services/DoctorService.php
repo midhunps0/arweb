@@ -269,7 +269,8 @@ class DoctorService implements ModelViewConnector {
     {
         return [
             'locale' => ['required', 'string'],
-            'slug' => ['required', 'string'],
+            // 'slug' => ['required', 'string'],
+            'department_id' => ['required', 'integer'],
             'photo' => ['required', 'string'],
             'data' => ['required', 'array'],
         ];
@@ -279,7 +280,8 @@ class DoctorService implements ModelViewConnector {
     {
         return [
             'locale' => ['required', 'string'],
-            'slug' => ['required', 'string'],
+            // 'slug' => ['required', 'string'],
+            'department_id' => ['required', 'integer'],
             'photo' => ['required', 'string'],
             'data' => ['required', 'array'],
         ];
@@ -331,7 +333,9 @@ class DoctorService implements ModelViewConnector {
     {
         try {
             DB::beginTransaction();
-            $wp = Doctor::create();
+            $wp = Doctor::create([
+                'department_id' => $data['department_id']
+            ]);
             $wp->addMediaFromEAInput('photo', $data['photo']);
 
             $translation = Translation::create(
@@ -374,7 +378,11 @@ class DoctorService implements ModelViewConnector {
              * @var Doctor
              */
             $wp = Doctor::find($id);
-
+            $wp->department_id = $data['department_id'];
+            info('department_id');
+            info($data['department_id']);
+            $wp->save();
+            $wp->refresh();
             $wp->syncMedia('photo', $data['photo']);
             /**
              * @var Translation

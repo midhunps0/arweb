@@ -1,15 +1,23 @@
+@php
+    $departments = App\Models\Department::get()->pluck('default_title', 'id');
+@endphp
 <div class="form-control">
     <label class="label" for="">Full Name</label>
     <input @change="$dispatch('titlechange', {key: 'create-doctor', value: $el.value});" name="data[name]" type="text" class="input input-bordered w-full" required />
 </div>
-<div class="form-control">
+{{-- <div class="form-control">
     <label class="label" for="">Slug</label>
     <input @titlechange.window="if ($event.detail.key == 'create-doctor') {$el.value = $event.detail.value.toLowerCase().replace(/ /g, '-').replace(/[@#\$%\^\&*()_\+=\[\]{};':\\\|,\.<>\/\?~`]/g, '');}" name="slug" type="text" class="input input-bordered w-full" required />
-</div>
+</div> --}}
 <div class="flex flex-row space-x-4 w-full">
     <div class="flex-grow form-control">
         <label class="label" for="">Departmant</label>
-        <input name="data[department]" type="text" class="input input-bordered w-full" required />
+        <select class="select select-md select-bordered text-base-content" name="department_id" id="">
+            <option value="">--Select One--</option>
+            @foreach ($departments as $id => $name)
+                <option value="{{$id}}">{{$name}}</option>
+            @endforeach
+        </select>
     </div>
     <div class="flex-grow form-control">
         <label class="label" for="">Designation</label>

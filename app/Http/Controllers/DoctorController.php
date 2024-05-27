@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\PageTemplate;
 use App\Services\DoctorService;
@@ -48,7 +49,7 @@ class DoctorController extends SmartController
     {
         $template = PageTemplate::where('template_file', config('app_settings.doctor_translation_component'))
             ->get()->first();
-            // dd($template);
+
         return $this->buildResponse(
             'admin.doctors.create',
             [
@@ -67,7 +68,7 @@ class DoctorController extends SmartController
             [
                 'doctor' => $doctor,
                 'doctorId' => $doctor->id,
-                'templateId' => $template->id
+                'templateId' => $template->id,
             ]
         );
     }
