@@ -47,7 +47,7 @@
         </div>
 
 
-        <p class="text-3xl text-darkorange font-semibold">{{$name}}</p>
+        <p class="text-xl text-darkorange font-semibold">{{$name}}</p>
         <p class="">{{$designation}}</p>
 
         <div  class="mt-2 flex flex-col gap-y-2 md:gap-y-8">

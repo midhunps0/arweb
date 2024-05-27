@@ -118,8 +118,13 @@ class WebPageService implements ModelViewConnector {
 
     public function getDoctorsData($locale)
     {
-        return Doctor::orderBy('department_id')
+        $doctors = Doctor::orderBy('department_id')
             ->get();
+        $data = [];
+        foreach ($doctors as $d) {
+            $data[$d->default_department][] = $d;
+        }
+        return $data;
     }
 
     public function getPhotosData($locale)

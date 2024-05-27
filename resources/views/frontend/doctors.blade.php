@@ -33,25 +33,30 @@
                     doctors = result.data;
                     console.log(doctors);
                 " class="min-h-2/3">
-                @foreach ($doctors as $d)
-                <div class="w-full p-2">
-                    <x-doctorcard
-                    index="{{$loop->index}}"
-                    name="{{$d->current_translation['data']['name']}}"
-                    designation="{{$d->current_translation['data']['designation']}}"
-                    department="{{$d->default_department}}"
-                    qualification="{{$d->current_translation['data']['qualification']}}"
-                    specialization="{{$d->current_translation['data']['specialisations']}}"
-                    experience="{{$d->current_translation['data']['exp_summary'] ?? ''}}"
-                    video_link="{{$d->current_translation['data']['video_link'] ?? null}}"
-                    photo_url="{{$d->photo_url}}"
-                    />
-                    {{-- <div class="box-border aspect-video border border-gray rounded-lg p-2">
-                        <div @click="openScreen({{$loop->index}})" class="w-full h-full object-fill overflow-hidden rounded-lg cursor-pointer">
-                            <img src="{{$p->image_url}}" alt="">
-                        </div>
-                    </div> --}}
-                </div>
+                @foreach ($doctors as $department => $docData)
+                <h4 class="font-bold underline text-xl text-center mt-12 mb-4 text-darkorange">{{$department}}</h4>
+                @foreach ($docData as $d)
+
+                    <div class="w-full p-2">
+                        <x-doctorcard
+                        index="{{$loop->index}}"
+                        name="{{$d->current_translation['data']['name']}}"
+                        designation="{{$d->current_translation['data']['designation']}}"
+                        department="{{$d->default_department}}"
+                        qualification="{{$d->current_translation['data']['qualification']}}"
+                        specialization="{{$d->current_translation['data']['specialisations']}}"
+                        experience="{{$d->current_translation['data']['exp_summary'] ?? ''}}"
+                        video_link="{{$d->current_translation['data']['video_link'] ?? null}}"
+                        photo_url="{{$d->photo_url}}"
+                        />
+                        {{-- <div class="box-border aspect-video border border-gray rounded-lg p-2">
+                            <div @click="openScreen({{$loop->index}})" class="w-full h-full object-fill overflow-hidden rounded-lg cursor-pointer">
+                                <img src="{{$p->image_url}}" alt="">
+                            </div>
+                        </div> --}}
+                    </div>
+                @endforeach
+
                 @endforeach
                 <div x-show="showScreen" class="fixed top-0 left-0 w-full h-full flex justify-center items-center p-10 bg-base-100 opacity-95 z-50 rounded-lg" x-transition>
                     <div class="h-full flex flex-col box-border aspect-video border border-gray rounded-lgrelative bg-opacity-100 bg-white rounded-lg p-4">
