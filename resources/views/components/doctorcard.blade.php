@@ -48,18 +48,18 @@
 
 
         <p class="text-xl text-darkorange font-semibold">{{$name}}</p>
-        <p class="">{{$designation}}</p>
+        <p class="">{!!$designation!!}</p>
 
-        <div  class="mt-2 flex flex-col gap-y-2 md:gap-y-8">
+        <div  class="mt-2 flex flex-col gap-y-2 md:gap-y-4">
             <div>
                 <p class="font-semibold">Department</p>
                 <p>{{$department}}</p>
             </div>
-            {{-- <div>
+            <div>
                 <p class="font-semibold">Qualification</p>
-                <p>{{$qualification}}</p>
+                <p>{!!\Illuminate\Support\Str::limit($qualification, 30, '...')!!}</p>
             </div>
-            @if ($specialization != '')
+            {{-- @if ($specialization != '')
             <div>
                 <p class="font-semibold">Specialization</p>
                 <p>{{$specialization}}</p>
