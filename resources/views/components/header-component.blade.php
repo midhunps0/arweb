@@ -311,8 +311,8 @@
                         <li><a href="{{route('videos.loc', ['locale' => app()->currentLocale()])}}"
                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('videos.loc', ['locale' => app()->currentLocale()])}}'})"
                                 class="text-gray-700   text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.our_videos')}}</a></li>
-                    
-                        <li><a href="https://www.youtube.com/@arhospital/videos" target="blank" class="text-gray-700   text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.our_youtube')}}</a></li>        
+
+                        <li><a href="https://www.youtube.com/@arhospital/videos" target="blank" class="text-gray-700   text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.our_youtube')}}</a></li>
                     </ul>
                 </div>
 
