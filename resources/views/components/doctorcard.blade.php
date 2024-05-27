@@ -10,7 +10,7 @@
     'photo_url' => null
     ])
 <div x-data="{ open:false }" class="border border-customOrange rounded-lg flex
-    flex-col md:flex-row relative">
+    flex-col md:flex-row relative h-full">
     <div class="md-w-1/3 p-2 flex flex-col justify-center gap-y-2">
         <img src="{{$photo_url ?? ''}}" class="rounded-lg w-48 md:max-w-none" alt="doctor_image">
 
