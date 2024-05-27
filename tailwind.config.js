@@ -13,7 +13,7 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                helvetica: ['HelveticaNeueItalic','sans-serif']
+                helvetica: ['HelveticaNeue','sans-serif']
             },
             width: {
                 '30': '7.5rem',
