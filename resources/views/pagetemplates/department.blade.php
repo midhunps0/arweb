@@ -5,7 +5,7 @@
             <x-page-title title="{{$instance->current_translation->data['title']}}" />
             <div class="flex flex-row">
                 {{-- main body --}}
-                <div class="md:w-4/5 m-auto">
+                <div class="m-auto">
                     <div>
                         @if (isset($instance->current_translation->data['body']))
                         <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['body'])"/>
@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 {{-- Sidebar --}}
-                <div class="md:w-1/4 px-3 py-6">
+                {{-- <div class="md:w-1/4 px-3 py-6">
                     <div class="w-full max-h-full overflow-y-scroll">
                         <h3 class="bg-lightgray font-bold p-2">Other Departments</h3>
                         @foreach ($data['allDepartments'] as $d)
@@ -22,13 +22,8 @@
                                     class="hover:text-pink underline">{{$d['title']}}</a>
                             </p>
                         @endforeach
-                        {{-- @if (isset($instance->current_translation->data['sidebar']))
-                        <div class="border border-gray bg-lightgray rounded-md p-2">
-                        <x-contentbuilder.renderer :content="json_decode($instance->current_translation->data['sidebar'])"/>
-                        </div>
-                        @endif --}}
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="mt-10">
