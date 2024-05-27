@@ -41,7 +41,7 @@
                 " class="min-h-2/3">
                 @foreach ($doctors as $department => $docData)
                 <h4 class="font-bold underline text-xl text-center mt-12 mb-4 text-darkorange">{{$department}}</h4>
-                <div class="flex justify-between items-stretch w-full flex-wrap">
+                <div class="flex justify-center items-stretch w-full flex-wrap">
                     @foreach ($docData as $d)
 
                         <div class="w-1/2 p-2">
