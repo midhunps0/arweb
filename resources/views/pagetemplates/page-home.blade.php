@@ -1,7 +1,7 @@
 <x-guest-layout>
     {{-- <div class="bg-white items-center max-w-8xl  mx-auto text-base-content "> --}}
         {{-- {{dd($data)}} --}}
-    <div class="font-helvetica max-w-8xl mx-auto">
+    <div class="max-w-8xl mx-auto text-base">
         <x-header-component />
         <div>
             <div class="max-w-screen-2xl mx-auto">

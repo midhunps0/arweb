@@ -11,11 +11,11 @@
     ])
 <div x-data="{ open:false }" class="border border-customOrange rounded-lg flex
     flex-col md:flex-row relative">
-    <div class="md:w-1/4 p-2 flex flex-col justify-center gap-y-2">
-        <img src="{{$photo_url ?? ''}}" class="rounded-lg max-w-52 md:max-w-none" alt="doctor_image">
+    <div class="md-w-1/3 p-2 flex flex-col justify-center gap-y-2">
+        <img src="{{$photo_url ?? ''}}" class="rounded-lg w-48 md:max-w-none" alt="doctor_image">
 
         {{-- @if ((isset($video_link) && $video_link != '') || $experience != '') --}}
-        <div class="flex justify-end absolute top-4 right-4">
+        <div class="flex justify-end absolute bottom-2 right-2">
             <button @click.prevent="openScreen({{$index}})"class="bg-darkorange rounded-full px-4 py-2 flex justify-center items-center space-x-4 w-full text-white">
                 <span>Details</span>
                 <x-easyadmin::display.icon icon="icons.youtube-icon" height="h-6" width="w-6" class="fill-current"/>
@@ -23,7 +23,7 @@
         </div>
         {{-- @endif --}}
     </div>
-    <div class="p-4 md:p-10 md:w-3/4">
+    <div class="p-4 flex-grow">
 
         <div x-show="false" class="fixed top-0 left-0 w-full h-full  ">
             <div class="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mx-auto flex flex-col justify-center  bg-white/95 h-screen">
@@ -55,7 +55,7 @@
                 <p class="font-semibold">Department</p>
                 <p>{{$department}}</p>
             </div>
-            <div>
+            {{-- <div>
                 <p class="font-semibold">Qualification</p>
                 <p>{{$qualification}}</p>
             </div>
@@ -64,7 +64,7 @@
                 <p class="font-semibold">Specialization</p>
                 <p>{{$specialization}}</p>
             </div>
-            @endif
+            @endif --}}
         </div>
     </div>
 </div>

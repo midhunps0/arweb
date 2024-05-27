@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="font-helvetica lg:text-base max-w-8xl mx-auto">
+    <div class="font-helvetica text-base max-w-8xl mx-auto">
         <x-header-component/>
         <div class="max-w-screen-2xl mx-auto">
             <div class="max-w-9/10 mx-auto">
