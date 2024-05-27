@@ -157,6 +157,8 @@
                                                 <li><a href="{{route('videos.loc', ['locale' => app()->currentLocale()])}}"
                                                         @click.prevent.stop="$dispatch('linkaction', {link: '{{route('videos.loc', ['locale' => app()->currentLocale()])}}'})"
                                                         class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.our_videos')}}</a></li>
+
+                                                <li><a href="https://www.youtube.com/@arhospital/videos" target="blank" class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.our_youtube')}}</a></li>
                                         </ul>
                                 </div>
 

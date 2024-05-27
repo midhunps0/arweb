@@ -50,8 +50,10 @@ return[
     'preventive_health' => 'Empowering Wellness: Prioritizing  Preventive Healthcare for a Vibrant Future',
     'mental_health' => 'Breaking the Silence: Nurturing Mental  Health and Well-Being',
     'lifestyle' => 'Navigating Lifestyle Diseases: A Path  to Wellness',
-    '' => '',
-    '' => '',
-    '' => '',
+    'our_youtube' => 'Our Youtube',
+    'intensive_care_unit' => 'Intensive Care Units',
+    'services' => 'Services',
+    '24x7_critical_care' => '24x7 Critical Care',
+    'international_patients'=>'International Patients', 
 ];
 ?>
