@@ -51,8 +51,15 @@ class WebPageController extends SmartController
         return $this->show('en', $slug);
     }
 
-    public function show($locale, $slug)
+    public function show($locale, $slug, $translationLink = null)
     {
+        if ($translationLink == null) {
+            $tl = $locale == 'en' ? 'ar' : 'en';
+            session(['translation_link' => route('webpages.guest.show', ['locale' => $tl, 'slug' => $slug])]);
+        } else {
+            session(['translation_link' => $translationLink]);
+        }
+
         try {
             $showPageData = $this->connectorService->getShowPageData($slug);
             $template = PageTemplate::find($showPageData->instance->template_id);
@@ -125,6 +132,8 @@ class WebPageController extends SmartController
     {
         $locale = $locale = $locale ?? 'en';
         App::setlocale($locale);
+        $tl = $locale == 'en' ? 'ar' : 'en';
+        session(['translation_link' => route('photos.loc', ['locale' => $tl, 'slug' => 'our-photos'])]);
         $photos = $this->connectorService->getPhotosData($locale);
         return $this->buildResponse(
             'frontend.photos',
@@ -138,6 +147,8 @@ class WebPageController extends SmartController
     {
         $locale = $locale = $locale ?? 'en';
         App::setlocale($locale);
+        $tl = $locale == 'en' ? 'ar' : 'en';
+        session(['translation_link' => route('videos.loc', ['locale' => $tl, 'slug' => 'our-videos'])]);
         $videos = $this->connectorService->getVideosData($locale);
         return $this->buildResponse(
             'frontend.videos',

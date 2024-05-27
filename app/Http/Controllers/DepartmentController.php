@@ -46,6 +46,9 @@ class DepartmentController extends SmartController
 
     public function show($locale, $slug)
     {
+        $tl = $locale == 'en' ? 'ar' : 'en';
+        session(['translation_link' => route('departments.guest.show', ['locale' => $tl, 'slug' => $slug])]);
+
         try {
             $showPageData = $this->connectorService->getShowPageData($slug);
 
