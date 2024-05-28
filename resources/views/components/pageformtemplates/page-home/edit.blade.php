@@ -49,13 +49,13 @@
     <input name="data[vision_description]" type="text" class="input input-bordered w-full" value="{{$instance->translations_array[$locale]['vision_description'] ?? ''}}" required />
 </div>
 <div>
-    <label class="label" for="">Commitment Title</label>
-    <input name="data[commitment_title]" type="text" class="input input-bordered w-full" value="{{$instance->translations_array[$locale]['commitment_title'] ?? ''}}" required />
+    <label class="label" for="">Review Title</label>
+    <input name="data[review_title]" type="text" class="input input-bordered w-full" value="{{$instance->translations_array[$locale]['review_title'] ?? ''}}" required />
 </div>
-<div>
+{{-- <div>
     <label class="label" for="">Commitment Description</label>
     <input name="data[commitment_description]" type="text" class="input input-bordered w-full" value="{{$instance->translations_array[$locale]['commitment_description'] ?? ''}}" required />
-</div>
+</div> --}}
 <div>
     <label class="label" for="">Blog Title</label>
     <input name="data[blog_title]" type="text" class="input input-bordered w-full" value="{{$instance->translations_array[$locale]['blog_title'] ?? ''}}" required />

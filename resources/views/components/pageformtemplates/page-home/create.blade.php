@@ -45,13 +45,13 @@
     <input name="data[vision_description]" type="text" class="input input-bordered w-full" required />
 </div>
 <div>
-    <label class="label" for="">Commitment Title</label>
-    <input name="data[commitment_title]" type="text" class="input input-bordered w-full" required />
+    <label class="label" for="">Review Title</label>
+    <input name="data[review_title]" type="text" class="input input-bordered w-full" required />
 </div>
-<div>
+{{-- <div>
     <label class="label" for="">Commitment Description</label>
     <input name="data[commitment_description]" type="text" class="input input-bordered w-full" required />
-</div>
+</div> --}}
 <div>
     <label class="label" for="">Blog Title</label>
     <input name="data[blog_title]" type="text" class="input input-bordered w-full" required />
