@@ -203,7 +203,7 @@
                         "
                         id="reviews-div" class="mb-4 pb-12 flex flex-col w-full px-12 max-w-[1500px] m-auto z-10 transition-all duration-500"
                         :class="xdone? 'bg-opacity-100 translate-y-0' : 'bg-opacity-0 opacity-0 translate-y-24'">
-                        <p class="text-3xl text-white text-opacity-90 p-2 lg:text-6xl ltr:text-left rtl:text-right" >{{$instance->current_translation->data['review_title'] ?? 'Patient Testimonials'}}</p>
+                        <p class="text-2xl text-white text-opacity-90 p-2 lg:text-6xl ltr:text-left rtl:text-right" >{{$instance->current_translation->data['review_title'] ?? 'Patient Testimonials'}}</p>
 
                         {{-- <div class="ltr:flex flex-row w-full rtl:flex-reverse mt-4">
                             <img src="/images/icons/google icon.webp" class="h-6 lg:h-8 xl:h-10 rounded-full border border-gray"
