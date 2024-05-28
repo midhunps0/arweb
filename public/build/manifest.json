@@ -1,12 +1,12 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-D4eRwLEn.css",
+    "file": "assets/app-BGQBSrrh.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
-  "resources/css/fonts/HelveticaNeueItalic.ttf": {
-    "file": "assets/HelveticaNeueItalic-DKx4JyHi.ttf",
-    "src": "resources/css/fonts/HelveticaNeueItalic.ttf"
+  "resources/css/fonts/HelveticaNeue.ttf": {
+    "file": "assets/HelveticaNeue-DT9g7X29.ttf",
+    "src": "resources/css/fonts/HelveticaNeue.ttf"
   },
   "resources/js/app.js": {
     "file": "assets/app-BCMqxNiK.js",
