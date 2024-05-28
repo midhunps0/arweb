@@ -41,14 +41,14 @@ class SidebarService implements SidebarServiceInterface
                 'icon' => 'easyadmin::icons.plus',
                 'show' => $user->hasPermissionTo('Facility: Edit')
             ],
-            // [
-            //     'type' => 'menu_item',
-            //     'title' => 'Reviews',
-            //     'route' => 'reviews.index',
-            //     'route_params' => [],
-            //     'icon' => 'easyadmin::icons.plus',
-            //     'show' => $user->hasPermissionTo('Review: Edit')
-            // ],
+            [
+                'type' => 'menu_item',
+                'title' => 'Reviews',
+                'route' => 'reviews.index',
+                'route_params' => [],
+                'icon' => 'easyadmin::icons.plus',
+                'show' => $user->hasPermissionTo('Review: Edit')
+            ],
             [
                 'type' => 'menu_item',
                 'title' => 'Videos',

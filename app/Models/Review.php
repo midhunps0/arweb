@@ -20,6 +20,8 @@ class Review extends Model implements MediaOwner
     protected $appends = [
         'translations_array',
         'current_translation',
+        'photo_url',
+        'thumbnail_url'
     ];
 
     public function defaultName(): Attribute
@@ -52,6 +54,21 @@ class Review extends Model implements MediaOwner
         return Attribute::make(
             get: function ($v) {
                 return $this->getSingleMediaFilePath('photo') != null ? Storage::url($this->getSingleMediaFilePath('photo')) : null;
+            }
+        );
+    }
+
+
+    public function thumbnailUrl(): Attribute
+    {
+        return Attribute::make(
+            get: function() {
+                if ($this->video_link == null || $this->video_link == "") {
+                    return null;
+                }
+                $id = explode('embed/', $this->video_link)[1];
+                $id = explode('?si=', $id)[0];
+                return "https://img.youtube.com/vi/{$id}/0.jpg";
             }
         );
     }

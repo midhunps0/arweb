@@ -9,6 +9,10 @@
     <textarea name="data[review]" class="textarea textarea-bordered h-24"></textarea>
 </div>
 <div>
+    <label class="label" for="">Video Link</label>
+    <input name="video_link" type="text" class="input input-bordered w-full"/>
+</div>
+<div>
     <label class="label" for="">Review Stars</label>
     <input name="stars" type="number" step="1" min="1" class="input input-bordered w-full" required />
 </div>

@@ -170,7 +170,7 @@
                         </div>
                     </div>
 
-                    <div class="max-w-9/10 mx-auto">
+                    {{-- <div class="max-w-9/10 mx-auto">
                         <div class=" flex flex-col-reverse items-center lg:flex-row lg:gap-6 py-12">
                             <div class="lg:w-1/2 mt-6 lg:py-6">
                                 <img src="{{url('/images/img5.png')}}" class=""alt="doctor_image">
@@ -182,7 +182,199 @@
                                 <x-transparent-button href="{{route('departments.loc', ['locale' => app()->currentLocale()])}}"/>
                             </div>
                         </div>
+                    </div> --}}
+
+                    <div x-data="{
+                            options: [],
+                            xdone: false,
+                            observer: null,
+                        }"
+                        x-init="
+                            options = {
+                                threshold: 0.2
+                            };
+                            observer = new IntersectionObserver((entries, observer) => {
+                                if(entries[0].isIntersecting) {
+                                    xdone = true;
+                                }
+                            }, options);
+                            let el = document.querySelector('#reviews-div');
+                            observer.observe(el);
+                        "
+                        id="reviews-div" class="mb-4 pb-12 flex flex-col w-full px-12 max-w-[1500px] m-auto z-10 transition-all duration-500"
+                        :class="xdone? 'bg-opacity-100 translate-y-0' : 'bg-opacity-0 opacity-0 translate-y-24'">
+                        <p class="text-3xl text-white text-opacity-90 p-2 lg:text-6xl ltr:text-left rtl:text-right" >{{$instance->current_translation->data['review_title'] ?? 'Patient Testimonials'}}</p>
+
+                        {{-- <div class="ltr:flex flex-row w-full rtl:flex-reverse mt-4">
+                            <img src="/images/icons/google icon.webp" class="h-6 lg:h-8 xl:h-10 rounded-full border border-gray"
+                                alt="">
+                            <p class="text-darkgray font-franklin ltr:text-left rtl:text-right  text-base lg:text-lg xl:text-xl xl:p-2">
+                                {{__('homecontent.reviews')}}</p>
+                        </div> --}}
+
+                        {{-- <div class="mt-8 flex justify-center md:hidden">
+                            <x-review-component />
+                        </div> --}}
+
+                        <div class="mt-8 justify-between">
+                            <div x-data="{
+                                    dir: 'ltr',
+                                    itemWidth: 0,
+                                    reviews: [],
+                                    currentItems: [],
+                                    slideForward() {
+                                        if (this.currentItems.length == 3 && this.currentItems[2] != this.reviews.length -1 ) {
+                                            this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
+                                        } else if (this.currentItems.length == 1 && this.currentItems[0] != this.reviews.length - 1) {
+                                            this.currentItems = [this.currentItems[0] + 1];
+                                        }
+                                    },
+                                    slideBackward() {
+                                        if (this.currentItems.length == 3 && this.currentItems[0] != 0 ) {
+                                            this.currentItems = [this.currentItems[0] - 1, this.currentItems[0], this.currentItems[1]];
+                                        } else if (this.currentItems.length == 1 && this.currentItems[0] != 0) {
+                                            this.currentItems = [this.currentItems[0] - 1];
+                                        }
+                                    },
+                                    setItemWidth() {
+                                        this.itemWidth = itemWidth = $el.offsetWidth / this.currentItems.length;
+                                    },
+                                    setCurrentItems () {
+                                        if (window.innerWidth > 768) {
+                                            if(this.currentItems.length != 3) {
+                                                let rlen = this.reviews.length;
+                                                this.currentItems = this.dir == 'ltr' ? [0, 1, 2] : [rlen - 3, rlen - 2, rlen - 1];
+                                            }
+                                        } else {
+                                            if(this.currentItems.length != 1) {
+                                                this.currentItems = this.dir == 'ltr' ? [0] : [this.reviews.length - 1];
+                                            }
+                                        }
+                                        this.setItemWidth();
+                                    },
+                                    fetchData() {
+                                        axios.get(
+                                            '{{route('home.reviews', ['locale' => app()->currentLocale()])}}',
+                                            {
+                                                params: {'locale': '{{app()->currentLocale()}}'}
+                                            }
+                                        ).then((r) => {
+                                            console.log('r.data reviews');
+                                            console.log(r.data[0]);
+                                            this.reviews = r.data[0];
+                                            this.setCurrentItems();
+                                            setInterval(() => {
+                                                this.autoPlay();
+                                            }, 2000);
+                                        }).catch((e) => {
+                                            //console.log(e);
+                                        });
+                                    },
+                                    autoPlay() {
+                                        if (this.currentItems.length == 3) {
+                                            if (this.currentItems[2] != this.reviews.length -1) {
+                                                this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
+                                            } else {
+                                                this.currentItems = [0, 1, 2];
+                                            }
+                                        } else if (this.currentItems.length == 1) {
+                                            if (this.currentItems[0] != this.reviews.length - 1) {
+                                                this.currentItems = [this.currentItems[0] + 1];
+                                            } else {
+                                                this.currentItems = [0];
+                                            }
+                                        }
+                                    }
+                                }"
+                                x-init="
+                                    dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
+
+                                    $nextTick(() => {
+                                        {{-- reviews = {{Js::from($data['reviews'])}}; --}}
+                                        fetchData();
+                                    });
+                                "
+                                @resize.window="setCurrentItems();"
+                                class="relative flex ltr:flex-row rtl:flex-row-reverse justify-between w-full overflow-x-hidden p-0 m-0"
+                                >
+                                <div  class="absolute z-10 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
+                                    <button type="button" @click.prevent.stop="slideBackward();" class="text-darkgray opacity-40 hover:opacity-100 cursor-pointer">
+                                        <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
+                                    </button>
+                                </div>
+                                <div class="relative flex ltr:flex-row rtl:flex-row-reverse justify-between w-full overflow-x-hidden p-0 m-0">
+                                    <template x-for="(r, i) in reviews">
+                                        <div class="transition-all overflow-hidden flex flex-row flex-nowrap justify-center" :style="currentItems.includes(i) ? `width: ${itemWidth}px` : 'width: 0px'" >
+                                            <div class="w-full h-96 m-3 text-sm" :style="`min-width: ${itemWidth - 20}px`">
+                                                <div class="relative shadow-[0px_1px_3px_2px_rgba(0,0,0,0.3)] h-full  bg-white bg-opacity-90 flex justify-center items-start rounded-xl overflow-hidden">
+                                                    <div x-show="r.video_link != null"  class="h-full flex flex-row items-center">
+                                                        <div :style="`width: ${itemWidth}px`">
+                                                            <div x-data="{videoOn: false}" class="relative z-10" style="position:relative;padding-bottom:56.25%">
+                                                                {{-- <template x-if="!videoOn">
+                                                                    <img @click="videoOn = true;" :src="v.thumbnail_url" alt="video testimonial" class="absolute top-0 left-0 h-full w-full">
+                                                                </template> --}}
+                                                                <template x-if="!videoOn">
+                                                                    <div class="absolute top-0 left-0 w-full h-full overflow-hidden flex justify-center items-center">
+                                                                        <img @click="videoOn = true;" :src="r.thumbnail_url" alt="video testimonial" class="w-full">
+                                                                        <div @click="videoOn = true;" class="absolute top-0 left-0 z-40 bg-transparent flex w-full h-full justify-center items-center">
+                                                                            <img src="{{asset('images/icons/yt_logo.png')}}" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                </template>
+                                                                <template x-if="videoOn">
+                                                                <iframe width="100%" height="100%"
+                                                                    class="w-full absolute top-0 left-0" :src="r.video_link+'&autoplay=1'"
+                                                                    title="YouTube video player" frameborder="0"
+                                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
+                                                                    referrerpolicy="origin" allowfullscreen></iframe>
+                                                                </template>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <img x-show="r.video_link == null" :src="r.photo_url" class="object-contain">
+                                                    <div x-show="r.video_link == null" @click="expand = !expand" x-data="{expand: false}" class="absolute p-3 z-10 bottom-0 left-0 bg-white w-full cursor-pointer transition-all" x-text="expand ? r.current_translation.data.review : r.current_translation.data.review.substr(0,120)+'...'"
+                                                    :class="{'overflow-hidden h-20 hover:text-darkorange bg-opacity-80' : !expand, 'overflow-scroll h-96 bg-opacity-95': expand}"></div>
+                                                    {{-- <div class="flex w-full p-2 items-center">
+                                                        <div>
+                                                            <img src="/images/icons/double qoute left1.png" class="h-16" alt="">
+                                                        </div>
+                                                        <div>
+                                                            <div>
+                                                                <p class="font-franklin font-bold text-sm" x-text="r.current_translation.data.reviewer"></p>
+                                                            </div>
+                                                            <div class="flex flex-row">
+                                                            <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
+                                                            <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
+                                                            <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
+                                                            <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
+                                                            <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="px-4 max-h-52 md:h-52 overflow-y-scroll">
+                                                        <p class="text-sm lg:leading-5 font-franklin font-normal text-left" x-text="r.current_translation.data.review"></p>
+                                                    </div> --}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                                <div :class="currentItems[currentItems.length - 1] != reviews.length - 1 || 'hidden'" class="absolute z-10 h-full top-0 right-0 flex flex-row items-center">
+                                    <button type="button" @click.prevent.stop="slideForward();" class="text-darkgray opacity-40 hover:opacity-100 cursor-pointer">
+                                        <x-easyadmin::display.icon icon="icons.chevron_right" height="h-20" width="w-20" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="mt-6 flex ltr:justify-end rtl:justify-end ltr:md:justify-center rtl:md:justify-center ltr:mr-10  rtl:ml-10 ltr:sm:mr-40 rtl:sm:ml-40 ltr:md:mr-0 rtl:md:ml-0 ">
+                            {{-- <x-viewallbutton-component text="{{ __('button.more_reviews') }}" href="{{route('patientreviews.loc', ['locale' => app()->currentLocale()])}}"/> --}}
+                        </div>
                     </div>
+
+
                 </div>
             </div>
 

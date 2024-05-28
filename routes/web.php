@@ -101,6 +101,7 @@ require __DIR__.'/auth.php';
 
 Route::group(['middleware' => ['ynotz.translation']], function () {
     Route::get('/{locale}/data/home/articles', [WebPageController::class, 'homeArticles'])->name('home.articles');
+    Route::get('/{locale}/data/home/reviews', [WebPageController::class, 'homeReviews'])->name('home.reviews');
     Route::get('/our-blogs', [WebPageController::class, 'blog'])->name('blog');
     Route::get('/our-doctors', [WebPageController::class, 'doctors'])->name('doctors');
     Route::get('/our-photos', [WebPageController::class, 'photos'])->name('photos');
