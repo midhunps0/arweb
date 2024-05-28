@@ -298,38 +298,40 @@
                 "
                 @resize.window="setCurrentItems();"
                 class="relative z-10 w-full">
-                <p class="text-sm text-darkorange bg-beige rounded-full py-1 w-16">{{ __('header.blogs') }}</p>
-                <p class="text-3xl lg:text-6xl ltr:text-left rtl:text-right" >{{$instance->current_translation->data['blog_title']}}</p>
-                <div class="mt-6 lg:py-6 ltr:text-left rtl:text-right"><x-button-component href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"
-                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('blog.loc',['locale' => app()->currentLocale()])}}'})"  title="{{ __('button.view_all')}}"/></div>
-                    <div id="articles-container" class="relative z-10 overflow-hidden py-4">
-                        <div  class="absolute z-50 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
-                            <button type="button" @click.prevent.stop="slideBackward();" class="text-gray md:text-white hover:opacity-40 cursor-pointer">
-                                <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
-                            </button>
-                        </div>
-                        <div class="w-fit flex flex-row transition-all" :style="`transform: translate(${wrapperOffset}px);`">
-                        <template x-for="(a,i) in articles">
-                            {{-- @foreach ($data['articles'] as $a) --}}
-                            <div :style="`width: ${itemWidth}px`" class="overflow-hidden">
-                                <div class="w-full flex flex-row justify-center md:justify-between">
-                                    <div class="mx-2 w-full py-2">
-                                        <x-rblogcard-js />
-                                    </div>
+                <div class="px-4">
+                    <p class="text-sm text-darkorange bg-beige rounded-full py-1 w-16">{{ __('header.blogs') }}</p>
+                    <p class="text-3xl lg:text-6xl ltr:text-left rtl:text-right" >{{$instance->current_translation->data['blog_title']}}</p>
+                    <div class="mt-6 lg:py-6 ltr:text-left rtl:text-right"><x-button-component href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"
+                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('blog.loc',['locale' => app()->currentLocale()])}}'})"  title="{{ __('button.view_all')}}"/></div>
+                </div>
+                <div id="articles-container" class="relative z-10 overflow-hidden py-4">
+                    <div  class="absolute z-50 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
+                        <button type="button" @click.prevent.stop="slideBackward();" class="text-gray md:text-white hover:opacity-40 cursor-pointer">
+                            <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
+                        </button>
+                    </div>
+                    <div class="w-fit flex flex-row transition-all" :style="`transform: translate(${wrapperOffset}px);`">
+                    <template x-for="(a,i) in articles">
+                        {{-- @foreach ($data['articles'] as $a) --}}
+                        <div :style="`width: ${itemWidth}px`" class="overflow-hidden">
+                            <div class="w-full flex flex-row justify-center md:justify-between">
+                                <div class="mx-2 w-full py-2">
+                                    <x-rblogcard-js />
                                 </div>
                             </div>
-                            {{-- @endforeach --}}
-                        </template>
                         </div>
-                        <div :class="currentItems[currentItems.length - 1] != articles.length - 1 || 'hidden'" class="absolute z-50 h-full top-0 right-0 flex flex-row items-center">
-                            <button type="button" @click.prevent.stop="slideForward();" class="text-gray md:text-white hover:opacity-40 cursor-pointer">
-                                <x-easyadmin::display.icon icon="icons.chevron_right" height="h-20" width="w-20" />
-                            </button>
-                        </div>
+                        {{-- @endforeach --}}
+                    </template>
                     </div>
-                    <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-4">
-                        {{-- <x-viewallbutton-component text="{{ __('button.more_articles') }}" href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"/> --}}
+                    <div :class="currentItems[currentItems.length - 1] != articles.length - 1 || 'hidden'" class="absolute z-50 h-full top-0 right-0 flex flex-row items-center">
+                        <button type="button" @click.prevent.stop="slideForward();" class="text-gray md:text-white hover:opacity-40 cursor-pointer">
+                            <x-easyadmin::display.icon icon="icons.chevron_right" height="h-20" width="w-20" />
+                        </button>
                     </div>
+                </div>
+                <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-4">
+                    {{-- <x-viewallbutton-component text="{{ __('button.more_articles') }}" href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"/> --}}
+                </div>
                 </div>
             </div>
 

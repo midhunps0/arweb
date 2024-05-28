@@ -2,7 +2,7 @@
 @php
     $link = route('articles.guest.show', ['slug' => '_X_', 'locale' => app()->currentLocale()]);
 @endphp
-<div class="w-80 lg:w-full flex flex-col h-full">
+<div class="w-80 lg:w-full flex flex-col h-full hover:scale-105 transition-all">
     <div  class="relative p-2 h-full rounded-lg">
         <a class="flex flex-row items-center p-1 gap-1" href="{{$link}}" @click.prevent.stop="$dispatch('linkaction', {
             link: '{{$link}}'.replace('_X_', a.current_translation.slug), route: 'articles.guest.show'
