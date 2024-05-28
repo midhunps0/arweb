@@ -154,7 +154,7 @@
                     <li><a href="{{route('contact' )}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('contact')}}', route: 'contact'})"
                     class="text-gray-700 text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.contact')}}</a></li>
 
-                    <li><a href="{{route('booking')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking' )}}', route: 'booking'})"
+                    <li><a href="{{route('booking', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking', ['locale' => app()->currentLocale()] )}}', route: 'booking'})"
                             class="bg-darkorange text-white rounded-full font-helvetica text-base py-3 px-4 block shadow-2xl cursor-pointer transition-all duration-700 ease-in-out hover:bg-black">{{ __('header.schedule_an_appointment')}}</a></li>
                 </ul>
             </div>
@@ -293,7 +293,7 @@
             <li><a href="{{route('contact')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('contact')}}', route: 'contact'})"
                     class="text-gray-700   lg:text-base xl:text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.contact')}}</a></li>
 
-            <li><a href="{{route('booking')}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking' )}}',route:'booking'})"
+            <li><a href="{{route('booking', ['locale' => app()->currentLocale()])}}" @click.prevent.stop="$dispatch('linkaction', {link: '{{route('booking', ['locale' => app()->currentLocale()] )}}',route:'booking'})"
                     class="bg-darkorange hover:bg-black  text-white rounded-full font-helvetica lg:text-base xl:text-base  py-3 px-4 shadow-2xl transition-all duration-700 ease-in-out cursor-pointer">{{ __('header.schedule_an_appointment')}}</a></li>
         </ul>
         <x-translation-button />

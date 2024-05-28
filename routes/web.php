@@ -38,7 +38,8 @@ use Modules\Ynotz\EasyAdmin\Services\RouteHelper;
 Route::get('/', [WebPageController::class, 'home'])->name('home');
 Route::get('/ar', [WebPageController::class, 'homeAr'])->name('home.ar');
 
-Route::get('/booking', [BookingController::class, 'bookingPage'])->name('booking');
+// Route::get('/booking', [BookingController::class, 'bookingPage'])->name('booking');
+Route::get('/{locale}/booking', [BookingController::class, 'bookingPage'])->name('booking');
 Route::get('/booking/specialties', [BookingController::class, 'specialties'])->name('booking.specialties');
 Route::get('/booking/doctors', [BookingController::class, 'doctors'])->name('booking.doctors');
 Route::get('/booking/dates', [BookingController::class, 'dates'])->name('booking.dates');

@@ -4,14 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Services\BookingService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Modules\Ynotz\SmartPages\Http\Controllers\SmartController;
 
 class BookingController extends SmartController
 {
-    public function bookingPage(BookingService $service)
+    private $service;
+    public function __construct(Request $request, BookingService $service)
+    {
+        $this->request = $request;
+        $this->service = $service;
+    }
+
+    public function bookingPage($locale)
     {
         try {
-            $data = $service->initData();
+            App::setlocale($locale);
+            if (!$this->service->solverOk) {
+                return $this->buildResponse(
+                    'pagetemplates.booking',
+                    [
+                        'success' => false,
+                        'error' => 'Booking Server Not Vailable.'
+                    ]
+                );
+            }
+            $data = $this->service->initData();
             return $this->buildResponse(
                 'pagetemplates.booking',
                 $data

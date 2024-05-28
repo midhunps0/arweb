@@ -9,6 +9,7 @@ class BookingService
 {
     private $solverToken;
     private $solverDomain;
+    public $solverOk = false;
 
     public function __construct()
     {
@@ -19,20 +20,41 @@ class BookingService
             ->orWhere('updated_at', '>', $today)
             ->get()->first();
         if ($token == null) {
+            if ($this->isSolverAvailable()) {
             $newToken = $this->fetchToken();
-            if (!isset($newToken)) {
-                // throw new Exception('Failed to connect to booking server');
-                return null;
-            } else {
-                $token = AppSetting::where('slug', 'solver_token')
-                ->get()->first();
-                $token->value = $newToken;
-                $token->updated_at = Carbon::now();
-                $this->solverToken = $newToken;
+                if (!isset($newToken)) {
+                    info('Fetching token failed');
+                    // throw new Exception('Failed to connect to booking server');
+                    // return null;
+                } else {
+                    $token = AppSetting::where('slug', 'solver_token')
+                    ->get()->first();
+                    $token->value = $newToken;
+                    $token->updated_at = Carbon::now();
+                    $this->solverToken = $newToken;
+                }
             }
         } else {
             $this->solverToken = $token->value;
         }
+    }
+
+    private function isSolverAvailable()
+    {
+        $host = config('app_settings.solver_ip');
+        $port = 80;
+        $waitTimeoutInSeconds = 1;
+        try{
+            if($fp = fsockopen($host,$port,$errCode,$errStr,$waitTimeoutInSeconds)){
+                $this->solverOk = true;
+            } else {
+                $this->solverOk = false;
+            }
+            fclose($fp);
+        } catch(Exception $e) {
+            $this->solverOk = false;
+        }
+        return $this->solverOk;
     }
 
     public function initData() {
