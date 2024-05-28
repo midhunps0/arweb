@@ -170,7 +170,7 @@
                         </div>
                     </div>
 
-                    <div class="max-w-9/10  mx-auto">
+                    <div class="max-w-9/10 mx-auto">
                         <div class=" flex flex-col-reverse items-center lg:flex-row lg:gap-6 py-12">
                             <div class="lg:w-1/2 mt-6 lg:py-6">
                                 <img src="{{url('/images/img5.png')}}" class=""alt="doctor_image">
@@ -186,8 +186,8 @@
                 </div>
             </div>
 
-            <div class="max-w-screen-2xl mx-auto">
-                <div class=" mt-10 xl:mt-16 max-w-9/10  mx-auto">
+            {{-- <div class="max-w-screen-2xl mx-auto">
+                <div class=" mt-10 xl:mt-16 max-w-9/10 mx-auto">
                     <div class="flex flex-col gap-4 ">
                         <p class="text-sm text-darkorange bg-beige text-center rounded-full py-1 w-16">{{ __('header.blogs') }}</p>
                         <p class="text-3xl lg:text-6xl " >{{$instance->current_translation->data['blog_title']}}</p>
@@ -200,15 +200,138 @@
                         </div>
                     </div>
                 </div>
-                <div class="max-w-9/10  mx-auto mt-6 lg:mt-32">
-                    <div class="bg-darkorange rounded-xl text-white p-4 lg:p-16 text-center">
-                        <p class="text-3xl md:text-4xl lg:text-6xl">{{$instance->current_translation->data['action_title']}}</p>
-                        <p class="text-base mt-2 ">{{$instance->current_translation->data['action_subtitle']}}</p>
-                        <div class="mt-16 mb-4"><x-beige-button title="{{__('header.schedule_an_appointment')}}" /></div>
+            </div> --}}
+
+            <div x-data="{
+                    options: [],
+                    xdone: false,
+                    observer: null,
+                }"
+                x-init="
+                    options = {
+                        threshold: 0.2
+                    };
+                    observer = new IntersectionObserver((entries, observer) => {
+                        if(entries[0].isIntersecting) {
+                            xdone = true;
+                        }
+                    }, options);
+                    let el = document.querySelector('#blogs-div');
+                    observer.observe(el);
+                "
+                id="blogs-div" class="relative flex flex-col w-full px-12 m-auto z-10 transition-all duration-1000 max-w-screen-2xl mx-auto text-center mt-6 lg:mt-36 items-center"
+                :class="xdone? 'bg-opacity-100 translate-y-0' : 'bg-opacity-0 opacity-0 translate-y-24'">
+
+                <div x-data="{
+                    dir: 'ltr',
+                    itemWidth: 0,
+                    itemHeight: 0,
+                    articles: [],
+                    currentItems: [],
+                    wrapperOffset: 0,
+                    slideForward() {
+                        if (this.currentItems[0] < this.articles.length - this.currentItems.length) {
+                            this.wrapperOffset = this.wrapperOffset - this.itemWidth;
+
+                            if (this.currentItems.length == 3 && this.currentItems[2] != this.articles.length -1 ) {
+                                this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
+                            } else if (this.currentItems.length == 1 && this.currentItems[0] != this.articles.length - 1) {
+                                this.currentItems = [this.currentItems[0] + 1];
+                            }
+                        }
+                    },
+                    slideBackward() {
+                        if (this.currentItems[0] > 0) {
+                            this.wrapperOffset = this.wrapperOffset + this.itemWidth;
+
+                            if (this.currentItems.length == 3 && this.currentItems[0] != 0 ) {
+                                this.currentItems = [this.currentItems[0] - 1, this.currentItems[0], this.currentItems[1]];
+                            } else if (this.currentItems.length == 1 && this.currentItems[0] != 0) {
+                                this.currentItems = [this.currentItems[0] - 1];
+                            }
+                        }
+                    },
+
+                    setItemWidth() {
+                        if (this.currentItems.length > 1) {
+                            this.itemWidth = document.getElementById('articles-container').offsetWidth / 3;
+                        } else {
+                            this.itemWidth = $el.offsetWidth
+                        }
+                        this.itemHeight = document.getElementById('articles-container').offsetHeight;
+                    },
+                    setCurrentItems () {
+                        if (window.innerWidth > 640) {
+                            if(this.currentItems.length != 3) {
+                                let rlen = this.articles.length;
+                                this.currentItems = this.dir == 'ltr' ? [0, 1, 2] : [rlen - 3, rlen - 2, rlen - 1];
+                            }
+                        } else {
+                            if(this.currentItems.length != 1) {
+                                this.currentItems = this.dir == 'ltr' ? [0] : [this.articles.length - 1];
+                            }
+                        }
+                        this.setItemWidth();
+                    },
+                    setWrapperOffset() {
+                        this.wrapperOffset = this.currentItems.length > 1 ? -this.itemWidth / 2 : 0;
+                    },
+                    fetchData() {
+                        axios.get(
+                            '{{route('home.articles', ['locale' => app()->currentLocale()])}}',
+                            {
+                                params: {'locale': '{{app()->currentLocale()}}'}
+                            }
+                        ).then((r) => {
+                            this.articles = r.data[0];
+                            console.log('aaa...')
+                            console.log(this.articles);
+                            this.setCurrentItems();
+                        }).catch((e) => {
+                            //console.log(e);
+                        });
+                    }
+                }"
+                x-init="
+                    dir = '{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}';
+                    fetchData();
+                "
+                @resize.window="setCurrentItems();"
+                class="relative z-10 w-full">
+                <p class="text-sm text-darkorange bg-beige rounded-full py-1 w-16">{{ __('header.blogs') }}</p>
+                <p class="text-3xl lg:text-6xl ltr:text-left rtl:text-right" >{{$instance->current_translation->data['blog_title']}}</p>
+                <div class="mt-6 lg:py-6 ltr:text-left rtl:text-right"><x-button-component href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"
+                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('blog.loc',['locale' => app()->currentLocale()])}}'})"  title="{{ __('button.view_all')}}"/></div>
+                    <div id="articles-container" class="relative z-10 overflow-hidden py-4">
+                        <div  class="absolute z-50 h-full top-0 left-0 flex flex-row items-center" :class="currentItems[0] != 0 || 'hidden'">
+                            <button type="button" @click.prevent.stop="slideBackward();" class="text-gray md:text-white hover:opacity-40 cursor-pointer">
+                                <x-easyadmin::display.icon icon="icons.chevron_left" height="h-20" width="w-20" />
+                            </button>
+                        </div>
+                        <div class="w-fit flex flex-row transition-all" :style="`transform: translate(${wrapperOffset}px);`">
+                        <template x-for="(a,i) in articles">
+                            {{-- @foreach ($data['articles'] as $a) --}}
+                            <div :style="`width: ${itemWidth}px`" class="overflow-hidden">
+                                <div class="w-full flex flex-row justify-center md:justify-between">
+                                    <div class="mx-2 w-full py-2">
+                                        <x-rblogcard-js />
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- @endforeach --}}
+                        </template>
+                        </div>
+                        <div :class="currentItems[currentItems.length - 1] != articles.length - 1 || 'hidden'" class="absolute z-50 h-full top-0 right-0 flex flex-row items-center">
+                            <button type="button" @click.prevent.stop="slideForward();" class="text-gray md:text-white hover:opacity-40 cursor-pointer">
+                                <x-easyadmin::display.icon icon="icons.chevron_right" height="h-20" width="w-20" />
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative flex flex-row ltr:justify-end rtl:justify-end w-full mt-4">
+                        {{-- <x-viewallbutton-component text="{{ __('button.more_articles') }}" href="{{route('blog.loc', ['locale' => app()->currentLocale()])}}"/> --}}
                     </div>
                 </div>
             </div>
-
 
             <div class="mt-10 ">
                 <x-footer-component />

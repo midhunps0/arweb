@@ -101,6 +101,11 @@ class WebPageService implements ModelViewConnector {
         );
     }
 
+    public function getHomeArticles($locale)
+    {
+        return Article::orderBy('id', 'desc')->limit(8)->get();
+    }
+
     public function getNewsData($locale)
     {
         return News::paginate(30);

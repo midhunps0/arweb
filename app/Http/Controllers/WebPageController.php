@@ -223,4 +223,19 @@ class WebPageController extends SmartController
         );
     }
 
+    public function homeReviews($locale)
+    {
+        $data = $this->connectorService->getHomeReviews($locale);
+        return response()->json([
+            $data
+        ]);
+    }
+
+    public function homeArticles($locale)
+    {
+        $data = $this->connectorService->getHomeArticles($locale);
+        return response()->json([
+            $data
+        ]);
+    }
 }
