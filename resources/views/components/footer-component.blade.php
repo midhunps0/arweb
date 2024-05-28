@@ -87,41 +87,25 @@
                                 <div class="lg:w-1/4 mb-8 ">
                                         <p class="text-lg font-normal text-white mb-4 ">{{ __('header.facilities')}}</p>
                                         <ul class="flex flex-col gap-3">
-                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-emergency-medicine-and-critical-care'])}}"
-                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-emergency-medicine-and-critical-care'])}}'})"
-                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!!__('footer.24×7_emergency_medicine_and_critical_care')!!}</a></li>
+                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-critical-care'])}}"
+                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-critical-care'])}}'})"
+                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{!!__('header.24x7_critical_care')!!}</a></li>
 
-                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-cardiac-care'])}}"
-                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-cardiac-care'])}}'})"
-                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.24×7_cardiac_care')}}</a></li>
+                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'intensive-care-units'])}}"
+                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'intensive-care-units'])}}'})"
+                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.intensive_care_unit')}}</a></li>
 
-                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'delivery-packages'])}}"
-                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'delivery-packages'])}}'})"
-                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.delivery_packages')}}</a></li>
-
-                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'health-check-up-packages'])}}"
-                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'health-check-up-packages'])}}'})"
-                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.health_check-up_packages')}}</a></li>
+                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'services'])}}"
+                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'services'])}}'})"
+                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.services')}}</a></li>
 
                                                 <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'health-insurance'])}}"
                                                         @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'health-insurance'])}}'})"
                                                         class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.health_insurance')}}</a></li>
 
-                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'nicu'])}}"
-                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'nicu'])}}'})"
-                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.nicu')}}</a></li>
-
-                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'sicu'])}}"
-                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'sicu'])}}'})"
-                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.sicu')}}</a></li>
-
-                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'micu'])}}"
-                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'micu'])}}'})"
-                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.micu')}}</a></li>
-
-                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ccu'])}}"
-                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'ccu'])}}'})"
-                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.ccu')}}</a></li>
+                                                <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'international-patients'])}}"
+                                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'international-patients'])}}'})"
+                                                        class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.international_patients')}}</a></li>
 
                                                 <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'other-facilities'])}}"
                                                         @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'other-facilities'])}}'})"
