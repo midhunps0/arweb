@@ -222,6 +222,7 @@
                                     itemWidth: 0,
                                     reviews: [],
                                     currentItems: [],
+                                    playInterval: null,
                                     slideForward() {
                                         if (this.currentItems.length == 3 && this.currentItems[2] != this.reviews.length -1 ) {
                                             this.currentItems = [this.currentItems[1], this.currentItems[2], this.currentItems[2] + 1];
@@ -263,7 +264,7 @@
                                             console.log(r.data[0]);
                                             this.reviews = r.data[0];
                                             this.setCurrentItems();
-                                            setInterval(() => {
+                                            this.playInterval = setInterval(() => {
                                                 this.autoPlay();
                                             }, 2000);
                                         }).catch((e) => {
@@ -315,8 +316,8 @@
                                                                 </template> --}}
                                                                 <template x-if="!videoOn">
                                                                     <div class="absolute top-0 left-0 w-full h-full overflow-hidden flex justify-center items-center">
-                                                                        <img @click="videoOn = true;" :src="r.thumbnail_url" alt="video testimonial" class="w-full">
-                                                                        <div @click="videoOn = true;" class="absolute top-0 left-0 z-40 bg-transparent flex w-full h-full justify-center items-center">
+                                                                        <img @click="videoOn = true; clearInterval(playInterval);" :src="r.thumbnail_url" alt="video testimonial" class="w-full">
+                                                                        <div @click="videoOn = true; clearInterval(playInterval);" class="absolute top-0 left-0 z-40 bg-transparent flex w-full h-full justify-center items-center cursor-pointer">
                                                                             <img src="{{asset('images/icons/yt_logo.png')}}" alt="">
                                                                         </div>
                                                                     </div>
@@ -333,7 +334,7 @@
                                                     </div>
 
                                                     <img x-show="r.video_link == null" :src="r.photo_url" class="object-contain">
-                                                    <div x-show="r.video_link == null" @click="expand = !expand" x-data="{expand: false}" class="absolute p-3 z-10 bottom-0 left-0 bg-white w-full cursor-pointer transition-all" x-text="expand ? r.current_translation.data.review : r.current_translation.data.review.substr(0,120)+'...'"
+                                                    <div x-show="r.video_link == null" @click="expand = !expand" x-data="{expand: false}" class="absolute p-3 z-10 bottom-0 left-0 bg-white w-full cursor-pointer transition-all" x-text="expand ? r.current_translation.data.review : (r.current_translation.data.review ? r.current_translation.data.review.substr(0,120)+'...' : '')"
                                                     :class="{'overflow-hidden h-20 hover:text-darkorange bg-opacity-80' : !expand, 'overflow-scroll h-96 bg-opacity-95': expand}"></div>
                                                     {{-- <div class="flex w-full p-2 items-center">
                                                         <div>
