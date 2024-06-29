@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use App\Models\Department;
 use App\Models\Doctor;
 use App\Models\MetatagsList;
 use App\Models\Translation;
@@ -44,6 +45,12 @@ class DoctorService implements ModelViewConnector {
         // $this->relations = [];
         $this->exportsEnabled = false;
         // $this->downloadFileName = 'results';
+        $this->searchesMap = [
+            'name' => 'defaultTranslation'
+        ];
+        // $this->filtersMap = [
+        //     'department' => 'id'
+        // ];
     }
 
     // public function getShowPageData($slug): ShowPageData
@@ -65,7 +72,25 @@ class DoctorService implements ModelViewConnector {
 
     protected function relations()
     {
-        return [];
+        return [
+            'defaultTranslation' => [
+                'search_column' => '',
+                'filter_column' => '',
+                'search_fn' => function ($query, $op, $val) {
+                    $query->whereHas('translations', function($q) use($val) {
+                        return $q->where('data->name', 'Shyni abraham');
+                    });
+                }
+            ],
+            'department' => [
+                'filter_column' => 'id',
+                'filter_fn' => function ($query, $op, $val) {
+                    $query->whereHas('department', function($q) use($val) {
+                        return $q->where('id', $val);
+                    });
+                }
+            ]
+        ];
         // // Example:
         // return [
         //     'author' => [
@@ -80,6 +105,9 @@ class DoctorService implements ModelViewConnector {
         //     ],
         // ];
     }
+
+
+
     protected function getPageTitle(): string
     {
         return "Doctors";
@@ -89,13 +117,14 @@ class DoctorService implements ModelViewConnector {
     {
         return $this->indexTable->addHeaderColumn(
             title: 'Name',
-            // sort: ['key' => 'name'],
+            // search: ['key' => 'name', 'condition' => 'st', 'label' => 'Search Doctors' ]
         )
         ->addHeaderColumn(
             title: 'Designation',
         )
         ->addHeaderColumn(
             title: 'Department',
+            filter: ['key' => 'department', 'options' => Department::all()->pluck('default_title', 'id')]
         )
         ->addHeaderColumn(
             title: 'Actions'

@@ -13,6 +13,12 @@ trait HasTranslations {
         return $this->morphMany(Translation::class, 'translatable');
     }
 
+    public function defaultTranslation(): MorphMany
+    {
+        return $this->morphMany(Translation::class, 'translatable')
+            ->where('locale', 'en');
+    }
+
     public function defaultTitle(): Attribute
     {
         return Attribute::make(
