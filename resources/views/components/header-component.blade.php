@@ -40,6 +40,14 @@
 
                         <div x-show="open" class="w-60 h-fit bg-white flex flex-col mx-auto  rounded-lg " x-on:click.outside="open = false">
                         <ul class=" p-6 flex flex-col gap-2 ltr:text-left rtl:text-right   ">
+                            @foreach ($departments_data as $d)
+                            <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $d->translations_slugs[app()->currentLocale()]])}}"
+                                        @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $d->translations_slugs[app()->currentLocale()]])}}'})"
+                                class="text-gray-700 sm:text-base  text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer">
+                                {{-- {{ __('header.cardiology')}} --}}
+                                {{$d->translations_array[app()->currentLocale()]['title']}}
+                            </a></li>
+                            @endforeach
                             {{-- <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}"
                                         @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}'})"
                                         class="text-gray-700 sm:text-base  text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer   ">{{ __('header.cardiology')}}</a></li>
@@ -180,15 +188,15 @@
                     <p>{{ __('header.departments')}}</p>
                     <x-easyadmin::display.icon icon="icons.chevron_down" height="h-5" width="w-5"/>
                 </button>
-                <div x-show="open" class="absolute h-fit bg-white  border-t-2 border-darkorange  shadow-xl z-20 flex md:w-[400px] lg:w-[700px] rounded-lg">
+                <div x-show="open" class="absolute h-fit bg-white  border-t-2 border-darkorange  shadow-xl z-20 flex md:w-[400px] lg:w-[700px] ">
                     <ul class=" p-6 flex flex-row flex-wrap gap-4 ltr:text-left rtl:text-right">
                         @foreach ($departments_data as $d)
                         <li class="p-1 border border-darkorange rounded-md text-gray-700 hover:text-white  hover:bg-darkorange transition-colors duration-300 ease-in-out"><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $d->translations_slugs[app()->currentLocale()]])}}"
-                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $d->translations_slugs[app()->currentLocale()]])}}'})"
-                        class=" text-base cursor-pointer  ">
-                        {{-- {{ __('header.cardiology')}} --}}
-                        {{$d->translations_array[app()->currentLocale()]['title']}}
-                    </a></li>
+                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $d->translations_slugs[app()->currentLocale()]])}}'})"
+                            class=" text-base cursor-pointer  ">
+                            {{-- {{ __('header.cardiology')}} --}}
+                            {{$d->translations_array[app()->currentLocale()]['title']}}
+                        </a></li>
                         @endforeach
                         {{-- <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}'})"
