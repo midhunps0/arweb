@@ -5,7 +5,6 @@ use App\Models\Translation;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Lang;
 
 trait HasTranslations {
     public function translations(): MorphMany
@@ -54,6 +53,20 @@ trait HasTranslations {
                 foreach (config('app_settings.enabled_locales') as $c => $l) {
                     $t = $this->getTranslation($c);
                     $ar[$c] = $t != null ? $t->data : [];
+                }
+                return $ar;
+            }
+        );
+    }
+
+    public function translationsSlugs(): Attribute
+    {
+        return Attribute::make(
+            get: function ($v) {
+                $ar = [];
+                foreach (config('app_settings.enabled_locales') as $c => $l) {
+                    $t = $this->getTranslation($c);
+                    $ar[$c] = $t != null ? ($t->slug ?? '') : [];
                 }
                 return $ar;
             }

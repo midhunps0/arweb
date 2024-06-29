@@ -78,7 +78,11 @@ class DoctorService implements ModelViewConnector {
                 'filter_column' => '',
                 'search_fn' => function ($query, $op, $val) {
                     $query->whereHas('translations', function($q) use($val) {
-                        return $q->where('data->name', 'Shyni abraham');
+                        return $q->where('data->name', 'LIKE', '%'.$val.'%')
+                            ->orWhere('data->name', 'LIKE', '%'.Str::lower($val).'%')
+                            ->orWhere('data->name', 'LIKE', '%'.Str::upper($val).'%')
+                            ->orWhere('data->name', 'LIKE', '%'.Str::studly($val).'%')
+                            ->orWhere('data->name', 'LIKE', '%'.Str::camel($val).'%');
                     });
                 }
             ],
@@ -117,7 +121,7 @@ class DoctorService implements ModelViewConnector {
     {
         return $this->indexTable->addHeaderColumn(
             title: 'Name',
-            // search: ['key' => 'name', 'condition' => 'st', 'label' => 'Search Doctors' ]
+            search: ['key' => 'name', 'condition' => 'st', 'label' => 'Search Doctors' ]
         )
         ->addHeaderColumn(
             title: 'Designation',

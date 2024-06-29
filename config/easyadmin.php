@@ -17,7 +17,7 @@ return [
     'dashboard_controller' => DashboardController::class,
     'dashboard_method' => 'dashboard',
     'sidebar_services' => [
-        SidebarService::class,
+        // SidebarService::class,
         App\Services\SidebarService::class,
     ],
     'dashboard_view' => 'easyadmin::admin.dashboard',
