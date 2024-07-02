@@ -37,7 +37,18 @@
                         doctors.push(...result[x]);
                     });
                     {{-- doctors = result.data; --}}
+                    console.log('doctors');
                     console.log(doctors);
+                    @if(request()->doc != null)
+                        let d = {{request()->doc}};
+                        for(let x = 0; x < doctors.length; x++) {
+                            console.log(doctors[x]);
+                            if(doctors[x]['id'] == d) {
+                                openScreen(x);
+                                break;
+                            }
+                        }
+                    @endif
                 " class="min-h-2/3">
                 @foreach ($doctors as $department => $docData)
                 <h4 class="font-bold underline text-xl text-center mt-12 mb-4 text-darkorange">{{$department}}</h4>
@@ -85,6 +96,9 @@
                                         title="YouTube video player" frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"
                                         referrerpolicy="origin" allowfullscreen></iframe>
+                                </div>
+                                <div class="text-xs">
+                                    <span x-text="'{{route('doctors').'?doc='}}'+doctors[currentIndex].id"></span>
                                 </div>
                             </div>
                             <div class="flex-grow overflow-y-scroll bg-red w-1/2 h-full px-4 leading-8 text-sm">
