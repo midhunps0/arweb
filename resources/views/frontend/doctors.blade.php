@@ -50,14 +50,16 @@
                         }
                     @endif
                 " class="min-h-2/3">
+                @php
+                    $docIndex = 0;
+                @endphp
                 @foreach ($doctors as $department => $docData)
                 <h4 class="font-bold underline text-xl text-center mt-12 mb-4 text-darkorange">{{$department}}</h4>
                 <div class="flex justify-center items-stretch w-full flex-wrap">
                     @foreach ($docData as $d)
-
                         <div class="w-1/2 p-2">
                             <x-doctorcard
-                            index="{{$loop->index}}"
+                            index="{{$docIndex}}"
                             name="{{$d->current_translation['data']['name']}}"
                             designation="{{$d->current_translation['data']['designation']}}"
                             department="{{$d->default_department}}"
@@ -73,6 +75,9 @@
                                 </div>
                             </div> --}}
                         </div>
+                        @php
+                            $docIndex++;
+                        @endphp
                     @endforeach
                 </div>
                 @endforeach
