@@ -70,6 +70,9 @@ body {
 .card h3{
     @apply text-customOrange;
 }
+.card .para {
+    @apply my-2;
+}
 .card .list{
     @apply list-disc px-4;
 }
