@@ -304,6 +304,7 @@ class DoctorService implements ModelViewConnector {
             'locale' => ['required', 'string'],
             // 'slug' => ['required', 'string'],
             'department_id' => ['required', 'integer'],
+            'is_active' => ['required', 'boolean'],
             'photo' => ['required', 'string'],
             'data' => ['required', 'array'],
         ];
@@ -315,6 +316,7 @@ class DoctorService implements ModelViewConnector {
             'locale' => ['required', 'string'],
             // 'slug' => ['required', 'string'],
             'department_id' => ['required', 'integer'],
+            'is_active' => ['required', 'boolean'],
             'photo' => ['required', 'string'],
             'data' => ['required', 'array'],
         ];
@@ -367,7 +369,8 @@ class DoctorService implements ModelViewConnector {
         try {
             DB::beginTransaction();
             $wp = Doctor::create([
-                'department_id' => $data['department_id']
+                'department_id' => $data['department_id'],
+                'is_active' => $data['is_active']
             ]);
             $wp->addMediaFromEAInput('photo', $data['photo']);
 
@@ -412,6 +415,7 @@ class DoctorService implements ModelViewConnector {
              */
             $wp = Doctor::find($id);
             $wp->department_id = $data['department_id'];
+            $wp->is_active = $data['is_active'];
             info('department_id');
             info($data['department_id']);
             $wp->save();

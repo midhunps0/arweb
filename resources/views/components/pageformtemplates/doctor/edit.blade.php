@@ -49,6 +49,13 @@
     <input name="data[video_link]" type="text" class="input input-bordered w-full"
     value="{{$instance->translations_array[$locale]['video_link'] ?? ''}}"  />
 </div>
+<div class="form-control" x-data="{chVal: true}" x-init="chVal = {{$instance->is_active}};">
+    <label class="label" for="">Is Active?</label>
+    <input x-on:change="chVal = $el.checked ? 1 : 0" type="checkbox" class="checkbox checkbox-primary" @if ($instance->is_active)
+        checked
+    @endif/>
+    <input type="hidden" name="is_active" :value="chVal">
+</div>
 <div class="form-control">
     <label class="label">
         <span class="label-text">Experience Summary</span>

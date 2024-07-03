@@ -38,6 +38,11 @@
     <label class="label" for="">Intro Video Link</label>
     <input name="data[video_link]" type="text" class="input input-bordered w-full" />
 </div>
+<div class="form-control" x-data="{chVal: true}">
+    <label class="label" for="">Is Active?</label>
+    <input x-on:change="chVal = $el.checked ? 1 : 0" type="checkbox" class="checkbox checkbox-primary" />
+    <input type="hidden" name="is_active" :value="chVal">
+</div>
 <div class="form-control">
     <label class="label">
         <span class="label-text">Experience Summary</span>
