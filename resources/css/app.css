@@ -143,11 +143,11 @@ body {
 .cube-leave-end {
     transform: translateX(-50%) rotateY(-90deg);
 }
-.self-h-fill-img-wrapper {
+.img-autofill {
     @apply flex-grow flex flex-col overflow-hidden relative;
 }
 
-.self-h-fill-img-wrapper img {
-    @apply md:absolute md:top-0 md:right-0 min-h-full z-10;
+.img-autofill img {
+    @apply md:absolute md:top-0 md:right-0 min-h-full z-10 rounded-lg;
 }
 
