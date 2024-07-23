@@ -92,8 +92,8 @@ body {
 .doc-image .img{
     @apply flex flex-col justify-center items-center;
 }
-.doc-image  img{
-    @apply  rounded-full h-1/2 w-1/2 border border-gray;
+.doc-image img{
+    @apply  rounded-full w-1/2 border border-gray;
 }
 .content-margin{
     @apply my-6;
