@@ -3,8 +3,11 @@
 @foreach ($content as $row)
     <div class="row flex flex-row flex-wrap {{ $row->classes }}">
         @foreach ($row->cols as $col)
-            <div class="col px-2 min-w-64 flex-grow {{ $col->classes }}">
-                <div class="col-content w-full">
+        @php
+            $classes = str_replace('w-', 'w-full md:w-', $col->classes);
+        @endphp
+            <div class="col px-2 min-w-64 flex-grow flex flex-col {{ $classes }}">
+                <div class="col-content w-full flex-grow flex flex-col">
                     @foreach ($col->items as $item)
                         @switch($item->type)
                             @case('heading')
