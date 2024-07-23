@@ -5,8 +5,25 @@
             <div class="max-w-9/10 mx-auto">
                 <x-page-title title="{{__('footer.contact_us')}}" />
                 <div class="flex flex-col lg:flex-row-reverse my-12 lg:my-20 gap-4 border border-customOrange rounded-lg p-4">
-                    <div class="w-full lg:w-1/2">
-                        <form method="post" action="">
+                    <div x-data="{
+                            loading: false,
+                            doSubmit(e) {
+                                let f = e.target;
+                                let fd = new FormData(f);
+                                this.loading = true;
+                                axios.post('{{route('mail.contact')}}', fd).then((r) => {
+                                    console.log('mail response');
+                                    console.log(r);
+                                    this.loading = false;
+                                }).catch((e) => {
+                                    this.loading = false;
+                                });
+                            }
+                        }" class="w-full lg:w-1/2">
+                        <form method="post" action="" @submit.prevent.stop="doSubmit" class="relative">
+                            <div x-show="loading" class="absolute top-0 left-0 h-full w-full bg-white bg-opacity-40 flex justify-center items-center">
+                                <span class="animate-pulse text-warning">Please wait..</span>
+                            </div>
                             @csrf
                             <div class="flex flex-col gap-4 my-6">
                                 <div class="flex flex-col gap-2">
@@ -21,12 +38,12 @@
                                 <label for="message">{{__('footer.message')}}</label>
                                 <textarea name="message" id="message" placeholder="{{__('footer.type_your_msg')}}" class="w-full border-0 rounded-xl bg-lightpink"></textarea>
                                 </div>
-                                <div class="flex flex-row items-center gap-2">
+                                {{-- <div class="flex flex-row items-center gap-2">
                                 <input type="checkbox" name="checkbox" id="checkbox">
                                 <label for="checkbox">{!!__('footer.terms_&_conditions')!!}</label>
-                                </div>
+                                </div> --}}
                             </div>
-                            <button class="bg-black hover:bg-darkorange hover:transition-all duration-300 ease-in-out rounded-full font-helvetica text-base text-white py-2 px-4 lg:py-3 lg:px-8 shadow-2xl my-6">{{ __('button.submit')}}</button>
+                            <button type="submit" class="bg-black hover:bg-darkorange hover:transition-all duration-300 ease-in-out rounded-full font-helvetica text-base text-white py-2 px-4 lg:py-3 lg:px-8 shadow-2xl my-6">{{ __('button.submit')}}</button>
                         </form>
                     </div>
                     <div class="w-full lg:w-1/2 flex justify-center lg:justify-normal">

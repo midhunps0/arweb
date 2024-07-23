@@ -8,6 +8,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\IconsController;
 use App\Http\Controllers\LayoutBuilderController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\PageTemplateController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebPageController;
@@ -126,3 +127,4 @@ Route::group(['middleware' => ['ynotz.translation']], function () {
     Route::get('/{locale}/articles/{slug}', [ArticleController::class, 'show'])->name('articles.guest.show');
     Route::get('/{locale}/doctors/{slug}', [DoctorController::class, 'show'])->name('doctors.guest.show');
 });
+Route::post('contact-mail', [MailController::class, 'contactMail'])->name('mail.contact');
