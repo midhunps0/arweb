@@ -85,7 +85,7 @@ class DepartmentService implements ModelViewConnector {
         //     ];
         // }
 
-        $doctors = Doctor::where('department_id', $item->id)->get();
+        $doctors = Doctor::active()->where('department_id', $item->id)->get();
 
         return new ShowPageData(
             Str::ucfirst($this->getModelShortName()),
