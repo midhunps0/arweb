@@ -25,7 +25,7 @@
                     </div>
                 </div> --}}
             </div>
-            <h4 class="font-bold text-lg my-4">Our Doctors</h4>
+            <h4 class="font-bold my-4 px-2">Our Doctors</h4>
             <div class="flex flex-row flex-wrap">
                 {{-- {{dd($data['doctors'])}} --}}
                 @foreach ($data['doctors'] as $d)
