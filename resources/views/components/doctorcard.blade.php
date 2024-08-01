@@ -7,21 +7,22 @@
     'specialization'=>'',
     'experience'=>'',
     'video_link' => null,
-    'photo_url' => null
+    'photo_url' => null,
+    'show_details' => true
     ])
 <div x-data="{ open:false }" class="border border-customOrange rounded-lg flex
     flex-col md:flex-row relative h-full">
     <div class="md-w-1/3 p-2 flex flex-col justify-center gap-y-2">
         <img src="{{$photo_url ?? ''}}" class="rounded-lg w-48 md:max-w-none" alt="doctor_image">
 
-        {{-- @if ((isset($video_link) && $video_link != '') || $experience != '') --}}
+        @if($show_details)
         <div class="flex justify-end absolute bottom-2 right-2">
             <button @click.prevent="openScreen({{$index}})"class="bg-darkorange rounded-full px-4 py-2 flex justify-center items-center space-x-4 w-full text-white">
                 <span>Details</span>
                 <x-easyadmin::display.icon icon="icons.youtube-icon" height="h-6" width="w-6" class="fill-current"/>
             </button>
         </div>
-        {{-- @endif --}}
+        @endif
     </div>
     <div class="p-4 flex-grow">
 

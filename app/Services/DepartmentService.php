@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Department;
+use App\Models\Doctor;
 use App\Models\MetatagsList;
 use App\Models\Translation;
 use App\Models\User;
@@ -69,26 +70,28 @@ class DepartmentService implements ModelViewConnector {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
         }
 
-        $results = DB::table('departments', 'a')
-            ->join('translations as t', 'a.id', '=', 't.translatable_id')
-            ->select('t.slug as slug', 't.data as data')
-            ->where('t.translatable_type', Department::class)
-            ->where('t.slug', '<>', $slug)
-            ->where('t.locale', App::currentLocale())
-            ->get();
-        $allItems = [];
-        foreach ($results as $i) {
-            $allItems[] = [
-                'slug' => $i->slug,
-                'title' => (json_decode($i->data))->title
-            ];
-        }
+        // $results = DB::table('departments', 'a')
+        //     ->join('translations as t', 'a.id', '=', 't.translatable_id')
+        //     ->select('t.slug as slug', 't.data as data')
+        //     ->where('t.translatable_type', Department::class)
+        //     ->where('t.slug', '<>', $slug)
+        //     ->where('t.locale', App::currentLocale())
+        //     ->get();
+        // $allItems = [];
+        // foreach ($results as $i) {
+        //     $allItems[] = [
+        //         'slug' => $i->slug,
+        //         'title' => (json_decode($i->data))->title
+        //     ];
+        // }
+
+        $doctors = Doctor::where('department_id', $item->id)->get();
 
         return new ShowPageData(
             Str::ucfirst($this->getModelShortName()),
             $item,
             [
-                'allDepartments' => $allItems
+                'doctors' => $doctors
             ]
         );
     }

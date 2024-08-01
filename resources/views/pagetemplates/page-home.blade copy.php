@@ -336,26 +336,6 @@
                                                     <img x-show="r.video_link == null" :src="r.photo_url" class="object-contain">
                                                     <div x-show="r.video_link == null" @click="expand = !expand" x-data="{expand: false}" class="absolute p-3 z-10 bottom-0 left-0 bg-white w-full cursor-pointer transition-all" x-text="expand ? r.current_translation.data.review : (r.current_translation.data.review ? r.current_translation.data.review.substr(0,120)+'...' : '')"
                                                     :class="{'overflow-hidden h-20 hover:text-darkorange bg-opacity-80' : !expand, 'overflow-scroll h-96 bg-opacity-95': expand}"></div>
-                                                    {{-- <div class="flex w-full p-2 items-center">
-                                                        <div>
-                                                            <img src="/images/icons/double qoute left1.png" class="h-16" alt="">
-                                                        </div>
-                                                        <div>
-                                                            <div>
-                                                                <p class="font-franklin font-bold text-sm" x-text="r.current_translation.data.reviewer"></p>
-                                                            </div>
-                                                            <div class="flex flex-row">
-                                                            <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
-                                                            <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
-                                                            <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
-                                                            <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
-                                                            <x-easyadmin::display.icon icon="icons.star" height="h-4" width="w-4" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="px-4 max-h-52 md:h-52 overflow-y-scroll">
-                                                        <p class="text-sm lg:leading-5 font-franklin font-normal text-left" x-text="r.current_translation.data.review"></p>
-                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>

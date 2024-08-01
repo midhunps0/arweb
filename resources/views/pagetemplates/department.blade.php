@@ -25,6 +25,30 @@
                     </div>
                 </div> --}}
             </div>
+            <div class="flex flex-row flex-wrap">
+                {{-- {{dd($data['doctors'])}} --}}
+                @foreach ($data['doctors'] as $d)
+                <div class="w-1/2 p-2">
+                    <x-doctorcard
+                    index="1"
+                    name="{{$d->current_translation['data']['name']}}"
+                    designation="{{$d->current_translation['data']['designation']}}"
+                    department="{{$d->default_department}}"
+                    qualification="{{$d->current_translation['data']['qualification']}}"
+                    specialization="{{$d->current_translation['data']['specialisations']}}"
+                    experience="{{$d->current_translation['data']['exp_summary'] ?? ''}}"
+                    video_link="{{$d->current_translation['data']['video_link'] ?? null}}"
+                    photo_url="{{$d->photo_url}}"
+                    show_details="{{false}}"
+                    />
+                    {{-- <div class="box-border aspect-video border border-gray rounded-lg p-2">
+                        <div @click="openScreen({{$loop->index}})" class="w-full h-full object-fill overflow-hidden rounded-lg cursor-pointer">
+                            <img src="{{$p->image_url}}" alt="">
+                        </div>
+                    </div> --}}
+                </div>
+                @endforeach
+            </div>
         </div>
         <div class="mt-10">
             <x-footer-component />
