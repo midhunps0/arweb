@@ -17,7 +17,11 @@
                                     console.log('mail response');
                                     console.log(r);
                                     this.loading = false;
-                                    this.successMessage = true;
+                                    if (r.data.success) {
+                                        this.successMessage = true;
+                                    } else {
+                                        this.errorMessage = true;
+                                    }
                                     document.getElementById('contact-form').reset();
                                 }).catch((e) => {
                                     this.loading = false;
