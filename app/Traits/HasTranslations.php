@@ -53,6 +53,9 @@ trait HasTranslations {
                 foreach (config('app_settings.enabled_locales') as $c => $l) {
                     $t = $this->getTranslation($c);
                     $ar[$c] = $t != null ? $t->data : [];
+                    if(count($ar[$c]) == 0) {
+                        $ar[$c] = ($this->getTranslation(config('app_settings.default_locale')))->data;
+                    }
                 }
                 return $ar;
             }
@@ -66,11 +69,13 @@ trait HasTranslations {
                 $ar = [];
                 foreach (config('app_settings.enabled_locales') as $c => $l) {
                     $t = $this->getTranslation($c);
-                    $ar[$c] = $t != null ? ($t->slug ?? '') : [];
+                    $ar[$c] = $t != null ? ($t->slug ?? '#') : $this->getTranslation(config('app_settings.default_locale'))->slug;
                 }
                 return $ar;
             }
         );
     }
+
+
 
 }

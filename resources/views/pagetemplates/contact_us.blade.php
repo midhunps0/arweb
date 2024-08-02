@@ -7,6 +7,8 @@
                 <div class="flex flex-col lg:flex-row-reverse my-12 lg:my-20 gap-4 border border-customOrange rounded-lg p-4">
                     <div x-data="{
                             loading: false,
+                            successMessage: false,
+                            errorMessage: false,
                             doSubmit(e) {
                                 let f = e.target;
                                 let fd = new FormData(f);
@@ -15,15 +17,18 @@
                                     console.log('mail response');
                                     console.log(r);
                                     this.loading = false;
+                                    this.successMessage = true;
+                                    document.getElementById('contact-form').reset();
                                 }).catch((e) => {
                                     this.loading = false;
+                                    this.errorMessage = true;
                                 });
                             }
                         }" class="w-full lg:w-1/2">
-                        <form method="post" action="" @submit.prevent.stop="doSubmit" class="relative">
-                            <div x-show="loading" class="absolute top-0 left-0 h-full w-full bg-white bg-opacity-40 flex justify-center items-center">
+                        <form id="contact-form" method="post" action="" @submit.prevent.stop="doSubmit" class="relative">
+                            {{-- <div x-show="loading" class="absolute top-0 left-0 h-full w-full bg-white bg-opacity-40 flex justify-center items-center">
                                 <span class="animate-pulse text-warning">Please wait..</span>
-                            </div>
+                            </div> --}}
                             @csrf
                             <div class="flex flex-col gap-4 my-6">
                                 <div class="flex flex-col gap-2">
@@ -44,6 +49,24 @@
                                 </div> --}}
                             </div>
                             <button type="submit" class="bg-black hover:bg-darkorange hover:transition-all duration-300 ease-in-out rounded-full font-helvetica text-base text-white py-2 px-4 lg:py-3 lg:px-8 shadow-2xl my-6">{{ __('button.submit')}}</button>
+
+                            <div x-show="loading" class="absolute w-full h-full top-0 left-0 bg-darkorange bg-opacity-90 flex justify-center items-center text-white">
+                                <div class="font-bold animate-pulse m-2 p-2">
+                                    Please wait while we are submitting your message..
+                                </div>
+                            </div>
+                            <div x-show="successMessage" class="absolute w-full h-full top-0 left-0 bg-gray-600 bg-opacity-90 flex justify-center items-center text-white">
+                                <div class="font-bold m-2 p-2 text-center">
+                                    Your message was submitted successfully. We will get back to you shortly.<br>Thank you!<br>
+                                    <button type="button" @click="successMessage = false;" class="btn btn-success">Ok</button>
+                                </div>
+                            </div>
+                            <div x-show="errorMessage" class="absolute w-full h-full top-0 left-0 bg-gray-600 bg-opacity-90 flex justify-center items-center text-white">
+                                <div class="font-bold m-2 p-2 text-center">
+                                    Sorry, your message couldn't be submitted due to some unexpected error. Please try again.<br>
+                                    <button type="button" @click="errorMessage = false;" class="btn btn-warning">Ok</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="w-full lg:w-1/2 flex justify-center lg:justify-normal">
