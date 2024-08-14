@@ -29,6 +29,7 @@ use Modules\Ynotz\EasyAdmin\Services\ColumnLayout;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
+use Modules\Ynotz\Metatags\Helpers\MetatagHelper;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class WebPageService implements ModelViewConnector {
@@ -79,6 +80,18 @@ class WebPageService implements ModelViewConnector {
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
         }
+
+        $title = $item->current_translation->data['metatags']['title'] ?? env('APP_NAME');
+        MetatagHelper::setTitle($title);
+        MetatagHelper::addTag('title', $title);
+        MetatagHelper::addOgTag('title', $title);
+
+        $description = $item->current_translation->data['metatags']['description'] ?? env('APP_NAME');
+        $ogDescription = $item->current_translation->data['metatags']['description'] ?? $description;
+        MetatagHelper::addTag('description', $description);
+        MetatagHelper::addTag('type', 'website');
+        MetatagHelper::addOgTag('description', $ogDescription);
+        MetatagHelper::addOgTag('type', 'website');
 
         $thedata = [];
         if ($slug == 'home') {

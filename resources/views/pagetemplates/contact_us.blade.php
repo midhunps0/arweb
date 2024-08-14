@@ -30,9 +30,6 @@
                             }
                         }" class="w-full lg:w-1/2">
                         <form id="contact-form" method="post" action="" @submit.prevent.stop="doSubmit" class="relative">
-                            {{-- <div x-show="loading" class="absolute top-0 left-0 h-full w-full bg-white bg-opacity-40 flex justify-center items-center">
-                                <span class="animate-pulse text-warning">Please wait..</span>
-                            </div> --}}
                             @csrf
                             <div class="flex flex-col gap-4 my-6">
                                 <div class="flex flex-col gap-2">

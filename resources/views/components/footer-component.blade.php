@@ -9,7 +9,7 @@
                                         <span class="fill-current text-white flex items-center ">
                                         <x-easyadmin::display.icon icon="icons.phone-icon" height="h-3.5" width="w-3.5"/>
                                         </span>
-                                        <p class="text-white text-sm lg:text-base">0484 4527 234 <span class="italic">({{__('footer.24/7_general_enquiry')}})</span></p>
+                                        <p class="text-white text-sm lg:text-base">0480 2800300<span class="italic">({{__('footer.24/7_general_enquiry')}})</span></p>
                                 </div>
                                 <div class="flex flex-row items-center gap-x-1 ">
                                         <span class="fill-current text-white flex items-center">
