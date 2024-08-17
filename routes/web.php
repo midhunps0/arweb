@@ -14,6 +14,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebPageController;
 use App\Models\PageTemplate;
 use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Modules\Ynotz\AccessControl\Http\Controllers\PermissionsController;
 use Modules\Ynotz\AccessControl\Http\Controllers\RolesController;
@@ -128,3 +129,15 @@ Route::group(['middleware' => ['ynotz.translation']], function () {
     Route::get('/{locale}/doctors/{slug}', [DoctorController::class, 'show'])->name('doctors.guest.show');
 });
 Route::post('contact-mail', [MailController::class, 'contactMail'])->name('mail.contact');
+
+Route::get('/clear-cache', function () {
+    if(request()->pass != 'Craft@1234*'){
+        return 'Unauthorised Action!';
+    }
+    Artisan::call('cache:clear');
+    return 'Cache cleared.';
+})->name('cache.clear');
+
+Route::get('/{locale}', [WebPageController::class, 'notFound'])->middleware('web');
+Route::get('/{locale}/{page}', [WebPageController::class, 'notFound'])->middleware('web');
+Route::fallback([WebPageController::class, 'notFound']);

@@ -22,6 +22,7 @@ export default () => ({
         }
         setTimeout(() => {
             this.$store.app.xpages[link].data.html = el.innerHTML;
+            // console.log(el.innerHTML);
         }, 500);
 
         // history.pushState({href: link}, '', link);
@@ -30,14 +31,15 @@ export default () => ({
     historyAction(e) {
         // console.log('inside history action');
         if (e.state != undefined && e.state != null) {
+            // console.log('e.state');
             // console.log(e.state);
 
             let link = e.state.href;
             let route = e.state.route;
             let target = e.state.target;
             let fragment = e.state.fragment;
-            this.showPage = false;
-            this.ajaxLoading = true;
+            // this.showPage = false;
+            // this.ajaxLoading = true;
             if (this.$store.app.xpages == undefined) {
                 this.$store.app.xpages = {};
             }
@@ -47,20 +49,28 @@ export default () => ({
             // console.log(this.$store.app.xpages[link]);
             if (this.$store.app.xpages[link] != undefined) {
 
-                setTimeout(() => {
+                // setTimeout(() => {
                     this.showPage = true;
                     // this.page = this.$store.app.xpages[link];
+                    // console.log('this.$store.app.xpages[link].data.html');
                     if (this.$store.app.xpages[link] && typeof this.$store.app.xpages[link].data != 'undefined') {
                         this.$dispatch('pagechanged', {currentpath: link, currentroute: route, target: target, fragment: fragment});
                         this.$dispatch('contentupdate', {content: this.$store.app.xpages[link].data.html, target: target});
+                        // this.fetchLink({
+                        //     link: link,
+                        //     fresh: true
+                        // });
                         if (this.$store.app.xpages[link].meta != undefined) {
-                            this.$dispatch('metachange', {data: this.$store.app.xpages[link].meta});
+                            this.$dispatch('xmetachange', {data: this.$store.app.xpages[link].meta});
+                        }
+                        if (this.$store.app.xpages[link].x_title != undefined != undefined) {
+                            this.$dispatch('xtitlechange', {data: this.$store.app.xpages[link].x_title});
                         }
                     }
-                    this.ajaxLoading = false;
-                },
-                    100
-                );
+                //     this.ajaxLoading = false;
+                // },
+                //     100
+                // );
             } else {
                 setTimeout(() => {
                         this.showPage = true;
@@ -111,7 +121,7 @@ export default () => ({
         if (detail.params != null) {
             thelink += "?" + this.getQueryString(params);
         }
-        console.log(this.$store.app.xpages);
+        // console.log(this.$store.app.xpages);
         if (!forceFresh && this.$store.app.xpages != undefined && this.$store.app.xpages[thelink] != undefined) {
             this.showPage = false;
             this.ajaxLoading = true;
@@ -120,8 +130,12 @@ export default () => ({
                 setTimeout(() => {
                     this.showPage = true;
                     this.$dispatch('contentupdate', {content: this.$store.app.xpages[thelink].data.html, target: targetPanelId});
+                    // console.log(`this.$store.app.xpages[link].meta: ${this.$store.app.xpages[link].meta}`);
                     if (this.$store.app.xpages[link].meta != undefined) {
-                        this.$dispatch('metachange', {data: this.$store.app.xpages[link].meta});
+                        this.$dispatch('xmetachange', {data: this.$store.app.xpages[link].meta});
+                    }
+                    if (this.$store.app.xpages[link].x_title != undefined != undefined) {
+                        this.$dispatch('xtitlechange', {data: this.$store.app.xpages[link].x_title});
                     }
                     this.$dispatch('pagechanged', {currentpath: link, currentroute: detail.route});
                     this.ajaxLoading = false;
@@ -157,13 +171,14 @@ export default () => ({
                 }
               ).then(
                 (r) => {
-                    console.log(r.data);
+                    // console.log(r.data);
                     this.showPage = false;
                     this.ajax = true;
                     setTimeout(
                         () => {
                             // document.getElementById(targetPanelId).innerHTML = r.data;
                             this.$dispatch('contentupdate', {content: r.data.html, target: targetPanelId});
+                            // console.log(`r.data.x_metatags: ${r.data.x_metatags}`);
                             if (r.data.x_metatags != undefined) {
                                 this.$dispatch('xmetachange', {data: r.data.x_metatags});
                             }
@@ -180,11 +195,15 @@ export default () => ({
                     if (this.$store.app.xpages == undefined || this.$store.app.xpages == null) {
                         this.$store.app.xpages = {};
                     }
+                    // console.log(`target pid: ${targetPanelId}, pid: ${this.panelId}`);
                     if (targetPanelId == this.panelId) {
                         let theData = {data: r.data};
                         // this.$store.app.xpages[thelink].data = r.data;
                         if (r.data.x_metatags != undefined) {
                             theData.meta = r.data.x_metatags;
+                        }
+                        if (r.data.x_title != undefined) {
+                            theData.x_title = r.data.x_title;
                         }
 
                         this.$store.app.xpages[thelink] = theData;

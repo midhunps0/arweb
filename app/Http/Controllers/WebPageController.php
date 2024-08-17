@@ -48,7 +48,12 @@ class WebPageController extends SmartController
     public function quickShow($slug)
     {
         App::setlocale('en');
-        return $this->show('en', $slug);
+        try {
+            return $this->show('en', $slug);
+        } catch (\Throwable $e) {
+            return $this->buildResponse('errors.404');
+        }
+
     }
 
     public function show($locale, $slug, $translationLink = null)
@@ -70,9 +75,7 @@ class WebPageController extends SmartController
             return $this->buildResponse('pagetemplates.'.$template->name, $showPageData->getData());
         } catch (\Throwable $e) {
             info($e);
-            return $this->buildResponse($this->errorView, [
-                'error' => $e->__toString()
-            ]);
+            return $this->buildResponse('errors.404');
         }
     }
 
@@ -237,5 +240,10 @@ class WebPageController extends SmartController
         return response()->json([
             $data
         ]);
+    }
+
+    public function notFound()
+    {
+        return $this->buildResponse('errors.404');
     }
 }

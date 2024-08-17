@@ -58,7 +58,7 @@ class FacilityController extends SmartController
             return $this->buildResponse($this->showView, $showPageData->getData());
         } catch (\Throwable $e) {
             info($e);
-            return $this->buildResponse($this->errorView, ['error' => $e->__toString()]);
+            return $this->buildResponse('errors.404');
         }
     }
 
