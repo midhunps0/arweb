@@ -3,6 +3,7 @@
 use App\Http\Controllers\AirpayController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CorrectionController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\FacilityController;
@@ -39,6 +40,8 @@ use Modules\Ynotz\EasyAdmin\Services\RouteHelper;
 // })->name('all_departments');
 Route::get('/', [WebPageController::class, 'home'])->name('home');
 Route::get('/ar', [WebPageController::class, 'homeAr'])->name('home.ar');
+
+Route::get('/correct-urls', [CorrectionController::class, 'correctTranslationUrls']);
 
 // Route::get('/booking', [BookingController::class, 'bookingPage'])->name('booking');
 Route::get('/{locale}/booking', [BookingController::class, 'bookingPage'])->name('booking');

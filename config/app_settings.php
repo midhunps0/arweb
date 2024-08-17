@@ -27,8 +27,9 @@ return [
     'solver_slots_url' => '/API/Appointment/GetFreeSlots',
     'solver_booking_url' => '/API/Appointment/BookAppointment',
     'solver_adv_booking_days' => 7,
-    'airpay_username' => '1669076',
-    'airpay_password' => 'u9RVqNzn',
-    'airpay_api_key' => 'jBtjXt2NM7Xur8h6',
-    'airpay_mercid' => '270462'
+    'airpay_username' => env('AIRPAY_USERNAME'),
+    'airpay_password' => env('AIRPAY_PASSWORD'),
+    'airpay_api_key' => env('AIRPAY_API_KEY'),
+    'airpay_mercid' => env('AIRPAY_MERCID')
+
 ];
