@@ -95,6 +95,8 @@ class WebPageController extends SmartController
     public function blog($locale = null)
     {
         $locale = $locale ?? 'en';
+        $tl = $locale == 'en' ? 'ar' : 'en';
+        session(['translation_link' => route('blog.loc', ['locale' => $tl])]);
         App::setlocale($locale);
         $articles = $this->connectorService->getBlogData($locale);
         return $this->buildResponse(
@@ -163,6 +165,7 @@ class WebPageController extends SmartController
 
     public function contact()
     {
+        session(['translation_link' => route('contact.ar')]);
         App::setlocale('en');
         return $this->buildResponse('pagetemplates.contact_us');
         // return $this->show('en','contact-us');
@@ -170,6 +173,7 @@ class WebPageController extends SmartController
 
     public function contactAr()
     {
+        session(['translation_link' => route('contact')]);
         App::setlocale('ar');
         return $this->buildResponse('pagetemplates.contact_us');
         // return $this->show('ar','contact-us');

@@ -59,7 +59,7 @@ Route::post('/notify', [AirpayController::class, 'airpayNotification'])->name('p
 // })->name('payment.airpay.response-dummy');
 
 
-Route::get('/contact-us', [WebPageController::class, 'contact'])->name('contact');
+Route::get('/en/contact-us', [WebPageController::class, 'contact'])->name('contact');
 Route::get('/ar/contact-us', [WebPageController::class, 'contactAr'])->name('contact.ar');
 
 Route::get('/consequatur-molestias-debitis', [ArticleController::class, 'old'])->name('articles.old');

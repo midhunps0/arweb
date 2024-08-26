@@ -15,7 +15,7 @@
                                         <span class="fill-current text-white flex items-center">
                                         <x-easyadmin::display.icon icon="icons.envelope-icon" height="h-4" width="w-4"/>
                                         </span>
-                                        <p class="text-white text-sm lg:text-base underline underline-offset-2">info@armedcentre.com</p>
+                                        <p class="text-white text-sm lg:text-base underline underline-offset-2">info@arhospital.in</p>
                                 </div>
 
                                 <div class="flex flex-row items-start gap-x-1 ">
@@ -38,11 +38,15 @@
                                 <div class="lg:w-1/4 mb-8 ">
                                 <p class="text-lg font-normal text-white mb-4">{{ __('header.departments')}}</p>
                                 <ul class="flex flex-col gap-3">
-                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}"
-                                                @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'cardiology'])}}'})"
-                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.cardiology')}}</a></li>
+                                    @for ($i = 0; $i < 10; $i++)
+                                    <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $departments_data[$i]->translations_slugs[app()->currentLocale()]])}}"
+                                            @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $departments_data[$i]->translations_slugs[app()->currentLocale()]])}}'})"
+                                            class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">
+                                            {{$departments_data[$i]['current_translation']['data']['title']}}
+                                        </a></li>
+                                    @endfor
 
-                                        <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'clinical-psychology'])}}"
+                                        {{-- <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'clinical-psychology'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'clinical-psychology'])}}'})"
                                                 class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.clinical_psychology')}}</a></li>
 
@@ -80,12 +84,20 @@
 
                                         <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'urology'])}}"
                                                 @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'urology'])}}'})"
-                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.urology')}}</a></li>
+                                                class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.urology')}}</a></li> --}}
 
-                                </ul>
+                                    </ul>
                                 </div>
                                 <div class="lg:w-1/4 mb-8 ">
-                                        <p class="text-lg font-normal text-white mb-4 ">{{ __('header.facilities')}}</p>
+                                    @for ($j = 10; $j < count($departments_data); $j++)
+                                    <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $departments_data[$j]->translations_slugs[app()->currentLocale()]])}}"
+                                            @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $departments_data[$j]->translations_slugs[app()->currentLocale()]])}}'})"
+                                            class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">
+                                            {{$departments_data[$i]['current_translation']['data']['title']}}</a></li>
+                                    @endfor
+                                </div>
+                                <div class="lg:w-1/4 mb-8 ">
+                                    <p class="text-lg font-normal text-white mb-4 ">{{ __('header.facilities')}}</p>
                                         <ul class="flex flex-col gap-3">
                                                 <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-critical-care'])}}"
                                                         @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-critical-care'])}}'})"
@@ -111,8 +123,6 @@
                                                         @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'other-facilities'])}}'})"
                                                         class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">{{ __('header.other_facilities')}}</a></li>
                                         </ul>
-                                </div>
-                                <div class="lg:w-1/4 mb-8 ">
                                         <p class="text-lg font-normal text-white mb-4">{{ __('header.about')}}</p>
                                         <ul class="flex flex-col gap-3">
                                                 <li><a href="{{route('doctors.loc', ['locale' => app()->currentLocale()])}}"
