@@ -93,7 +93,7 @@
                                     <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $departments_data[$j]->translations_slugs[app()->currentLocale()]])}}"
                                             @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $departments_data[$j]->translations_slugs[app()->currentLocale()]])}}'})"
                                             class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">
-                                            {{$departments_data[$i]['current_translation']['data']['title']}}</a></li>
+                                            {{$departments_data[$j]['current_translation']['data']['title']}}</a></li>
                                     @endfor
                                 </div>
                                 <div class="lg:w-1/4 mb-8 ">
