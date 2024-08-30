@@ -88,14 +88,16 @@
 
                                     </ul>
                                 </div>
-                                <ul class="lg:w-1/4 mb-8 ">
+                                <div class="lg:w-1/4 mb-8 ">
+                                    <ul>
                                     @for ($j = 10; $j < count($departments_data); $j++)
                                     <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $departments_data[$j]->translations_slugs[app()->currentLocale()]])}}"
                                             @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $departments_data[$j]->translations_slugs[app()->currentLocale()]])}}'})"
                                             class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">
                                             {{$departments_data[$j]['current_translation']['data']['title']}}</a></li>
                                     @endfor
-                                </li>
+                                    </ul>
+                                </div>
                                 <div class="lg:w-1/4 mb-8 ">
                                     <p class="text-lg font-normal text-white mb-4 ">{{ __('header.facilities')}}</p>
                                         <ul class="flex flex-col gap-3">
