@@ -95,7 +95,7 @@
                                             class="text-sm lg:text-base text-white hover:underline underline-offset-2 font-thin">
                                             {{$departments_data[$j]['current_translation']['data']['title']}}</a></li>
                                     @endfor
-                                    </li>
+                                </li>
                                 <div class="lg:w-1/4 mb-8 ">
                                     <p class="text-lg font-normal text-white mb-4 ">{{ __('header.facilities')}}</p>
                                         <ul class="flex flex-col gap-3">
