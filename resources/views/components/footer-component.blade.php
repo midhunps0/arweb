@@ -89,7 +89,7 @@
                                     </ul>
                                 </div>
                                 <div class="lg:w-1/4 mb-8 ">
-                                    <ul>
+                                    <ul class="flex flex-col gap-3">
                                     @for ($j = 10; $j < count($departments_data); $j++)
                                     <li><a href="{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $departments_data[$j]->translations_slugs[app()->currentLocale()]])}}"
                                             @click.prevent.stop="$dispatch('linkaction', {link: '{{route('departments.guest.show', ['locale' => app()->currentLocale(), 'slug' => $departments_data[$j]->translations_slugs[app()->currentLocale()]])}}'})"
