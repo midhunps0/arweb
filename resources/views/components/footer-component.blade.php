@@ -28,7 +28,7 @@
                                 <div class="flex items-center gap-x-3">
                                         <a href="https://www.facebook.com/arsuperspecialityhospital/" target="blank" class="fill-current text-white"><x-easyadmin::display.icon icon="icons.facebook-icon" height="h-4" width="w-4"/></a>
                                         <a href="https://www.instagram.com/arhospital/" target="blank" class="fill-current text-white"><x-easyadmin::display.icon icon="icons.instagram-icon" height="h-4" width="w-4"/></a>
-                                        <a href="https://in.linkedin.com/in/ar-medical-centre-aa5b91216" target="blank" class="fill-current text-white"><x-easyadmin::display.icon icon="icons.linkedin-icon" height="h-4" width="w-4"/></a>
+                                        {{-- <a href="https://in.linkedin.com/in/ar-medical-centre-aa5b91216" target="blank" class="fill-current text-white"><x-easyadmin::display.icon icon="icons.linkedin-icon" height="h-4" width="w-4"/></a> --}}
                                         <a href="https://www.youtube.com/@arhospital" target="blank" class="fill-current text-white"><x-easyadmin::display.icon icon="icons.youtube-icon" height="h-4" width="w-4"/></a>
                                 </div>
                                 </div>
