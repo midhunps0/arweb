@@ -38,7 +38,7 @@
                             ],
                             [
                                 'src_300' => '/images/slider/operation_theatre_300x300.webp',
-                                'src_600' => '/images/slider/operation_theatre_2_600x600',
+                                'src_600' => '/images/slider/operation_theatre600x600.webp',
                                 'alt' => 'Operation Theater',
                             ],
                             [
