@@ -14,7 +14,40 @@
                         <p class="text-sm sm:text-base md:text-lg">{{$instance->current_translation->data['sub_title']}}</p>
                         <!-- <div class="lg:mt-6"><x-button-component title="{{ __('button.know_more')}}" /></div> -->
                     </div>
-
+                    @php
+                        $slide_images = [
+                            [
+                                'src_300' => '/images/slider/24x7_Cardiac_Care_300x300.webp',
+                                'src_600' => '/images/slider/24x7_Cardiac_Care_600x600.webp',
+                                'alt' => '24 x 7 Cardiac Care',
+                            ],
+                            [
+                                'src_300' => '/images/slider/24x7_Emergency_Critical_Care_300x300.webp',
+                                'src_600' => '/images/slider/24x7_Emergency_Critical_Care_600x600.webp',
+                                'alt' => '24 x 7 Emergency & Critical Care',
+                            ],
+                            [
+                                'src_300' => '/images/slider/Integrated_World_Class_300x300.webp',
+                                'src_600' => '/images/slider/Integrated_World_Class_600x600.webp',
+                                'alt' => 'Integrated World Class Patient Care',
+                            ],
+                            [
+                                'src_300' => '/images/slider/NICU_SICU_MICU_300x300.webp',
+                                'src_600' => '/images/slider/NICU_SICU_MICU_600x600.webp',
+                                'alt' => 'NICU, SICU, MICU Facilitites',
+                            ],
+                            [
+                                'src_300' => '/images/slider/operation_theatre_300x300.webp',
+                                'src_600' => '/images/slider/operation_theatre600x600',
+                                'alt' => 'Operation Theater',
+                            ],
+                            [
+                                'src_300' => '/images/slider/operation_theatre_2_300x300.webp',
+                                'src_600' => '/images/slider/operation_theatre_2_600x600.webp',
+                                'alt' => 'Operation Theater',
+                            ],
+                        ];
+                    @endphp
                     <div class="flex justify-center lg:w-1/2">
                         {{-- <img src="/images/image9.png" class="w-96 lg:w-full rounded-2xl" alt="doctor_image"> --}}
                         <div x-data="{
@@ -29,7 +62,8 @@
                         {{-- <div class="w-4/5 lg:w-3/4 shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10" alt="baby_image"> --}}
                             <img src="/images/slider/bg.png" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="baby_image">
                         {{-- </div> --}}
-                        <div x-show="currentIndex == 0" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0 rounded-3xl overflow-hidden" alt="nicu sicu micu ccu"
+                        @foreach ($slide_images as $img)
+                        <div x-show="currentIndex == {{$loop->index}}" class="h-full w-full shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0 rounded-3xl overflow-hidden" alt="nicu sicu micu ccu"
                             x-transition:enter="transition ease-in-out duration-1000"
                             x-transition:enter-start="cube-enter-start"
                             x-transition:enter-end="cube-enter-end"
@@ -37,9 +71,16 @@
                             x-transition:leave-start="cube-enter-end"
                             x-transition:leave-end="cube-leave-end"
                             >
-                            <img src="/images/slider/world_class_care.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="0% emi offer">
+                            <picture>
+                                <source media="(min-width: 800px)" srcset="{{$img['src_600']}}">
+                                {{-- <source media="(min-width: px)" srcset="img_car.jpg"> --}}
+                                <img src="{{$img['src_300']}}" alt="{{$img['alt']}}">
+                              </picture>
+                            {{-- <img src="/images/slider/world_class_care.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="0% emi offer"> --}}
                         </div>
-                        <div x-show="currentIndex == 1" class="h-full w-full shadow-[5px_5px_7px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0 rounded-3xl overflow-hidden"
+                        @endforeach
+
+                        {{-- <div x-show="currentIndex == 1" class="h-full w-full shadow-[5px_5px_7px_2px_rgba(0,0,0,0.3)] z-10 absolute top-0 left-0 rounded-3xl overflow-hidden"
                             x-transition:enter="transition ease-in-out duration-1000"
                             x-transition:enter-start="cube-enter-start"
                             x-transition:enter-end="cube-enter-end"
@@ -68,7 +109,7 @@
                             x-transition:leave-end="cube-leave-end"
                             >
                             <img src="/images/slider/nicu_sicu.webp" width="330px" height="330px" class="h-full w-full" class="object-fit" alt="ranked among tp 10">
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- <div class="flex justify-center">
                         <div
