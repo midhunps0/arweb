@@ -47,6 +47,7 @@
                                 'alt' => 'Operation Theater',
                             ],
                         ];
+                        $img_count = count($slide_images);
                     @endphp
                     <div class="flex justify-center lg:w-1/2">
                         {{-- <img src="/images/image9.png" class="w-96 lg:w-full rounded-2xl" alt="doctor_image"> --}}
@@ -56,7 +57,7 @@
                         x-init="
                             setInterval(() => {
                                 //console.log('currentIndex: '+currentIndex);
-                                currentIndex = currentIndex < 3 ? currentIndex + 1 : 0;
+                                currentIndex = currentIndex < {{$img_count - 1}} ? currentIndex + 1 : 0;
                             }, 3000);
                         " class="md:flex justify-center lg:flex lg:justify-normal relative w-full m-auto md:w-4/5 lg:m-0">
                         {{-- <div class="w-4/5 lg:w-3/4 shadow-[5px_5px_4px_2px_rgba(0,0,0,0.3)] z-10" alt="baby_image"> --}}
