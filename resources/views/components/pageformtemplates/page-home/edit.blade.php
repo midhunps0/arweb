@@ -72,5 +72,5 @@
     <label class="label" for="">Slug</label>
     <input name="slug" type="text" class="input input-bordered w-full" value="{{$instance->getTranslation($locale)->slug ?? ''}}" required />
 </div>
-<x-pageformtemplates.metatags />
+<x-pageformtemplates.metatags :instance="$instance" locale="{{$locale}}"/>
 

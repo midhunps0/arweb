@@ -63,11 +63,11 @@ x-init="
         }, 500);
 
     }
-    {{-- @if(session()->get('title') != null)
+    @if(request()->session() != null)
     xtitle='{{addslashes(session()->get('title'))}}';
     @else
     xtitle='{{addslashes(config('app.name'))}}';
-    @endif --}}
+    @endif
     console.log('title')
     console.log(xtitle)
     setMetaHtml();
@@ -90,11 +90,20 @@ dir="{{App::currentLocale() == 'en' ? 'ltr' : 'rtl'}}"
 lang="en"
 >
     <head>
+        {{-- {{dd(request()->session()->get('title'))}} --}}
         @if(request()->session() != null)
+        {{-- {{dd(request()->session()->get('title'), addslashes(request()->session()->get('title')))}} --}}
         <title>{{addslashes(request()->session()->get('title'))}}</title>
         @endif
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-P849T2N');</script>
+        <!-- End Google Tag Manager -->
         <!--meta-->
         @if (request()->session()->get('metatags') != null)
         @foreach (request()->session()->get('metatags') as $tag)
@@ -127,6 +136,10 @@ lang="en"
         @formsubmit.window="postForm($event.detail);"
         @popstate.window="historyAction($event)"
         class="font-sans antialiased text-sm transition-colors">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P849T2N"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
         <div class="min-h-screen bg-base-200 flex flex-col">
             <main class="flex flex-col items-stretch flex-grow w-full">
                 <div x-data="{show: true}" x-show="show"
