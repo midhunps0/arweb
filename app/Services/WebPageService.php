@@ -139,10 +139,10 @@ class WebPageService implements ModelViewConnector {
         MetatagHelper::clearAllMeta();
         MetatagHelper::clearTitle();
         $this->setMetaTags(
-            config('meta_config.our-doctors')['title'],
-            config('meta_config.our-doctors')['description'],
-            config('meta_config.our-doctors')['created_at'],
-            config('meta_config.our-doctors')['updated_at'],
+            config('meta_config.our-departments')['title'],
+            config('meta_config.our-departments')['description'],
+            config('meta_config.our-departments')['created_at'],
+            config('meta_config.our-departments')['updated_at'],
         );
         return Department::all();
     }
