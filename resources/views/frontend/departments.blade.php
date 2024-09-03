@@ -2,7 +2,7 @@
     <div class="text-base">
         <x-header-component />
         <div class="w-full px-2 md:px-16 lg:px-24">
-            <x-page-title title="Blog" />
+            <x-page-title title="Departments" />
             <div class="flex flex-row flex-wrap justify-center items-stretch">
                 @foreach ($departments as $d)
                 {{-- {{dd($a->current_translation)}} --}}
