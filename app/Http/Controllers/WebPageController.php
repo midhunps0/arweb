@@ -42,7 +42,7 @@ class WebPageController extends SmartController
     {
         App::setlocale('ar');
         // return $this->buildResponse('pagetemplates.page-home');
-        return $this->show('en','home');
+        return $this->show('ar','home');
     }
 
     public function quickShow($slug)
@@ -58,6 +58,7 @@ class WebPageController extends SmartController
 
     public function show($locale, $slug, $translationLink = null)
     {
+        session()->remove('canonical_url');
         if ($translationLink == null) {
             $tl = $locale == 'en' ? 'ar' : 'en';
             session(['translation_link' => route('webpages.guest.show', ['locale' => $tl, 'slug' => $slug])]);

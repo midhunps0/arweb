@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use Modules\Ynotz\EasyAdmin\Services\FormHelper;
 use Modules\Ynotz\EasyAdmin\Services\IndexTable;
 use Modules\Ynotz\EasyAdmin\Traits\IsModelViewConnector;
@@ -71,12 +72,15 @@ class WebPageService implements ModelViewConnector {
             })
             ->get()->first();
         if($item == null && App::currentLocale() != config('app_settings.default_locale')) {
+            $defaultLocale = config('app_settings.default_locale');
+            $route = Route::currentRouteName();
+            $canonicalUrl = route($route, ['locale' => $defaultLocale, 'slug' => $slug]);
+            session()->put('canonical_url', $canonicalUrl);
             $item = WebPage::with(['translations'])
-            ->wherehas('translations', function ($q) use ($slug) {
-                $q->where('locale', config('app_settings.default_locale'))
+            ->wherehas('translations', function ($q) use ($slug, $defaultLocale) {
+                $q->where('locale', $defaultLocale)
                 ->where('slug', $slug);
-            })
-            ->get()->first();
+            })->get()->first();
         }
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
@@ -139,7 +143,7 @@ class WebPageService implements ModelViewConnector {
             config('meta_config.our-blogs')['created_at'],
             config('meta_config.our-blogs')['updated_at'],
         );
-        return Department::all();
+        // return Department::all();
         return Article::paginate(30);
     }
 
