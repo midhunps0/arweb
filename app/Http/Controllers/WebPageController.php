@@ -183,9 +183,7 @@ class WebPageController extends SmartController
     {
         session()->remove('canonical_url');
 
-        $defaultLocale = config('app_settings.default_locale');
-        $route = Route::currentRouteName();
-        $canonicalUrl = route($route, ['locale' => $defaultLocale]);
+        $canonicalUrl = route('contact.ar');
         session()->put('canonical_url', $canonicalUrl);
 
         session(['translation_link' => route('contact')]);
