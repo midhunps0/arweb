@@ -85,6 +85,12 @@ class WebPageService implements ModelViewConnector {
                 $q->where('locale', $defaultLocale)
                 ->where('slug', $slug);
             })->get()->first();
+        } else {
+            $defaultLocale = config('app_settings.default_locale');
+            $route = Route::currentRouteName();
+            if ($slug == 'home') {
+                $canonicalUrl = route('home');
+            }
         }
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
