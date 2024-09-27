@@ -183,7 +183,7 @@ class WebPageController extends SmartController
     {
         session()->remove('canonical_url');
 
-        $canonicalUrl = route('contact.ar');
+        $canonicalUrl = route('contact');
         session()->put('canonical_url', $canonicalUrl);
 
         session(['translation_link' => route('contact')]);
