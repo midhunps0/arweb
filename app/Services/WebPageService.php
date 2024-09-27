@@ -74,7 +74,11 @@ class WebPageService implements ModelViewConnector {
         if($item == null && App::currentLocale() != config('app_settings.default_locale')) {
             $defaultLocale = config('app_settings.default_locale');
             $route = Route::currentRouteName();
-            $canonicalUrl = route($route, ['locale' => $defaultLocale, 'slug' => $slug]);
+            if ($slug == 'home') {
+                $canonicalUrl = route('home');
+            } else {
+                $canonicalUrl = route($route, ['locale' => $defaultLocale, 'slug' => $slug]);
+            }
             session()->put('canonical_url', $canonicalUrl);
             $item = WebPage::with(['translations'])
             ->wherehas('translations', function ($q) use ($slug, $defaultLocale) {
