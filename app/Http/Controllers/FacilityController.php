@@ -46,6 +46,8 @@ class FacilityController extends SmartController
 
     public function show($locale, $slug)
     {
+        session()->remove('canonical_url');
+
         $tl = $locale == 'en' ? 'ar' : 'en';
         session(['translation_link' => route('facilities.guest.show', ['locale' => $tl, 'slug' => $slug])]);
 
