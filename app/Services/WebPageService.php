@@ -135,6 +135,11 @@ class WebPageService implements ModelViewConnector {
 
     public function getBlogData($locale)
     {
+        $defaultLocale = config('app_settings.default_locale');
+        $route = Route::currentRouteName();
+        $canonicalUrl = route($route, ['locale' => $defaultLocale]);
+        session()->put('canonical_url', $canonicalUrl);
+
         MetatagHelper::clearAllMeta();
         MetatagHelper::clearTitle();
         $this->setMetaTags(
@@ -143,12 +148,17 @@ class WebPageService implements ModelViewConnector {
             config('meta_config.our-blogs')['created_at'],
             config('meta_config.our-blogs')['updated_at'],
         );
-        // return Department::all();
+
         return Article::paginate(30);
     }
 
     public function getDepartmentsData($locale)
     {
+        $defaultLocale = config('app_settings.default_locale');
+        $route = Route::currentRouteName();
+        $canonicalUrl = route($route, ['locale' => $defaultLocale]);
+        session()->put('canonical_url', $canonicalUrl);
+
         MetatagHelper::clearAllMeta();
         MetatagHelper::clearTitle();
         $this->setMetaTags(
@@ -162,6 +172,11 @@ class WebPageService implements ModelViewConnector {
 
     public function getDoctorsData($locale)
     {
+        $defaultLocale = config('app_settings.default_locale');
+        $route = Route::currentRouteName();
+        $canonicalUrl = route($route, ['locale' => $defaultLocale]);
+        session()->put('canonical_url', $canonicalUrl);
+
         $doctors = Doctor::active()
             ->orderBy('department_id')
             ->get();
@@ -174,11 +189,21 @@ class WebPageService implements ModelViewConnector {
 
     public function getPhotosData($locale)
     {
+        $defaultLocale = config('app_settings.default_locale');
+        $route = Route::currentRouteName();
+        $canonicalUrl = route($route, ['locale' => $defaultLocale]);
+        session()->put('canonical_url', $canonicalUrl);
+
         return Photo::paginate(30);
     }
 
     public function getVideosData($locale)
     {
+        $defaultLocale = config('app_settings.default_locale');
+        $route = Route::currentRouteName();
+        $canonicalUrl = route($route, ['locale' => $defaultLocale]);
+        session()->put('canonical_url', $canonicalUrl);
+
         return Video::paginate(30);
     }
 

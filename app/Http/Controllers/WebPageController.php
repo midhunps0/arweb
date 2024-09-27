@@ -95,6 +95,7 @@ class WebPageController extends SmartController
 
     public function blog($locale = null)
     {
+        session()->remove('canonical_url');
         $locale = $locale ?? 'en';
         $tl = $locale == 'en' ? 'ar' : 'en';
         session(['translation_link' => route('blog.loc', ['locale' => $tl])]);
@@ -110,6 +111,7 @@ class WebPageController extends SmartController
 
     public function departments($locale = null)
     {
+        session()->remove('canonical_url');
         $locale = $locale = $locale ?? 'en';
         App::setlocale($locale);
         $departments = $this->connectorService->getDepartmentsData($locale);
@@ -123,6 +125,7 @@ class WebPageController extends SmartController
 
     public function doctors($locale = null)
     {
+        session()->remove('canonical_url');
         $locale = $locale = $locale ?? 'en';
         App::setlocale($locale);
         $doctors = $this->connectorService->getDoctorsData($locale);
@@ -136,6 +139,7 @@ class WebPageController extends SmartController
 
     public function photos($locale = null)
     {
+        session()->remove('canonical_url');
         $locale = $locale = $locale ?? 'en';
         App::setlocale($locale);
         $tl = $locale == 'en' ? 'ar' : 'en';
@@ -151,6 +155,7 @@ class WebPageController extends SmartController
 
     public function videos($locale = null)
     {
+        session()->remove('canonical_url');
         $locale = $locale = $locale ?? 'en';
         App::setlocale($locale);
         $tl = $locale == 'en' ? 'ar' : 'en';
@@ -166,6 +171,7 @@ class WebPageController extends SmartController
 
     public function contact()
     {
+        session()->remove('canonical_url');
         session(['translation_link' => route('contact.ar')]);
         App::setlocale('en');
         return $this->buildResponse('pagetemplates.contact_us');
@@ -174,6 +180,12 @@ class WebPageController extends SmartController
 
     public function contactAr()
     {
+        $defaultLocale = config('app_settings.default_locale');
+        $route = Route::currentRouteName();
+        $canonicalUrl = route($route, ['locale' => $defaultLocale]);
+        session()->put('canonical_url', $canonicalUrl);
+
+        session()->remove('canonical_url');
         session(['translation_link' => route('contact')]);
         App::setlocale('ar');
         return $this->buildResponse('pagetemplates.contact_us');
