@@ -8,6 +8,7 @@ use App\Services\WebPageService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
 use Modules\Ynotz\EasyAdmin\RenderDataFormats\ShowPageData;
 use Modules\Ynotz\EasyAdmin\Traits\HasMVConnector;
 use Modules\Ynotz\SmartPages\Http\Controllers\SmartController;
@@ -180,12 +181,13 @@ class WebPageController extends SmartController
 
     public function contactAr()
     {
+        session()->remove('canonical_url');
+
         $defaultLocale = config('app_settings.default_locale');
         $route = Route::currentRouteName();
         $canonicalUrl = route($route, ['locale' => $defaultLocale]);
         session()->put('canonical_url', $canonicalUrl);
 
-        session()->remove('canonical_url');
         session(['translation_link' => route('contact')]);
         App::setlocale('ar');
         return $this->buildResponse('pagetemplates.contact_us');
