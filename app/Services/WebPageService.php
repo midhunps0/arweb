@@ -91,6 +91,7 @@ class WebPageService implements ModelViewConnector {
             if ($slug == 'home') {
                 $canonicalUrl = route('home');
             }
+            session()->put('canonical_url', $canonicalUrl);
         }
         if($item == null) {
             throw new ResourceNotFoundException("Couldn't find the page you are looking for.");
