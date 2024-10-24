@@ -86,10 +86,12 @@ class WebPageService implements ModelViewConnector {
                 ->where('slug', $slug);
             })->get()->first();
         } else {
-            $defaultLocale = config('app_settings.default_locale');
+            // $defaultLocale = config('app_settings.default_locale');
             $route = Route::currentRouteName();
             if ($slug == 'home') {
                 $canonicalUrl = route('home');
+            } else {
+                $canonicalUrl = route('webpages.guest.show', ['locale' => App::currentLocale(),'slug' => $slug]);
             }
             session()->put('canonical_url', $canonicalUrl);
         }

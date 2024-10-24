@@ -182,7 +182,6 @@ class WebPageController extends SmartController
     public function contactAr()
     {
         session()->remove('canonical_url');
-
         $canonicalUrl = route('contact');
         session()->put('canonical_url', $canonicalUrl);
 
