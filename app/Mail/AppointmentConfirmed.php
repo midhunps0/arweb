@@ -52,7 +52,7 @@ class AppointmentConfirmed extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Youy Appointment Confirmed At AR Super Specialty Hospital',
+            subject: 'Youy Appointment Confirmed At AR Super Speciality Hospital',
         );
     }
 

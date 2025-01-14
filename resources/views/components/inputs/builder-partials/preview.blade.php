@@ -541,8 +541,59 @@
                                     class="btn btn-xs rounded-full flex flex-row items-center justify-center">
                                     <x-easyadmin::display.icon icon="easyadmin::icons.curly-braces" height="h-3" width="w-3" />
                                     </button>
-                                    <div @click.outside="showclasses = false;" x-show="showclasses" class="w-auto absolute z-50 flex flex-row justify-center space-x-4 bg-base-200 border border-base-300 shadow-md p-2 rounded-md items-start">
-                                        <div><input class="input input-sm w-52 input-bordered" type="text" x-model="c.classes"><br><span class="text-xs text-warning italic">Classes separated by spaces</span></div>
+                                    <div @click.outside="showclasses = false;" x-show="showclasses" class="w-auto absolute z-50 flex flex-row justify-center space-x-4 bg-base-200 border border-base-300 shadow-md p-2 rounded-md items-start top-full">
+                                        {{-- <div>
+                                            <input class="input input-sm w-52 input-bordered" type="text" x-model="c.classes"><br><span class="text-xs text-warning italic">Classes separated by spaces</span>
+                                        </div> --}}
+
+                                        <div class="w-52">
+                                            <input class="input input-sm w-52 input-bordered" type="hidden" readonly x-model="c.classes">
+                                            {{-- <br><span class="text-xs text-warning italic">Classes separated by spaces</span> --}}
+                                            <div class="text-xs text-warning italic mb-2">Choose the style classes to apply:</div>
+                                            <div x-data="{
+                                                classes_list: [],
+                                                selected_classes: [],
+                                                selectClass(cl) {
+                                                    if (this.selected_classes.includes(cl)) {
+                                                        this.selected_classes = this.selected_classes.filter((c) => {
+                                                            return c != cl;
+                                                        });
+                                                    } else {
+                                                        this.selected_classes.push(cl);
+                                                    }
+                                                },
+                                                isSelected(cname) {
+                                                    return this.selected_classes.includes(cname);
+                                                },
+                                                {{-- isDisabled(cname) {
+                                                    return cname.substring(0.2) == 'w-';
+                                                } --}}
+                                            }" x-init="
+                                                let temp = [
+                                                    'card',
+                                                    'long-card',
+                                                    'page-content',
+                                                    'doc-image',
+                                                    'content-margin',
+                                                    'small-content'
+                                                ];
+
+                                                if (typeof c.classes != undefined) {
+                                                    xclasses = c.classes.split(' ');
+                                                    classes_list = [...new Set([...xclasses, ...temp])];
+                                                    selected_classes = xclasses;
+                                                } else {
+                                                    classes_list = temp;
+                                                }
+                                                $watch('selected_classes', (v) => {
+                                                    c.classes = v.join(' ');
+                                                });
+                                            " class="w-full flex flex-row flex-wrap p-1 gap-1">
+                                                <template x-for="(cname, cindex) in classes_list">
+                                                    <button type="button" x-text="cname" class="btn-xs rounded-full border border-base-content border-opacity-30 py-1 px-2 h-auto disabled:bg-success disabled:bg-opacity-70 disabled:opacity-60" :class="isSelected(cname) ? 'bg-success' : ''" x-on:click="() => {selectClass(cname);}" :disabled="cname.substring(0,2) == 'w-'"></button>
+                                                </template>
+                                            </div>
+                                        </div>
 
                                         <button type="button" @click.stop.prevent="showclasses = false;"
                                         class="btn btn-xs rounded-full flex flex-row items-center justify-center rouded-full btn-warning">
@@ -587,7 +638,54 @@
                         <x-easyadmin::display.icon icon="easyadmin::icons.close" height="h-3" width="w-3" />
                     </div> --}}
                     <div @click.outside="showclasses = false;" x-show="showclasses" class="w-auto absolute right-0 z-50 flex flex-row justify-center space-x-4 bg-base-200 border border-base-300 shadow-md p-2 rounded-md items-start">
-                        <div><input class="input input-sm w-52 input-bordered" type="text" x-model="row.classes"><br><span class="text-xs text-warning italic">Classes separated by spaces</span></div>
+                        <div class="w-52">
+                            <input class="input input-sm w-52 input-bordered" type="hidden" readonly x-model="row.classes">
+                            {{-- <br><span class="text-xs text-warning italic">Classes separated by spaces</span> --}}
+                            <div class="text-xs text-warning italic mb-2">Choose the style classes to apply:</div>
+                            <div x-data="{
+                                classes_list: [],
+                                selected_classes: [],
+                                selectClass(cl) {
+                                    if (this.selected_classes.includes(cl)) {
+                                        this.selected_classes = this.selected_classes.filter((c) => {
+                                            return c != cl;
+                                        });
+                                    } else {
+                                        this.selected_classes.push(cl);
+                                    }
+                                },
+                                isSelected(cname) {
+                                    return this.selected_classes.includes(cname);
+                                },
+                                {{-- isDisabled(cname) {
+                                    return cname.substring(0.2) == 'w-';
+                                } --}}
+                            }" x-init="
+                                let temp = [
+                                    'card',
+                                    'long-card',
+                                    'page-content',
+                                    'doc-image',
+                                    'content-margin',
+                                    'small-content'
+                                ];
+
+                                if (typeof row.classes != undefined) {
+                                    xclasses = row.classes.split(' ');
+                                    classes_list = [...new Set([...xclasses, ...temp])];
+                                    selected_classes = xclasses;
+                                } else {
+                                    classes_list = temp;
+                                }
+                                $watch('selected_classes', (v) => {
+                                    row.classes = v.join(' ');
+                                });
+                            " class="w-full flex flex-row flex-wrap p-1 gap-1">
+                                <template x-for="(cname, cindex) in classes_list">
+                                    <button type="button" x-text="cname" class="btn-xs rounded-full border border-base-content border-opacity-30 py-1 px-2 h-auto disabled:bg-success disabled:bg-opacity-70 disabled:opacity-60" :class="isSelected(cname) ? 'bg-success' : ''" x-on:click="() => {selectClass(cname);}" :disabled="cname.substring(0,2) == 'w-'"></button>
+                                </template>
+                            </div>
+                        </div>
 
                         <button type="button" @click.stop.prevent="showclasses = false;"
                         class="btn btn-xs rounded-full flex flex-row items-center justify-center rouded-full btn-warning">

@@ -109,7 +109,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'info@armedicentre.com'),
-        'name' => env('MAIL_FROM_NAME', 'AR Superspecialty Hospital'),
+        'name' => env('MAIL_FROM_NAME', 'AR Super SpecialityHospital'),
     ],
 
     /*

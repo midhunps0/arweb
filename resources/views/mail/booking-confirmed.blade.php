@@ -4,7 +4,7 @@
     </div>
     <p style="margin: 2px 0;">
         Hi {{$name}},<br>
-        Welcome to <strong>AR Super Specialty Hospital!</strong><br>
+        Welcome to <strong>AR Super Speciality Hospital!</strong><br>
         Your appointment is confirmed with the following details:
     </p>
     <div>
