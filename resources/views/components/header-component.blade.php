@@ -106,7 +106,15 @@
                         </button>
                         <div x-show="open" class="w-60 h-fit bg-white flex flex-col mx-auto  rounded-lg " x-on:click.outside="open = false">
                         <ul class=" p-6 flex flex-col gap-2 ltr:text-left rtl:text-right    ">
-                            <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-critical-care'])}}"
+                            @foreach ($facilities_data as $f)
+                            <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => $f->translations_slugs[app()->currentLocale()]])}}"
+                                    @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => $f->translations_slugs[app()->currentLocale()]])}}'})"
+                                class="text-gray-700   text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">
+                                {{-- {{ __('header.24x7_critical_care')}} --}}
+                                {{$f->translations_array[app()->currentLocale()]['title']}}
+                            </a></li>
+                            {@endforeach}
+                            {{-- <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-critical-care'])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => '24x7-critical-care'])}}'})"
                                 class="text-gray-700   text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.24x7_critical_care')}}</a></li>
 
@@ -128,7 +136,7 @@
 
                             <li><a href="{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'other-facilities'])}}"
                                     @click.prevent.stop="$dispatch('linkaction', {link: '{{route('facilities.guest.show', ['locale' => app()->currentLocale(), 'slug' => 'other-facilities'])}}'})"
-                                class="text-gray-700   text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.other_facilities')}}</a></li>
+                                class="text-gray-700   text-base transition-all duration-300 ease-in-out hover:text-darkorange cursor-pointer ">{{ __('header.other_facilities')}}</a></li> --}}
                         </ul>
                         </div>
                     </li>
