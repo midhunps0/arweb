@@ -2,6 +2,7 @@
 namespace App\View\Composers;
 
 use App\Models\Department;
+use App\Models\Facility;
 use Illuminate\View\View;
 
 class DepartmentComposer
@@ -9,6 +10,10 @@ class DepartmentComposer
     public function compose(View $view )
     {
         $departments = Department::all();
-        $view->with('departments_data', $departments);
+        $facilities = Facility::all();
+        $view->with([
+            'departments_data' => $departments,
+            'facilities_data' => $facilities
+        ]);
     }
 }
